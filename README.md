@@ -33,13 +33,15 @@ Aquí es donde el testing se vuelve "real" al usar `OwnerService`.
 
 ### 🏗️ Sección 6: Dominando JUnit 5 (Advanced)
 Técnicas avanzadas para escribir tests limpios, mantenibles y profesionales.
-- **Nesting (@Nested)**: Jerarquía y orden en tests complejos.
-- **Tagging (@Tag)**: Organización por categorías (Humo, Persistencia, etc.).
-- **Repeating Tests**: `@RepeatedTest` para validaciones cíclicas.
-- **Parameterized Tests**: El corazón de la eficiencia. Probar múltiples escenarios con una sola función:
-  - `@ValueSource`: Strings, Primitivos.
-  - `@CsvSource`: Listas de datos complejas.
-  - `@MethodSource`: Generación de objetos dinámica.
+*   **Temas**: `@Nested`, `@Tag`, `@ParameterizedTest` (ValueSource, CsvSource, MethodSource) e inyección de dependencias (`TestInfo`, `TestReporter`).
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section6_advanced`.
+
+### ⚙️ Sección 7: Ejecución de Tests con Maven
+Domina las herramientas de ejecución, plugins y reportes. Sin Gradle, enfocado 100% en el ecosistema Maven.
+*   **Convención IT**: Diferenciación entre tests unitarios (`*Test.java`) y de integración (`*IT.java`).
+*   **Plugins**: Maven Surefire vs Maven Failsafe.
+*   **Reportes**: Generación de reportes HTML para visualización de calidad.
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section7_execution`.
 
 ---
 
@@ -49,11 +51,14 @@ Para dominar este repositorio desde la terminal, utiliza estos comandos estraté
 
 | Objetivo | Comando |
 | :--- | :--- |
-| **Ejecutar todo** | `mvn test` |
+| **Ejecurar Unit Tests** | `mvn test` |
+| **Ejecutar Integration Tests** | `mvn verify` |
+| **Generar Reporte HTML** | `mvn surefire-report:report` |
+| **Compilar sin Testear** | `mvn compile -DskipTests` |
 | **Ejecutar una teoría** | `mvn test -Dtest=AdvancedJUnit5Theory` |
 | **Ejecutar un ejercicio** | `mvn test -Dtest=ParameterizedExercise` |
 | **Filtrar por Etiqueta** | `mvn test -Dgroups="smoke"` |
-| **Excluir por Etiqueta** | `mvn test -DexcludedGroups="persistence"` |
+| **Excluir por Etiqueta** | `mvn test -DexcludedGroups="slow"` |
 | **Hacer Push (Profesor)** | `git push origin main` |
 
 ---
