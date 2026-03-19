@@ -18,29 +18,27 @@ class E2_LifecycleExercise {
 
     OwnerService ownerService;
 
-    // TODO 1: Crea un método con la anotación @BeforeAll para imprimir "Inicio de la suite de tests"
-    // Recuerda que el método debe ser ESTÁTICO.
+    // TODO 1: Crea un mï¿½todo con la anotaciï¿½n @BeforeAll para imprimir "Inicio de la suite de tests"
+    // Recuerda que el mï¿½todo debe ser ESTï¿½TICO.
 
-    // TODO 2: Crea un método con la anotación @BeforeEach para inicializar 'ownerService'
+    // TODO 2: Crea un mï¿½todo con la anotaciï¿½n @BeforeEach para inicializar 'ownerService'
     // cada vez que se ejecute un test individual.
 
     @Test
-    @Disabled
     void testSaveOwner() {
-        Owner owner = new Owner("Paco", "García");
+        Owner owner = new Owner("Paco", "Garcï¿½a");
         ownerService.save(owner);
         assertEquals(1, ownerService.getOwnerCount());
     }
 
     @Test
-    @Disabled
     void testFindOwner() {
-        Owner owner = new Owner("Ana", "López");
+        Owner owner = new Owner("Ana", "Lï¿½pez");
         ownerService.save(owner);
-        assertNotNull(ownerService.findByLastName("López"));
+        assertNotNull(ownerService.findByLastName("Lï¿½pez"));
     }
 
-    // TODO 3: Crea un método con la anotación @AfterEach para imprimir "Test completado".
+    // TODO 3: Crea un mï¿½todo con la anotaciï¿½n @AfterEach para imprimir "Test completado".
 }
 
 

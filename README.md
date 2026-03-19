@@ -176,7 +176,4 @@ Trucos avanzados de la magia de Boot.
 > [!TIP]
 > **Ahorro de Tiempo**: Utiliza siempre `-Dtest=NombreDeLaClase` para no ejecutar los tests de las lecciones superadas.
 
----
-
-**Hecho con ❤️ por Antigravity (Powered by Google Deepmind).**
 
