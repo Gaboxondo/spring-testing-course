@@ -20,63 +20,77 @@ Cada sección contiene tres pilares fundamentales:
 ## 📦 Desglose de Contenidos (JUnit 5 Core)
 
 ### 🏗️ Sección 1: El Motor de JUnit 5
-Fundamentos y ciclo de vida de los tests.
-- **L1_HelloWorld**: Tu primer test y aserción básica.
+- **L1_HelloWorldExercise**: Tu primer test y aserción básica.
 - **L2_HelloWorldSolution**: Solución al primer contacto.
-- **L3_LifecycleTheory**: `@BeforeEach`, `@BeforeAll` y el aislamiento de tests.
+- **L3_LifecycleTheory**: `@BeforeEach`, `@BeforeAll` y aislamiento.
 - **L4_LifecycleExercise**: Práctica del ciclo de vida con `OwnerService`.
-- **L5_LifecycleSolution**: Solución al ciclo de vida.
+- **L5_LifecycleSolution**: Solución al sistema de ciclo de vida.
 
 ### 🧪 Sección 2: Aserciones y Control de Flujo (Basics)
-Uso intensivo de aserciones sobre lógica de negocio real.
-- **L1_AssertionsTheory**: Repaso de todas las aserciones de JUnit 5.
+- **L1_AssertionsTheory**: Repaso completo de aserciones.
 - **L2_AssertionsExercise**: Validando el `OwnerService` y `Pet`.
-- **L4_GroupedAssertions**: Validación masiva con `assertAll`.
-- **L6_Exceptions**: Captura de errores con `assertThrows`.
-- **L8_Timeouts**: Control de rendimiento con `assertTimeout`.
-- **L10_Assumptions**: Saltando tests según el entorno.
-- **L12_Annotations**: Uso de `@Disabled` y `@DisplayName`.
+- **L3_AssertionsSolution**: Solución a las aserciones básicas.
+- **L4_GroupedAssertionsExercise**: Uso de `assertAll`.
+- **L5_GroupedAssertionsSolution**: Solución a validación masiva.
+- **L6_ExceptionsExercise**: Captura de errores con `assertThrows`.
+- **L7_ExceptionsSolution**: Solución a aserción de fallos.
+- **L8_TimeoutsExercise**: Control de rendimiento básico.
+- **L9_TimeoutsSolution**: Solución a los tiempos de espera.
+- **L10_AssumptionsExercise**: Saltando tests según el entorno.
+- **L11_AssumptionsSolution**: Solución a suposiciones de variables.
+- **L12_AnnotationsExercise**: Uso de `@Disabled` y etiquetas.
+- **L13_AnnotationsSolution**: Solución a etiquetas y comentarios.
 
 ### 🏗️ Sección 3: Dominando JUnit 5 (Advanced)
-Técnicas profesionales para tests mantenibles.
-*   **Contenidos**: `@Nested` (L2), `@Tag`, `@ParameterizedTest` (L8) e inyección de dependencias (L6).
-*   **Ubicación**: `src/test/java/com/testing/course/junit5/section3_advanced`.
+- **L1_AdvancedTheory**: Técnicas avanzadas de estructura.
+- **L2_TagAndNestedExercise**: Desafío de orden y etiquetas.
+- **L3_TagAndNestedSolution**: Solución a la organización.
+- **L4_TestInterfaceExercise**: Interfaces de test para reutilización.
+- **L5_TestInterfaceSolution**: Solución a la abstracción.
+- **L6_RepeatedAndDIExercise**: Inyección de dependencias en JUnit.
+- **L7_RepeatedAndDISolution**: Solución a Repetidos y DI.
+- **L8_ParameterizedExercise**: Desafío de Parametrizados (Value/CSV/Method).
+- **L9_ParameterizedSolution**: Solución al poder de los datos.
 
 ### ⚙️ Sección 4: Ejecución de Tests con Maven
-Plugins, ciclos de vida y reportes de calidad.
-*   **L1_ExecutionTheory**: Maven Surefire vs Failsafe.
-*   **L2_SpecialtyIntegrationIT**: Ejemplo de Test de Integración.
-*   **L3_MavenExecutionExercise**: Filtrado por etiquetas y reportes HTML.
-*   **Ubicación**: `src/test/java/com/testing/course/junit5/section4_execution`.
+- **L1_ExecutionTheory**: Configuración de Surefire y Failsafe.
+- **L2_SpecialtyIntegrationIT**: Ejemplo de Test de Integración real.
+- **L3_MavenExecutionExercise**: Filtrado de tags y generación de reportes.
+- **L4_MavenExecutionSolution**: Solución al ciclo de vida de Maven.
 
 ---
 
 ## 🎭 Desglose de Contenidos (Mockito)
 
 ### 🃏 Sección 1: Introducción a Mockito
-Aislando la lógica de negocio simulando dependencias.
-*   **L1_IntroTheory**: Mocks manuales e Inline.
-*   **L2_AnnotationTheory**: `@Mock` y `@InjectMocks`.
-*   **L3_VerificationTheory**: `verify()` y Matchers (`any`).
-*   **L4_ManualMockingExercise**: Practica con `mock()` manual.
-*   **L6_AnnotationMockingExercise**: Uso profesional de anotaciones.
-*   **L8_VerificationExercise**: Asegura las interacciones y el número de llamadas.
-*   **Ubicación**: `src/test/java/com/testing/course/mockito/section1_intro`.
+- **L1_IntroTheory**: Conceptos base de Mocking.
+- **L2_AnnotationTheory**: `@Mock` y `@InjectMocks` profesional.
+- **L3_VerificationTheory**: Uso de `verify()` y Matchers.
+- **L4_ManualMockingExercise**: Practica con `mock()` manual.
+- **L5_ManualMockingSolution**: Solución al mocking inline.
+- **L6_AnnotationMockingExercise**: Uso de anotaciones intensivo.
+- **L7_AnnotationMockingSolution**: Solución al setup profesional.
+- **L8_VerificationExercise**: Asegura las interacciones y el número de llamadas.
+- **L9_VerificationSolution**: Solución a la verificación de flujo.
 
 ### 🎩 Sección 2: Advanced Mockito
-Validaciones profundas y casos complejos.
-*   **L1_ExceptionsTheory**: Forzando errores en dependencias (`doThrow`).
-*   **L2_ExceptionMockingExercise**: Practica la captura de excepciones.
-*   **L4_ArgumentCaptureTheory**: Captura de objetos complejos con `@Captor`.
-*   **L5_ArgumentCaptureExercise**: Desafío de validación de argumentos.
-*   **L7_VerificationAdvancedTheory**: Orden de ejecución (`InOrder`) e interacciones nulas.
-*   **L8_VerificationAdvancedExercise**: Garantía de flujo y validación de interacciones.
-*   **L10_SyntaxStruggleTheory**: La batalla final: `when().thenReturn()` vs `doReturn().when()`.
-*   **L11_SyntaxStruggleExercise**: Evita los efectos secundarios en Spies.
-*   **L13_PartialMockTheory**: Mocks parciales con `@Spy` (Mockear métodos de la misma clase).
-*   **L14_PartialMockExercise**: Validación parcial en `OwnerService`.
-*   **L16_SpyMockingExercise**: Dominio del espionaje y mocks parciales.
-*   **Ubicación**: `src/test/java/com/testing/course/mockito/section2_advanced`.
+- **L1_ExceptionsTheory**: Forzando errores controlados (`doThrow`).
+- **L2_ExceptionMockingExercise**: Desafío de errores forzados.
+- **L3_ExceptionMockingSolution**: Solución a fallos de persistencia.
+- **L4_ArgumentCaptureTheory**: Captura de objetos complejos con `@Captor`.
+- **L5_ArgumentCaptureExercise**: Desafío de validación de argumentos.
+- **L6_ArgumentCaptureSolution**: Solución a la captura de datos.
+- **L7_VerificationAdvancedTheory**: Orden cronológico (`InOrder`).
+- **L8_VerificationAdvancedExercise**: Garantía de flujo y no-interacciones.
+- **L9_VerificationAdvancedSolution**: Solución al control total de flujo.
+- **L10_SyntaxStruggleTheory**: El duelo final: `when` vs `doReturn`.
+- **L11_SyntaxStruggleExercise**: Evita los efectos secundarios en Spies.
+- **L12_SyntaxStruggleSolution**: Solución a la sintaxis crítica.
+- **L13_PartialMockTheory**: Spies y Mocks Parciales de métodos locales.
+- **L14_PartialMockExercise**: Validación parcial en `OwnerService`.
+- **L15_PartialMockSolution**: Solución al Partial Mocking.
+- **L16_SpyMockingExercise**: Desafío final de espionaje integral.
+- **L17_SpyMockingSolution**: Solución de cierre de Mockito.
 
 ---
 
