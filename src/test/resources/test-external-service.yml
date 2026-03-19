@@ -1,0 +1,4 @@
+external.service:
+  apiKey: "TEST-KEY-123"
+  url: "https://testing.api.com"
+  timeout: 5000

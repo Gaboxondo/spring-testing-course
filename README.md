@@ -107,6 +107,9 @@ Carga y gestión de dependencias en el contenedor de Spring.
 - **L7_HearingSolution**: Solución al desafío.
 - **L8_ProfileExercise**: Desafío de perfiles Yanny/Laurel.
 - **L9_ProfileSolution**: Solución al desafío.
+- **L10_MockitoExtensionTheory**: Mockito Puro vs Contexto Spring.
+- **L11_CustomExtensionExercise**: Práctica: Crea tu propia extensión Maven.
+- **L12_CustomExtensionSolution**: Solución a la extensión.
 
 ### 🌐 Sección 2: Spring MVC Test (MockMVC)
 Pruebas de controladores web sin levantar el servidor.
@@ -138,6 +141,13 @@ Simulación de APIs externas de terceros.
 - **L2_WiremockRecordingTheory**: Uso pro de `@WireMockTest`.
 - **L3_WiremockExercise**: Práctica de simulación de errores externos.
 - **L4_WiremockSolution**: Solución al error simulado.
+
+### 🛠️ Sección 6: Configuration & Properties
+Control de infraestructuras y configuración.
+- **L1_ValueAnnotationTheory**: Inyección de propiedades del sistema.
+- **L2_YamlPropertyTheory**: Lectura avanzada de YAML con **Custom Factory**.
+- **L3_PropertiesExercise**: Desafío de inyección de propiedades.
+- **L4_PropertiesSolution**: Solución a la inyección.
 
 ---
 
