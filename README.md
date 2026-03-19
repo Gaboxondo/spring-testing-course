@@ -2,7 +2,7 @@
 
 ¡Bienvenido al repositorio oficial del curso **Spring Boot Testing: De Beginner a Guru (Adaptado)**! 🚀
 
-Este proyecto ha sido diseñado para guiar a desarrolladores Junior a través del fascinante mundo del testing automatizado. No usaremos "placeholders" ni ejemplos vacíos; utilizaremos un dominio real basado en una clínica veterinaria para aplicar conceptos de **JUnit 5**, **AssertJ** y, próximamente, **Mockito**.
+Este proyecto ha sido diseñado para guiar a desarrolladores Junior a través del fascinante mundo del testing automatizado. No usaremos "placeholders" ni ejemplos vacíos; utilizaremos un dominio real basado en una clínica veterinaria para aplicar conceptos de **JUnit 5**, **AssertJ** y **Mockito**.
 
 ---
 
@@ -17,13 +17,13 @@ El curso está organizado en bloques incrementales de dificultad. Cada bloque co
 
 ## 📦 Desglose de Contenidos (JUnit 5 Core)
 
-### 🏗️ Sección 4: El Motor de JUnit 5
+### 🏗️ Sección 1: El Motor de JUnit 5
 Fundamentos y ciclo de vida. Es la base sobre la que construiremos todo.
 - **Lección 38**: Hola Mundo y primera aserción.
 - **Lección 39/40**: El ciclo de vida (`@BeforeEach`, `@BeforeAll`, etc.) y la instancia del test.
 - **Lección 41**: Ejecución remota y CLI.
 
-### 🧪 Sección 5: Aserciones y Control de Flujo (Basics)
+### 🧪 Sección 2: Aserciones y Control de Flujo (Basics)
 Aquí es donde el testing se vuelve "real" al usar `OwnerService`.
 - **Aserciones Estándar**: `assertEquals`, `assertTrue`, `assertNotNull`.
 - **Grouped Assertions**: Uso de `assertAll` para validaciones masivas (Multiple failures).
@@ -31,32 +31,36 @@ Aquí es donde el testing se vuelve "real" al usar `OwnerService`.
 - **Timeouts**: `assertTimeout` para pruebas de rendimiento básico.
 - **Assumptions**: Cómo saltar tests según el sistema operativo o variables de entorno.
 
-### 🏗️ Sección 6: Dominando JUnit 5 (Advanced)
+### 🏗️ Sección 3: Dominando JUnit 5 (Advanced)
 Técnicas avanzadas para escribir tests limpios, mantenibles y profesionales.
 *   **Temas**: `@Nested`, `@Tag`, `@ParameterizedTest` (ValueSource, CsvSource, MethodSource) e inyección de dependencias (`TestInfo`, `TestReporter`).
-*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section6_advanced`.
+*   **Ubicación**: `src/test/java/com/testing/course/junit5/section3_advanced`.
 
-### ⚙️ Sección 7: Ejecución de Tests con Maven
+### ⚙️ Sección 4: Ejecución de Tests con Maven
 Domina las herramientas de ejecución, plugins y reportes. Sin Gradle, enfocado 100% en el ecosistema Maven.
 *   **Convención IT**: Diferenciación entre tests unitarios (`*Test.java`) y de integración (`*IT.java`).
 *   **Plugins**: Maven Surefire vs Maven Failsafe.
 *   **Reportes**: Generación de reportes HTML para visualización de calidad.
-*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section7_execution`.
+*   **Ubicación**: `src/test/java/com/testing/course/junit5/section4_execution`.
 
-### 🃏 Sección 9: Empezando con Mockito
+---
+
+## 🎭 Desglose de Contenidos (Mockito)
+
+### 🃏 Sección 1: Empezando con Mockito
 Introducción al mundo de los objetos simulados (Mocks) para aislar la lógica de negocio.
 *   **Conceptos**: Mocking Inline vs Anotaciones (`@Mock`, `@InjectMocks`).
 *   **Manejo**: Programación conductual (`when(...).thenReturn(...)`) y verificación de interacciones (`verify`).
 *   **Matchers**: Uso de `any()` y validación por número de llamadas (`times`).
-*   **Ubicación**: `src/test/java/com/gaboxondo/testing/mockito/section9_intro`.
+*   **Ubicación**: `src/test/java/com/testing/course/mockito/section1_intro`.
 
-### 🎩 Sección 11: Advanced Mockito
+### 🎩 Sección 2: Advanced Mockito
 Técnicas ninja para casos complejos y validaciones profundas.
 *   **Captura**: Uso de `@Captor` para inspeccionar objetos pasados a dependencias.
 *   **Excepciones**: Programación de errores en mocks (`doThrow`).
 *   **Orden y Tiempo**: Verificaciones cronológicas (`InOrder`) y límites de ejecución (`timeout`).
 *   **Espionaje**: Diferencias entre Mock y Spy (`@Spy`).
-*   **Ubicación**: `src/test/java/com/gaboxondo/testing/mockito/section11_advanced`.
+*   **Ubicación**: `src/test/java/com/testing/course/mockito/section2_advanced`.
 
 ---
 
@@ -75,7 +79,6 @@ Para dominar este repositorio desde la terminal, utiliza estos comandos estraté
 > [!TIP]
 > **Ahorro de Tiempo**: Durante el curso, utiliza siempre `-Dtest=NombreDeLaClase` para no ejecutar los tests de las lecciones que ya has superado. Maven por defecto escanea todo el proyecto.
 
-
 ---
 
 ## ⚙️ Requisitos Técnicos
@@ -93,13 +96,11 @@ Estamos testeando un sistema que gestiona:
 - **VisitService**: Registro de visitas médicas inyectando `VisitRepository`.
 
 ### 🃏 El Poder de Mockito
-En las secciones 9 y 11 aprendemos a:
+En las secciones de Mockito aprendemos a:
 *   **Aislar Servicios**: Probamos `VetService` y `VisitService` simulando sus bases de datos (`Repositories`) para que los tests sean rápidos y predecibles.
 *   **Capturar Datos**: Validamos que la lógica de negocio no altere los objetos antes de guardarlos.
 *   **Forzar Errores**: Simulamos fallos de disco o validación para ver cómo reacciona nuestro código.
 
 ---
 
-*Este curso está en constante evolución. Sigue los commits para actualizaciones de **Sección 9: Mockito**.*
-
-**Hecho con ❤️ por Antigravity (Powered by Google Deepmind) para Gaboxondo.**
+**Hecho con ❤️ por Antigravity (Powered by Google Deepmind).**
