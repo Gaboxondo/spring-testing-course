@@ -1,145 +1,145 @@
-# ?? Curso Maestro: Testing con Spring Boot (Junior Edition)
+# ðŸŽ“ Curso Maestro: Testing con Spring Boot (Junior Edition)
 
-¡Bienvenido al repositorio oficial del curso **Spring Boot Testing: De Beginner a Guru (Adaptado)**! ??
+Â¡Bienvenido al repositorio oficial del curso **Spring Boot Testing: De Beginner a Guru (Adaptado)**! ðŸš€
 
-Este proyecto ha sido diseñado para guiar a desarrolladores Junior a través del fascinante mundo del testing automatizado manejando un dominio real de una clínica veterinaria.
+Este proyecto ha sido diseÃ±ado para guiar a desarrolladores Junior a travÃ©s del fascinante mundo del testing automatizado manejando un dominio real de una clÃ­nica veterinaria.
 
 ---
 
-## ??? Mapa de Ruta del Curso
+## ðŸ—ºï¸ Mapa de Ruta del Curso
 
-Cada sección contiene tres pilares fundamentales:
-*   **?? Teoría (`theory/`)**: Ejemplos numerados para entender el concepto.
-*   **?? Ejercicios (`exercises/`)**: Desafíos con `TODO` para completar.
-*   **? Soluciones (`solutions/`)**: El código final esperado.
+Cada secciÃ³n contiene tres pilares fundamentales:
+*   **ðŸ“– TeorÃ­a (`theory/`)**: Ejemplos numerados para entender el concepto.
+*   **ðŸ§© Ejercicios (`exercises/`)**: DesafÃ­os con `TODO` para completar.
+*   **âœ… Soluciones (`solutions/`)**: El cÃ³digo final esperado.
 
 **Sigue el orden de los archivos `L1`, `L2`, `L3`... para no perderte.**
 
 ---
 
-## ?? Desglose de Contenidos (JUnit 5 Core)
+## ðŸ“¦ Desglose de Contenidos (JUnit 5 Core)
 
-### ??? Sección 1: El Motor de JUnit 5
-- **L1_HelloWorldExercise**: Tu primer test y aserción básica.
+### ðŸ—ï¸ SecciÃ³n 1: El Motor de JUnit 5
+- **L1_HelloWorldExercise**: Tu primer test y aserciÃ³n bÃ¡sica.
 - **L3_LifecycleTheory**: `@BeforeEach`, `@BeforeAll` y aislamiento.
-- **L4_LifecycleExercise**: Práctica del ciclo de vida con `OwnerService`.
+- **L4_LifecycleExercise**: PrÃ¡ctica del ciclo de vida con `OwnerService`.
 
-### ?? Sección 2: Aserciones y Control de Flujo (Basics)
+### ðŸ§ª SecciÃ³n 2: Aserciones y Control de Flujo (Basics)
 - **L1_AssertionsTheory**: Repaso completo de aserciones.
 - **E1_AssertionsExercise**: Validando el `OwnerService` y `Pet`.
 - **E2_GroupedAssertionsExercise**: Uso de `assertAll`.
 - **E3_ExceptionsExercise**: Captura de errores con `assertThrows`.
-- **E4_TimeoutsExercise**: Control de rendimiento básico.
-- **E5_AssumptionsExercise**: Saltando tests según el entorno.
+- **E4_TimeoutsExercise**: Control de rendimiento bÃ¡sico.
+- **E5_AssumptionsExercise**: Saltando tests segÃºn el entorno.
 - **E6_AnnotationsExercise**: Uso de `@Disabled` y etiquetas.
 
-### ??? Sección 3: Dominando JUnit 5 (Advanced)
-- **L1_AdvancedTheory**: Técnicas avanzadas de estructura.
-- **E1_TagAndNestedExercise**: Desafío de orden y etiquetas.
-- **E2_TestInterfaceExercise**: Interfaces de test para reutilización.
-- **E3_RepeatedAndDIExercise**: Inyección de dependencias en JUnit.
-- **E4_ParameterizedExercise**: Desafío de Parametrizados (Value/CSV/Method).
+### ðŸ—ï¸ SecciÃ³n 3: Dominando JUnit 5 (Advanced)
+- **L1_AdvancedTheory**: TÃ©cnicas avanzadas de estructura.
+- **E1_TagAndNestedExercise**: DesafÃ­o de orden y etiquetas.
+- **E2_TestInterfaceExercise**: Interfaces de test para reutilizaciÃ³n.
+- **E3_RepeatedAndDIExercise**: InyecciÃ³n de dependencias en JUnit.
+- **E4_ParameterizedExercise**: DesafÃ­o de Parametrizados (Value/CSV/Method).
 
-### ?? Sección 4: Ejecución de Tests con Maven
-- **L1_ExecutionTheory**: Configuración de Surefire y Failsafe.
-- **L2_SpecialtyIntegrationIT**: Ejemplo de Test de Integración real.
-- **E1_MavenExecutionExercise**: Filtrado de tags y generación de reportes.
+### âš™ï¸ SecciÃ³n 4: EjecuciÃ³n de Tests con Maven
+- **L1_ExecutionTheory**: ConfiguraciÃ³n de Surefire y Failsafe.
+- **L2_SpecialtyIntegrationIT**: Ejemplo de Test de IntegraciÃ³n real.
+- **E1_MavenExecutionExercise**: Filtrado de tags y generaciÃ³n de reportes.
 
 ---
 
-## ?? Desglose de Contenidos (Mockito)
+## ðŸŽ­ Desglose de Contenidos (Mockito)
 
-### ?? Sección 1: Introducción a Mockito
+### ðŸƒ SecciÃ³n 1: IntroducciÃ³n a Mockito
 - **L1_IntroTheory**: Conceptos base de Mocking.
 - **L2_AnnotationTheory**: `@Mock` y `@InjectMocks` profesional.
 - **L3_VerificationTheory**: Uso de `verify()` y Matchers.
 - **E1_ManualMockingExercise**: Practica con `mock()` manual.
 - **E2_AnnotationMockingExercise**: Uso de anotaciones intensivo.
-- **E3_VerificationExercise**: Asegura las interacciones y el número de llamadas.
+- **E3_VerificationExercise**: Asegura las interacciones y el nÃºmero de llamadas.
 
-### ?? Sección 2: Advanced Mockito
+### ðŸŽ© SecciÃ³n 2: Advanced Mockito
 - **L1_ExceptionsTheory**: Forzando errores controlados (`doThrow`).
-- **E1_ExceptionMockingExercise**: Desafío de errores forzados.
+- **E1_ExceptionMockingExercise**: DesafÃ­o de errores forzados.
 - **L2_ArgumentCaptureTheory**: Captura de objetos complejos con `@Captor`.
-- **E2_ArgumentCaptureExercise**: Desafío de validación de argumentos.
-- **L3_VerificationAdvancedTheory**: Orden cronológico (`InOrder`).
-- **E3_VerificationAdvancedExercise**: Garantía de flujo y no-interacciones.
+- **E2_ArgumentCaptureExercise**: DesafÃ­o de validaciÃ³n de argumentos.
+- **L3_VerificationAdvancedTheory**: Orden cronolÃ³gico (`InOrder`).
+- **E3_VerificationAdvancedExercise**: GarantÃ­a de flujo y no-interacciones.
 - **L4_SyntaxStruggleTheory**: El duelo final: `when` vs `doReturn`.
 - **E4_SyntaxStruggleExercise**: Evita los efectos secundarios en Spies.
-- **L5_PartialMockTheory**: Spies y Mocks Parciales de métodos locales.
-- **E5_PartialMockExercise**: Validación parcial en `OwnerService`.
-- **E6_SpyMockingExercise**: Desafío final de espionaje integral.
+- **L5_PartialMockTheory**: Spies y Mocks Parciales de mÃ©todos locales.
+- **E5_PartialMockExercise**: ValidaciÃ³n parcial en `OwnerService`.
+- **E6_SpyMockingExercise**: DesafÃ­o final de espionaje integral.
 
 ---
 
-## ?? Desglose de Contenidos (Spring Testing)
+## ðŸŒ± Desglose de Contenidos (Spring Testing)
 
-### ?? Sección 1: Spring Framework Context
-Carga y gestión de dependencias en el contenedor de Spring.
-- **L1_SpringContextTheory**: Inyección de Beans reales (`@ContextConfiguration`).
-- **L2_PrimaryQualifierTheory**: Diferenciación de Beans (`@Primary`, `@Qualifier`).
-- **L3_InnerClassConfigTheory**: Mocks en clases de configuración internas.
+### ðŸŒ³ SecciÃ³n 1: Spring Framework Context
+Carga y gestiÃ³n de dependencias en el contenedor de Spring.
+- **L1_SpringContextTheory**: InyecciÃ³n de Beans reales (`@ContextConfiguration`).
+- **L2_PrimaryQualifierTheory**: DiferenciaciÃ³n de Beans (`@Primary`, `@Qualifier`).
+- **L3_InnerClassConfigTheory**: Mocks en clases de configuraciÃ³n internas.
 - **L4_ProfilesTheory**: Activando entornos con `@ActiveProfiles`.
-- **L5_TestPropertiesTheory**: Inyección de propiedades de test.
-- **E1_HearingExercise**: Desafío de configuración básica.
-- **E2_ProfileExercise**: Desafío de perfiles Yanny/Laurel.
+- **L5_TestPropertiesTheory**: InyecciÃ³n de propiedades de test.
+- **E1_HearingExercise**: DesafÃ­o de configuraciÃ³n bÃ¡sica.
+- **E2_ProfileExercise**: DesafÃ­o de perfiles Yanny/Laurel.
 - **L6_MockitoExtensionTheory**: Mockito Puro vs Contexto Spring.
-- **E3_CustomExtensionExercise**: Práctica: Crea tu propia extensión Maven.
+- **E3_CustomExtensionExercise**: PrÃ¡ctica: Crea tu propia extensiÃ³n Maven.
 
-### ?? Sección 2: Spring MVC Test (MockMVC)
+### ðŸŒ SecciÃ³n 2: Spring MVC Test (MockMVC)
 Pruebas de controladores web sin levantar el servidor.
 - **L1_MockMVCStandaloneTheory**: Setup ligero manual.
 - **L2_MockMVCWebContextTheory**: Slice Testing con `@WebMvcTest`.
-- **L3_FormParametersTheory**: Envío de datos de formulario y `@MockBean`.
-- **L4_ValidationErrorsTheory**: Validación de errores y redirecciones.
-- **E1_StandaloneIndexExercise**: Práctica de setup manual en el índice.
-- **E2_FormValidationExercise**: Práctica de validación masiva.
+- **L3_FormParametersTheory**: EnvÃ­o de datos de formulario y `@MockBean`.
+- **L4_ValidationErrorsTheory**: ValidaciÃ³n de errores y redirecciones.
+- **E1_StandaloneIndexExercise**: PrÃ¡ctica de setup manual en el Ã­ndice.
+- **E2_FormValidationExercise**: PrÃ¡ctica de validaciÃ³n masiva.
 
-### ?? Sección 3: Spring Boot Context
-Tests de integración total con la magia de Boot.
+### ðŸ”Œ SecciÃ³n 3: Spring Boot Context
+Tests de integraciÃ³n total con la magia de Boot.
 - **L1_SpringBootTestTheory**: Levantando TODO el contexto con `@SpringBootTest`.
-- **E1_BootIntegrationExercise**: Práctica de servicios reales.
+- **E1_BootIntegrationExercise**: PrÃ¡ctica de servicios reales.
 
-### ?? Sección 4: REST Controller Tests
-Validación de APIs JSON y clientes HTTP.
-- **L1_JsonPathTheory**: Navegando por el JSON con selecciones dinámicas.
-- **E1_VetRestExercise**: Práctica de validación REST.
+### ðŸ“¡ SecciÃ³n 4: REST Controller Tests
+ValidaciÃ³n de APIs JSON y clientes HTTP.
+- **L1_JsonPathTheory**: Navegando por el JSON con selecciones dinÃ¡micas.
+- **E1_VetRestExercise**: PrÃ¡ctica de validaciÃ³n REST.
 - **L2_TestRestTemplateTheory**: Peticiones HTTP reales al servidor en puerto aleatorio.
 
-### ?? Sección 5: Testing con Wiremock
-Simulación de APIs externas de terceros.
-- **L1_WiremockTheory**: Setup básico de servidor Mock HTTP.
+### â˜ï¸ SecciÃ³n 5: Testing con Wiremock
+SimulaciÃ³n de APIs externas de terceros.
+- **L1_WiremockTheory**: Setup bÃ¡sico de servidor Mock HTTP.
 - **L2_WiremockRecordingTheory**: Uso pro de `@WireMockTest`.
-- **E1_WiremockExercise**: Práctica de simulación de errores externos.
+- **E1_WiremockExercise**: PrÃ¡ctica de simulaciÃ³n de errores externos.
 
-### ??? Sección 6: Configuration & Properties
-Control de infraestructuras y configuración.
-- **L1_ValueAnnotationTheory**: Inyección de propiedades del sistema.
+### ðŸ› ï¸ SecciÃ³n 6: Configuration & Properties
+Control de infraestructuras y configuraciÃ³n.
+- **L1_ValueAnnotationTheory**: InyecciÃ³n de propiedades del sistema.
 - **L2_YamlPropertyTheory**: Lectura avanzada de YAML con **Custom Factory**.
-- **E1_PropertiesExercise**: Desafío de inyección de propiedades.
+- **E1_PropertiesExercise**: DesafÃ­o de inyecciÃ³n de propiedades.
 
-### ?? Sección 7: Data & Repositories (JPA/H2)
-Persistencia de datos y simulación de BBDD.
+### ðŸ’¾ SecciÃ³n 7: Data & Repositories (JPA/H2)
+Persistencia de datos y simulaciÃ³n de BBDD.
 - **L1_DataJpaTestTheory**: Slice Testing de Repositorios con `@DataJpaTest` y H2.
 - **L2_MockBeanRepositoryTheory**: Testing de Servicios simulando la BBDD con `@MockBean`.
-- **E1_DataJpaExercise**: Práctica: Guardar y Buscar por Apellido.
+- **E1_DataJpaExercise**: PrÃ¡ctica: Guardar y Buscar por Apellido.
 
-### ?? Sección 8: Spring Boot Test Features
+### ðŸš€ SecciÃ³n 8: Spring Boot Test Features
 Trucos avanzados de la magia de Boot.
 - **L1_WebEnvironmentTheory**: Entornos Web: `MOCK` vs `RANDOM_PORT`.
-- **L2_TestConfigurationTheory**: Sobrescribiendo Beans en ejecución con `@TestConfiguration`.
-- **L3_LocalServerPortTheory**: Recuperación del puerto dinámico real.
+- **L2_TestConfigurationTheory**: Sobrescribiendo Beans en ejecuciÃ³n con `@TestConfiguration`.
+- **L3_LocalServerPortTheory**: RecuperaciÃ³n del puerto dinÃ¡mico real.
 
 ---
 
-## ??? Comandos Maestros de Maven
+## ðŸ› ï¸ Comandos Maestros de Maven
 
 | Objetivo | Comando |
 | :--- | :--- |
-| **?? Ejecutar TODO** | `mvn test` |
-| **?? Ejecutar LECCIÓN** | `mvn test -Dtest=L1_AssertionsTheory` |
-| **??? Integration Tests** | `mvn verify` |
-| **?? Reporte HTML** | `mvn surefire-report:report` |
+| **ðŸš€ Ejecutar TODO** | `mvn test` |
+| **ðŸŽ¯ Ejecutar LECCIÃ“N** | `mvn test -Dtest=L1_AssertionsTheory` |
+| **ðŸ—ï¸ Integration Tests** | `mvn verify` |
+| **ðŸ“Š Reporte HTML** | `mvn surefire-report:report` |
 
 > [!TIP]
 > **Ahorro de Tiempo**: Utiliza siempre `-Dtest=NombreDeLaClase` para no ejecutar los tests de las lecciones superadas.
