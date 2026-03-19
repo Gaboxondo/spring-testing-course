@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Ejercicio 7: Organización Dinámica con @Tag y @Nested.
  * Basado en: Section 6: Advanced JUnit Testing - 63, 64.
- *
- * TODO: Utiliza @Tag y @Nested para organizar los tests de búsqueda.
- */
-@Tag("smoke")
+ * 
+ * PISTA: Mira la clase 'AdvancedJUnit5Theory.java' para ver cómo las clases @Nested 
+ * heredan propiedades de la clase padre.
+ */@Tag("smoke")
 class TagAndNestedExercise {
 
     OwnerService ownerService;

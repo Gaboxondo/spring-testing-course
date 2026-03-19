@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Ejercicio 5: Control de Tiempo en Servicios.
  * Basado en: Section 5: Testing Java with JUnit 5 - 54.
+ * 
+ * PISTA: Consulta 'Section5AssertionsTheory.java' para ver la diferencia entre 
+ * assertTimeout y assertTimeoutPreemptively.
  */
 class TimeoutsExercise {
 

@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Ejercicio 4: Validando Excepciones Dinámicas.
  * Basado en: Section 5: Testing Java with JUnit 5 - 53.
+ * 
+ * PISTA: Mira la 'Sección 5' de la clase 'Section5AssertionsTheory' para ver cómo se 
+ * usa assertThrows para capturar objetos Excepción de la lógica de servicios.
  */
 class ExceptionsExercise {
 

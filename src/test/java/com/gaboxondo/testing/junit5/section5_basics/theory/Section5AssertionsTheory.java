@@ -10,7 +10,17 @@ import static org.junit.jupiter.api.Assumptions.*;
 /**
  * TEORÍA: Sección 5 - Aserciones, Excepciones, Timeouts y Asunciones.
  * 
- * Este archivo demuestra las mejores prácticas para validar tests en JUnit 5.
+ * Basado en: Section 5 - Lecciones 47 a 56.
+ * 
+ * DETALLE FINO:
+ * - 'assertAll' (Grouped Assertions) usa lambdas para ejecutar TANTAS aserciones como sea posible.
+ *   Si una falla, el test CONTINÚA ejecutando las demás para darte un reporte completo de errores.
+ * - 'assertThrows' devuelve el objeto Exception capturado para permitirte validar el mensaje 
+ *   o el historial de causas de la excepción.
+ * 
+ * REFERENCIAS:
+ * - Lógica de negocio en: 'src/main/java/com/gaboxondo/testing/service/OwnerService.java'
+ * - Modelos en: 'src/main/java/com/gaboxondo/testing/model/'
  */
 @DisplayName("Teoría: Aserciones y Control de Flujo")
 class Section5AssertionsTheory {

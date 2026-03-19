@@ -11,8 +11,18 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * TEORÍA: Sección 6 - Organización y Tests Parametrizados.
  * 
- * En este bloque se explica cómo organizar tests complexes y cómo ejecutar un 
- * mismo test con múltiples entradas de datos de forma elegante.
+ * Basado en: Section 6 - Lecciones 63 a 76.
+ * 
+ * DETALLE FINO:
+ * - @Nested: Las clases internas no estáticas pueden compartir atributos con la 
+ *   clase externa. Cada clase anidada puede tener su propio @BeforeEach.
+ * - @ParameterizedTest: Reduce la duplicación de código permitiendo pasar una 
+ *   matriz de datos a un solo método de test de forma automatizada.
+ * 
+ * REFERENCIAS:
+ * - Mira en README.md los comandos para filtrar por @Tag (mvn test -Dgroups="smoke").
+ * - El plugin responsable de esto es el 'maven-surefire-plugin' configurado en la 
+ *   sección <build><plugins> del 'pom.xml'.
  */
 @DisplayName("Teoría: Organización y Metodología Avanzada")
 @Tag("smoke")

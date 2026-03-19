@@ -51,15 +51,15 @@ Para dominar este repositorio desde la terminal, utiliza estos comandos estraté
 
 | Objetivo | Comando |
 | :--- | :--- |
-| **Ejecurar Unit Tests** | `mvn test` |
-| **Ejecutar Integration Tests** | `mvn verify` |
-| **Generar Reporte HTML** | `mvn surefire-report:report` |
-| **Compilar sin Testear** | `mvn compile -DskipTests` |
-| **Ejecutar una teoría** | `mvn test -Dtest=AdvancedJUnit5Theory` |
-| **Ejecutar un ejercicio** | `mvn test -Dtest=ParameterizedExercise` |
-| **Filtrar por Etiqueta** | `mvn test -Dgroups="smoke"` |
-| **Excluir por Etiqueta** | `mvn test -DexcludedGroups="slow"` |
-| **Hacer Push (Profesor)** | `git push origin main` |
+| **🚀 Ejecutar TODO** | `mvn test` (Usa este comando en CI o antes de un commit) |
+| **🎯 Ejecutar LECCIÓN** | `mvn test -Dtest=NombreClase` (Evita ejecutar tests de secciones pasadas) |
+| **🏗️ Integration Tests** | `mvn verify` (Busca solo clases terminadas en IT.java) |
+| **📊 Reporte HTML** | `mvn surefire-report:report` |
+| **🏷️ Filtrar Tag** | `mvn test -Dgroups="smoke"` |
+
+> [!TIP]
+> **Ahorro de Tiempo**: Durante el curso, utiliza siempre `-Dtest=NombreDeLaClase` para no ejecutar los tests de las lecciones que ya has superado. Maven por defecto escanea todo el proyecto.
+
 
 ---
 

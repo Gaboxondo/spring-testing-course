@@ -5,12 +5,17 @@ import org.junit.jupiter.api.*;
 /**
  * TEORÍA SECCIÓN 7: Ejecución de Tests con Maven.
  * 
- * En Maven, existen dos ciclos principales para el testing automatizado:
- * 1.  Maven SUREFIRE Plugin: Ejecuta tests unitarios (mvn test). 
- *     Convención: Terminan en 'Test' o 'Tests'.
+ * Basado en: Section 7 - Lecciones 83 a 86.
  * 
- * 2.  Maven FAILSAFE Plugin: Ejecuta tests de integración (mvn verify).
- *     Convención: Terminan en 'IT' (Integration Test).
+ * DETALLE FINO:
+ * - SUREFIRE: Orientado a tests rápidos que no requieren entorno (Unitarios). Salta por defecto con 'mvn test'.
+ * - FAILSAFE: Orientado a tests lentos (Integración). Salta con 'mvn verify' o 'mvn integration-test'.
+ *   No falla la compilación inmediatamente, continúa hasta 'verify' para asegurar que el entorno de 
+ *   integración se limpie (@AfterAll) antes de reportar el error.
+ * 
+ * REFERENCIAS:
+ * - Mira la configuración del plugin 'maven-failsafe-plugin' en el archivo 'pom.xml'.
+ * - El test IT de ejemplo está en: 'SpecialtyIntegrationIT.java'.
  */
 @DisplayName("Teoría: Maven Plugins y Ciclo de Vida")
 class Section7ExecutionTheory {
@@ -23,9 +28,16 @@ class Section7ExecutionTheory {
     }
 
     /**
-     * COMANDOS A PROBAR:
-     * 1. mvn test            -> Solo ejecuta este archivo.
-     * 2. mvn verify          -> Ejecutará los tests de integración (*IT.java).
-     * 3. mvn test-compile    -> Compila pero NO ejecuta nada.
+     * DETALLE DE EJECUCIÓN (MUY IMPORTANTE):
+     * Maven por defecto escanea todo el directorio 'src/test/java'.
+     *
+     * 1. 'mvn test': Ejecuta TODAS las capas de las secciones 4, 5, 6 y 7. 
+     *     - Útil para CI o antes de un commit.
+     * 
+     * 2. 'mvn test -Dtest=Section7ExecutionTheory': Solo ejecuta este archivo.
+     *     - Útil durante el aprendizaje para no ver logs de asertos antiguos.
+     *
+     * 3. 'mvn verify': Dispara maven-failsafe-plugin (busca SpecialtyIntegrationIT).
+     *     - Se ejecuta desde la raíz del proyecto.
      */
 }

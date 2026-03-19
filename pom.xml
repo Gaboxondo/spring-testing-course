@@ -35,6 +35,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- SUREFIRE: Configurado aquí explícitamente para mostrarlo a los alumnos. 
+				 Controla la ejecución de tests unitarios (*Test.java). -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.2</version>
+			</plugin>
+
+			<!-- FAILSAFE: Configurado para tests de integración (*IT.java). Mira Sección 7. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>

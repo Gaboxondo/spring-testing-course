@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * Ejercicio 1: Aserciones Estándar de JUnit 5 con Lógica.
  * Basado en: Section 5: Testing Java with JUnit 5 - 47, 48.
  *
- * TODO: Completa los tests para validar el comportamiento del OwnerService y Pet.
+ * PISTA: Consulta 'Section5AssertionsTheory.java' para ejemplos de aserciones dinámicas 
+ * con el OwnerService.
  */
 class JUnit5AssertionsExercise {
 

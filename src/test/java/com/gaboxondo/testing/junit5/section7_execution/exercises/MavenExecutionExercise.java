@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Ejercicio Sección 7: Ejecución Selectiva con Maven.
  * Basado en: Section 7: Test Execution - 85, 86.
+ * 
+ * PISTA: Consulta la teoría en 'Section7ExecutionTheory.java' y revisa el bloque 
+ * 'maven-failsafe-plugin' configurado en el archivo 'pom.xml'.
  */
 class MavenExecutionExercise {
 

@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * Ejercicio 10: Tests Parametrizados Dinámicos.
  * Basado en: Section 6: Advanced JUnit Testing - 71, 73, 74, 76.
  *
- * TODO: Prueba el OwnerService de forma masiva.
+ * PISTA: Consulta 'AdvancedJUnit5Theory.java' para ver ejemplos de @CsvSource y 
+ * @MethodSource (Section 6 - Lección 76).
  */
 class ParameterizedExercise {
 
