@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -42,10 +43,10 @@ class L10_SyntaxStruggleTheory {
     @Test
     @DisplayName("🧪 Uso de when().thenReturn() (Tradicional y Seguro para Mocks)")
     void testWhenThenReturn() {
-        // Mockito sabe que findById devuelve un 'Vet'. Si pones un String, el IDE marcará error (Type-Safety).
-        when(vetRepository.findById(1L)).thenReturn(new Vet("Mock", "Vet"));
+        // JpaRepository.findById devuelve Optional<Vet>. Debemos usar Optional.of().
+        when(vetRepository.findById(1L)).thenReturn(Optional.of(new Vet("Mock", "Vet")));
         
-        assertNotNull(vetRepository.findById(1L));
+        assertTrue(vetRepository.findById(1L).isPresent());
     }
 
     /**

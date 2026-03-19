@@ -149,6 +149,19 @@ Control de infraestructuras y configuración.
 - **L3_PropertiesExercise**: Desafío de inyección de propiedades.
 - **L4_PropertiesSolution**: Solución a la inyección.
 
+### 💾 Sección 7: Data & Repositories (JPA/H2)
+Persistencia de datos y simulación de BBDD.
+- **L1_DataJpaTestTheory**: Slice Testing de Repositorios con `@DataJpaTest` y H2.
+- **L2_MockBeanRepositoryTheory**: Testing de Servicios simulando la BBDD con `@MockBean`.
+- **L3_DataJpaExercise**: Práctica: Guardar y Buscar por Apellido.
+- **L4_DataJpaSolution**: Solución al desafío de persistencia.
+
+### 🚀 Sección 8: Spring Boot Test Features
+Trucos avanzados de la magia de Boot.
+- **L1_WebEnvironmentTheory**: Entornos Web: `MOCK` vs `RANDOM_PORT`.
+- **L2_TestConfigurationTheory**: Sobrescribiendo Beans en ejecución con `@TestConfiguration`.
+- **L3_LocalServerPortTheory**: Recuperación del puerto dinámico real.
+
 ---
 
 ## 🛠️ Comandos Maestros de Maven

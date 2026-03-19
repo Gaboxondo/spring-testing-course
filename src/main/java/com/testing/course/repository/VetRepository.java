@@ -1,11 +1,7 @@
 package com.testing.course.repository;
 
 import com.testing.course.model.Vet;
-import java.util.Collection;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VetRepository {
-    Collection<Vet> findAll();
-    Vet findById(Long id);
-    void deleteById(Long id);
-    void save(Vet vet);
+public interface VetRepository extends JpaRepository<Vet, Long> {
 }

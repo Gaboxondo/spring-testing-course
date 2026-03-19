@@ -1,16 +1,30 @@
 package com.testing.course.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Owner {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @NotEmpty
     private String firstName;
+    
     private String lastName;
     private String address;
     private String city;
     private String telephone;
-    private Set<String> pets = new HashSet<>();
+    
+    @ElementCollection
+    private List<String> pets = new ArrayList<>();
+
+    // Requerido por JPA
+    public Owner() {
+    }
 
     public Owner(String firstName, String lastName) {
         this.firstName = firstName;
@@ -29,5 +43,5 @@ public class Owner {
     public void setCity(String city) { this.city = city; }
     public String getTelephone() { return telephone; }
     public void setTelephone(String telephone) { this.telephone = telephone; }
-    public Set<String> getPets() { return pets; }
+    public List<String> getPets() { return pets; }
 }

@@ -4,6 +4,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "com.testing.course.spring")
+@ComponentScan(basePackages = "com.testing.course")
 public class HearingConfig {
 }

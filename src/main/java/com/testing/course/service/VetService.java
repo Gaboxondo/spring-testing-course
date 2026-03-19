@@ -2,8 +2,10 @@ package com.testing.course.service;
 
 import com.testing.course.model.Vet;
 import com.testing.course.repository.VetRepository;
+import org.springframework.stereotype.Service;
 import java.util.Collection;
 
+@Service
 public class VetService {
     private final VetRepository vetRepository;
 
@@ -27,6 +29,6 @@ public class VetService {
     }
 
     public Vet findById(Long id) {
-        return vetRepository.findById(id);
+        return vetRepository.findById(id).orElse(null);
     }
 }
