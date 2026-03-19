@@ -43,6 +43,21 @@ Domina las herramientas de ejecución, plugins y reportes. Sin Gradle, enfocado 
 *   **Reportes**: Generación de reportes HTML para visualización de calidad.
 *   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section7_execution`.
 
+### 🃏 Sección 9: Empezando con Mockito
+Introducción al mundo de los objetos simulados (Mocks) para aislar la lógica de negocio.
+*   **Conceptos**: Mocking Inline vs Anotaciones (`@Mock`, `@InjectMocks`).
+*   **Manejo**: Programación conductual (`when(...).thenReturn(...)`) y verificación de interacciones (`verify`).
+*   **Matchers**: Uso de `any()` y validación por número de llamadas (`times`).
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/mockito/section9_intro`.
+
+### 🎩 Sección 11: Advanced Mockito
+Técnicas ninja para casos complejos y validaciones profundas.
+*   **Captura**: Uso de `@Captor` para inspeccionar objetos pasados a dependencias.
+*   **Excepciones**: Programación de errores en mocks (`doThrow`).
+*   **Orden y Tiempo**: Verificaciones cronológicas (`InOrder`) y límites de ejecución (`timeout`).
+*   **Espionaje**: Diferencias entre Mock y Spy (`@Spy`).
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/mockito/section11_advanced`.
+
 ---
 
 ## 🛠️ Comandos Maestros de Maven
@@ -73,11 +88,18 @@ Para asegurar la compatibilidad total del curso, necesitamos:
 
 ## 🐕 El Dominio: Clínica Veterinaria (Pet Clinic)
 Estamos testeando un sistema que gestiona:
-- **Owners**: Clientes de la clínica con validaciones de contacto.
-- **Pets**: Mascotas asociadas a los clientes.
-- **OwnerService**: Nuestro motor de búsqueda y persistencia en memoria.
+- **Owners / Pets**: Clientes de la clínica y sus mascotas.
+- **VetService**: Gestión de veterinarios inyectando `VetRepository`.
+- **VisitService**: Registro de visitas médicas inyectando `VisitRepository`.
+
+### 🃏 El Poder de Mockito
+En las secciones 9 y 11 aprendemos a:
+*   **Aislar Servicios**: Probamos `VetService` y `VisitService` simulando sus bases de datos (`Repositories`) para que los tests sean rápidos y predecibles.
+*   **Capturar Datos**: Validamos que la lógica de negocio no altere los objetos antes de guardarlos.
+*   **Forzar Errores**: Simulamos fallos de disco o validación para ver cómo reacciona nuestro código.
 
 ---
+
 *Este curso está en constante evolución. Sigue los commits para actualizaciones de **Sección 9: Mockito**.*
 
 **Hecho con ❤️ por Antigravity (Powered by Google Deepmind) para Gaboxondo.**
