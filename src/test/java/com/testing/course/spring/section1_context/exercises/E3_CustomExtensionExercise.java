@@ -1,5 +1,7 @@
-锘縫ackage com.testing.course.spring.section1_context.exercises;
+package com.testing.course.spring.section1_context.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.AfterEachCallback;
@@ -8,13 +10,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * Ejercicio L11: Crea tu propia Extensi贸n de JUnit 5.
+ * Ejercicio L11: Crea tu propia Extensi髇 de JUnit 5.
  * 
- * 驴Alguna vez te has preguntado c贸mo funcionan @ExtendWith(MockitoExtension.class)?
- * 隆Son simples interfaces que implementas!
+ * 緼lguna vez te has preguntado c髆o funcionan @ExtendWith(MockitoExtension.class)?
+ * on simples interfaces que implementas!
  * 
- * OBJETIVO: Implementar una extensi贸n llamada MyTimerExtension que imprima un mensaje 
- * en consola ANTES y DESPU脡S de cada m茅todo @Test.
+ * OBJETIVO: Implementar una extensi髇 llamada MyTimerExtension que imprima un mensaje 
+ * en consola ANTES y DESPU蒘 de cada m閠odo @Test.
  */
 
 // TODO: Implementa las interfaces BeforeEachCallback y AfterEachCallback.
@@ -31,14 +33,16 @@ class MyTimerExtension implements BeforeEachCallback, AfterEachCallback {
     }
 }
 
-@ExtendWith(MyTimerExtension.class) // TODO: Aplica tu extensi贸n a esta clase.
-@DisplayName("Ej L11: Test de Extensi贸n Personalizada")
+@ExtendWith(MyTimerExtension.class) // TODO: Aplica tu extensi髇 a esta clase.
+@DisplayName("Ej L11: Test de Extensi髇 Personalizada")
+@Disabled("Ejercicio pendiente de resolver")
 class E3_CustomExtensionExercise {
 
     @Test
-    @DisplayName("馃И Probar si la extensi贸n imprime datos")
+    @DisplayName("?? Probar si la extensi髇 imprime datos")
     void testDummy() {
         System.out.println("Ejecutando cuerpo del test...");
     }
 }
+
 

@@ -1,5 +1,7 @@
-﻿package com.testing.course.junit5.section2_basics.exercises;
+package com.testing.course.junit5.section2_basics.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,11 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio 2: Aserciones Agrupadas y Dependientes Dinámicas.
+ * Ejercicio 2: Aserciones Agrupadas y Dependientes Din�micas.
  * Basado en: Section 5: Testing Java with JUnit 5 - 49, 50.
  *
  * TODO: Utiliza 'assertAll' para validar el comportamiento del OwnerService.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E2_GroupedAssertionsExercise {
 
     OwnerService ownerService;
@@ -23,17 +26,18 @@ class E2_GroupedAssertionsExercise {
 
     @Test
     void testGroupedAssertions() {
-        Owner owner = new Owner("Beatriz", "Sánchez");
+        Owner owner = new Owner("Beatriz", "S�nchez");
         owner.setCity("Madrid");
         owner.setTelephone("678554443");
         ownerService.save(owner);
         
-        Owner saved = ownerService.findByLastName("Sánchez");
+        Owner saved = ownerService.findByLastName("S�nchez");
 
-        // TODO 1: Usa assertAll para validar el nombre y apellido en una sola llamada de agrupación "Owner Check"
+        // TODO 1: Usa assertAll para validar el nombre y apellido en una sola llamada de agrupaci�n "Owner Check"
         // assertAll("Owner Test", ...)
 
-        // TODO 2: Usa assertAll para validar la información de contacto (city, telephone) usando sub-agrupaciones (dependent assertions)
+        // TODO 2: Usa assertAll para validar la informaci�n de contacto (city, telephone) usando sub-agrupaciones (dependent assertions)
     }
 }
+
 

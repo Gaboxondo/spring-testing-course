@@ -1,5 +1,7 @@
-﻿package com.testing.course.spring.section4_rest.exercises;
+package com.testing.course.spring.section4_rest.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.controller.VetRestController;
 import com.testing.course.model.Vet;
 import com.testing.course.repository.VetRepository;
@@ -23,6 +25,7 @@ import static org.hamcrest.Matchers.*;
  * OBJETIVO: Testear que el endpoint devuelve un JSON con los datos esperados.
  */
 @WebMvcTest(VetRestController.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E1_VetRestExercise {
 
     @Autowired
@@ -40,4 +43,5 @@ class E1_VetRestExercise {
         // - El primer elemento del JSON tiene firstName "James" usando jsonPath.
     }
 }
+
 

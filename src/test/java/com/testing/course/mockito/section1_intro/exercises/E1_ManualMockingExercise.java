@@ -1,5 +1,7 @@
-Ôªøpackage com.testing.course.mockito.section1_intro.exercises;
+package com.testing.course.mockito.section1_intro.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;
 import org.junit.jupiter.api.Test;
@@ -13,13 +15,15 @@ import static org.mockito.Mockito.*;
  * 
  * OBJETIVO: Aprender a usar mock() e inyectar dependencias manualmente sin anotaciones.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E1_ManualMockingExercise {
 
     @Test
     void testFindAllManual() {
         // TODO 1: Crea un mock de VetRepository usando mock()
-        // TODO 2: Inicializa VetService pas√°ndole el mock creado (Inyecci√≥n manual)
+        // TODO 2: Inicializa VetService pas·ndole el mock creado (InyecciÛn manual)
         // TODO 3: Ejecuta vetService.findAll() y comprueba que no sea nulo.
     }
 }
+
 

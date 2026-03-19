@@ -1,5 +1,7 @@
-﻿package com.testing.course.mockito.section1_intro.exercises;
+package com.testing.course.mockito.section1_intro.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;
 import com.testing.course.model.Vet;
@@ -21,6 +23,7 @@ import static org.mockito.Mockito.*;
  * OBJETIVO: Dejar de inyectar manualmente para usar @Mock y @InjectMocks.
  */
 @ExtendWith(MockitoExtension.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E2_AnnotationMockingExercise {
 
     @Mock
@@ -38,4 +41,5 @@ class E2_AnnotationMockingExercise {
         // TODO 3: Llama al servicio vetService.findAll() y comprueba que tiene 1 elemento.
     }
 }
+
 

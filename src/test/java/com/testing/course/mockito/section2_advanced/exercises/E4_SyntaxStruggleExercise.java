@@ -1,5 +1,7 @@
-Ôªøpackage com.testing.course.mockito.section2_advanced.exercises;
+package com.testing.course.mockito.section2_advanced.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.model.Vet;
 import com.testing.course.repository.VetRepository;
 import org.junit.jupiter.api.Test;
@@ -14,9 +16,10 @@ import static org.mockito.Mockito.*;
  * 
  * Basado en: Section 2 - L4_SyntaxStruggleTheory.
  * 
- * OBJETIVO: Evitar que un Spy ejecute el m√©todo real durante el stubbing.
+ * OBJETIVO: Evitar que un Spy ejecute el mÈtodo real durante el stubbing.
  */
 @ExtendWith(MockitoExtension.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E4_SyntaxStruggleExercise {
 
     @Spy
@@ -25,9 +28,10 @@ class E4_SyntaxStruggleExercise {
     @Test
     void testStubbingAvoidingRealMethod() {
         // TODO 1: Usa doReturn("Mock").when(...) para que getFirstName() devuelva "Mock".
-        // PISTA: No uses when(...).thenReturn(...) o fallar√° el flujo del Spy real.
+        // PISTA: No uses when(...).thenReturn(...) o fallar· el flujo del Spy real.
         
         // TODO 2: Comprueba que vetSpy.getFirstName() devuelve "Mock".
     }
 }
+
 

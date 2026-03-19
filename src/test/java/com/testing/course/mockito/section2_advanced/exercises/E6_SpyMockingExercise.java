@@ -1,5 +1,7 @@
-ï»¿package com.testing.course.mockito.section2_advanced.exercises;
+package com.testing.course.mockito.section2_advanced.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.model.Owner;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,9 +15,10 @@ import static org.mockito.Mockito.*;
  * 
  * Basado en: Section 2 - L4_SpiesTheory.
  * 
- * OBJETIVO: Espiar una instancia real y "pisar" uno de sus mÃ©todos.
+ * OBJETIVO: Espiar una instancia real y "pisar" uno de sus métodos.
  */
 @ExtendWith(MockitoExtension.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E6_SpyMockingExercise {
 
     // TODO 1: Declara un @Spy de la clase 'Owner' inicializado con 'new Owner("Real", "Name")'.
@@ -24,10 +27,11 @@ class E6_SpyMockingExercise {
     void testSpyBehaviour() {
         // TODO 2: Comprueba con un aserto que owner.getFirstName() devuelve "Real".
         
-        // TODO 3: Usa 'doReturn' para que owner.getFirstName() devuelva "EspÃ­a".
-        // PISTA: doReturn("EspÃ­a").when(mock).metodo();
+        // TODO 3: Usa 'doReturn' para que owner.getFirstName() devuelva "Espía".
+        // PISTA: doReturn("Espía").when(mock).metodo();
         
-        // TODO 4: Comprueba que ahora devuelve "EspÃ­a".
+        // TODO 4: Comprueba que ahora devuelve "Espía".
     }
 }
+
 

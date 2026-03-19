@@ -1,5 +1,7 @@
-锘縫ackage com.testing.course.junit5.section1_intro.exercises;
+package com.testing.course.junit5.section1_intro.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.*;
@@ -11,20 +13,21 @@ import static org.junit.jupiter.api.Assertions.*;
  * 
  * PISTA: Consulta 'L1_AssertionsTheory.java' para ejemplos de aserciones.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E2_LifecycleExercise {
 
     OwnerService ownerService;
 
-    // TODO 1: Crea un m茅todo con la anotaci贸n @BeforeAll para imprimir "Inicio de la suite de tests"
-    // Recuerda que el m茅todo debe ser EST脕TICO.
+    // TODO 1: Crea un m閠odo con la anotaci髇 @BeforeAll para imprimir "Inicio de la suite de tests"
+    // Recuerda que el m閠odo debe ser EST罷ICO.
 
-    // TODO 2: Crea un m茅todo con la anotaci贸n @BeforeEach para inicializar 'ownerService'
+    // TODO 2: Crea un m閠odo con la anotaci髇 @BeforeEach para inicializar 'ownerService'
     // cada vez que se ejecute un test individual.
 
     @Test
     @Disabled
     void testSaveOwner() {
-        Owner owner = new Owner("Paco", "Garc铆a");
+        Owner owner = new Owner("Paco", "Garc韆");
         ownerService.save(owner);
         assertEquals(1, ownerService.getOwnerCount());
     }
@@ -32,11 +35,12 @@ class E2_LifecycleExercise {
     @Test
     @Disabled
     void testFindOwner() {
-        Owner owner = new Owner("Ana", "L贸pez");
+        Owner owner = new Owner("Ana", "L髉ez");
         ownerService.save(owner);
-        assertNotNull(ownerService.findByLastName("L贸pez"));
+        assertNotNull(ownerService.findByLastName("L髉ez"));
     }
 
-    // TODO 3: Crea un m茅todo con la anotaci贸n @AfterEach para imprimir "Test completado".
+    // TODO 3: Crea un m閠odo con la anotaci髇 @AfterEach para imprimir "Test completado".
 }
+
 

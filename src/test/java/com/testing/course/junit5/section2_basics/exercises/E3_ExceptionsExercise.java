@@ -1,5 +1,7 @@
-锘縫ackage com.testing.course.junit5.section2_basics.exercises;
+package com.testing.course.junit5.section2_basics.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,12 +9,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio 4: Validando Excepciones Din谩micas.
+ * Ejercicio 4: Validando Excepciones Din醡icas.
  * Basado en: Section 5: Testing Java with JUnit 5 - 53.
  * 
- * PISTA: Mira la 'Secci贸n 5' de la clase 'L1_AssertionsTheory' para ver c贸mo se 
- * usa assertThrows para capturar objetos Excepci贸n de la l贸gica de servicios.
+ * PISTA: Mira la 'Secci髇 5' de la clase 'L1_AssertionsTheory' para ver c髆o se 
+ * usa assertThrows para capturar objetos Excepci髇 de la l骻ica de servicios.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E3_ExceptionsExercise {
 
     OwnerService ownerService;
@@ -24,15 +27,16 @@ class E3_ExceptionsExercise {
 
     @Test
     void testExpectedExceptionOnSave() {
-        Owner owner = new Owner("", "Zapatero"); // Nombre vac铆o
+        Owner owner = new Owner("", "Zapatero"); // Nombre vac韔
 
         // TODO 1: Comprobar que al llamar a ownerService.save(owner) se lanza una 'IllegalArgumentException'
-        // TODO 2: Opcional: Validar que el mensaje de la excepci贸n es "El nombre es obligatorio"
+        // TODO 2: Opcional: Validar que el mensaje de la excepci髇 es "El nombre es obligatorio"
     }
 
     @Test
     void testExpectedExceptionOnNull() {
-        // TODO 3: Usa assertThrows para comprobar que guardar un objeto 'null' lanza excepci贸n.
+        // TODO 3: Usa assertThrows para comprobar que guardar un objeto 'null' lanza excepci髇.
     }
 }
+
 

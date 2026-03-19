@@ -1,11 +1,13 @@
-ï»¿package com.testing.course.spring.section7_data.exercises;
+package com.testing.course.spring.section7_data.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 /**
- * SecciÃ³n 7 - L3: Ejercicio Repositorios.
+ * Sección 7 - L3: Ejercicio Repositorios.
  * 
  * OBJETIVO:
  * 1. Anota esta clase para testear JPA.
@@ -13,16 +15,18 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
  * 3. Crea un test que guarde un Owner y lo busque por su apellido.
  * 4. Verifica que los datos son correctos.
  */
-// TODO: AÃ±adir anotaciÃ³n de Slice Test para JPA
-@DisplayName("SecciÃ³n 7 - L3: Ejercicio DataJpa")
+// TODO: Añadir anotación de Slice Test para JPA
+@DisplayName("Sección 7 - L3: Ejercicio DataJpa")
+@Disabled("Ejercicio pendiente de resolver")
 class E1_DataJpaExercise {
 
     // TODO: Inyectar OwnerRepository
 
     @Test
-    @DisplayName("ðŸ§ª DesafÃ­o: Guardar y Buscar por Apellido")
+    @DisplayName("?? Desafío: Guardar y Buscar por Apellido")
     void testSaveAndFindByLastName() {
-        // Tu cÃ³digo aquÃ­
+        // Tu código aquí
     }
 }
+
 

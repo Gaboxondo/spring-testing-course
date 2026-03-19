@@ -1,5 +1,7 @@
-ï»¿package com.testing.course.spring.section2_mvc.exercises;
+package com.testing.course.spring.section2_mvc.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.controller.OwnerController;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.Test;
@@ -12,13 +14,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Ejercicio L7: ValidaciÃ³n de Formularios en MVC.
+ * Ejercicio L7: Validación de Formularios en MVC.
  * 
  * Basado en: Section 2 - L4_ValidationErrorsTheory.
  * 
- * OBJETIVO: Testear que el sistema detecta errores al enviar datos vacÃ­os.
+ * OBJETIVO: Testear que el sistema detecta errores al enviar datos vacíos.
  */
 @WebMvcTest(OwnerController.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E2_FormValidationExercise {
 
     @Autowired
@@ -29,10 +32,11 @@ class E2_FormValidationExercise {
 
     @Test
     void testFormPostInvalidData() throws Exception {
-        // TODO: EnvÃ­a un POST a "/owners/new" con campos lastName vacÃ­o y firstName vacÃ­o.
+        // TODO: Envía un POST a "/owners/new" con campos lastName vacío y firstName vacío.
         // TODO: Comprueba que el status sea 200 (Vuelve al formulario).
-        // TODO: Comprueba que el modelo contenga errores de validaciÃ³n.
+        // TODO: Comprueba que el modelo contenga errores de validación.
         // TODO: Comprueba que la vista se mantenga en "owners/createOrUpdateOwnerForm".
     }
 }
+
 

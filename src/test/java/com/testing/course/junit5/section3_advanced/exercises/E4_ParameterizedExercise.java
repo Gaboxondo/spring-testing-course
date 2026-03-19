@@ -1,5 +1,7 @@
-ï»¿package com.testing.course.junit5.section3_advanced.exercises;
+package com.testing.course.junit5.section3_advanced.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,12 +11,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio 10: Tests Parametrizados DinÃ¡micos.
+ * Ejercicio 10: Tests Parametrizados Dinámicos.
  * Basado en: Section 6: Advanced JUnit Testing - 71, 73, 74, 76.
  *
  * PISTA: Consulta 'L1_AdvancedTheory.java' para ver ejemplos de @CsvSource y 
- * @MethodSource (Section 6 - LecciÃ³n 76).
+ * @MethodSource (Section 6 - Lección 76).
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E4_ParameterizedExercise {
 
     OwnerService ownerService;
@@ -28,21 +31,21 @@ class E4_ParameterizedExercise {
     // TODO 1: Usa @ValueSource con una lista de nombres de pila para crear Owners.
     void testValueSourceService(String firstName) {
         assertTrue( true );
-        // ... (Tu cÃ³digo aquÃ­)
+        // ... (Tu código aquí)
     }
 
     @ParameterizedTest
-    // TODO 2: Usa @CsvSource con pares "nombre, apellido" para guardar mÃºltiples Owners.
+    // TODO 2: Usa @CsvSource con pares "nombre, apellido" para guardar múltiples Owners.
     void testCsvSourceService(String firstName, String lastName) {
         assertTrue( true );
-        // ... (Tu cÃ³digo aquÃ­)
+        // ... (Tu código aquí)
     }
 
     @ParameterizedTest
-    // TODO 3: Usa @MethodSource apuntando al mÃ©todo 'getOwnerInputs' de abajo.
+    // TODO 3: Usa @MethodSource apuntando al método 'getOwnerInputs' de abajo.
     void testMethodSourceService(Owner inputOwner) {
         assertTrue( true );
-        // ... (Tu cÃ³digo aquÃ­)
+        // ... (Tu código aquí)
     }
 
     static Stream<Owner> getOwnerInputs() {
@@ -52,4 +55,5 @@ class E4_ParameterizedExercise {
         );
     }
 }
+
 

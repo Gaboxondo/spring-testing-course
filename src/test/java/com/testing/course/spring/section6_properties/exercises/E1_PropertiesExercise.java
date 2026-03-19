@@ -1,5 +1,6 @@
 package com.testing.course.spring.section6_properties.exercises;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // TODO: Crea un archivo "exercise.yaml" en src/test/resources con las propiedades correspondientes
 @ExtendWith(SpringExtension.class)
 @DisplayName("Ej L3: Test de @Value con PropertySource")
+@Disabled("Ejercicio pendiente de resolver")
 class E1_PropertiesExercise {
 
     @Configuration

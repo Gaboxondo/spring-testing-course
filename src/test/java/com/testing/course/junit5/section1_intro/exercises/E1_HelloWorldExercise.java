@@ -1,13 +1,16 @@
-ï»¿package com.testing.course.junit5.section1_intro.exercises;
+package com.testing.course.junit5.section1_intro.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Ejercicio: Mi primer Test con JUnit 5 (Hello World).
  * Basado en: Section 4: Getting Started with JUnit 5 - 38.
  *
- * TODO: Crea un test que use 'assertTrue' para validar una expresiÃ³n simple.
+ * TODO: Crea un test que use 'assertTrue' para validar una expresión simple.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E1_HelloWorldExercise {
 
     @Test
@@ -17,7 +20,8 @@ class E1_HelloWorldExercise {
 
     @Test
     void testFailAlways() {
-        // TODO: Usa fail("mensaje") para forzar un error al principio y ver cÃ³mo se reporta
+        // TODO: Usa fail("mensaje") para forzar un error al principio y ver cómo se reporta
     }
 }
+
 

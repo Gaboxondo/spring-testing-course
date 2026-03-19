@@ -1,5 +1,7 @@
-﻿package com.testing.course.spring.section1_context.exercises;
+package com.testing.course.spring.section1_context.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.spring.config.HearingConfig;
 import com.testing.course.spring.service.HearingInterpreter;
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class}) // TODO: Configura la clase HearingConfig
+@Disabled("Ejercicio pendiente de resolver")
 class E1_HearingExercise {
 
     @Autowired
@@ -28,4 +31,5 @@ class E1_HearingExercise {
         // TODO: Comprueba que el resultado contiene "Laurel" (por defecto).
     }
 }
+
 

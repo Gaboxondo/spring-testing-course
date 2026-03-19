@@ -1,5 +1,7 @@
-﻿package com.testing.course.spring.section1_context.exercises;
+package com.testing.course.spring.section1_context.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.spring.config.HearingConfig;
 import com.testing.course.spring.service.HearingInterpreter;
 import org.junit.jupiter.api.Test;
@@ -11,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio L8: El Desafío Yanny (Perfiles).
+ * Ejercicio L8: El Desaf�o Yanny (Perfiles).
  * 
  * Basado en: Section 1 - L4_ProfilesTheory.
  * 
@@ -20,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("yanny") // TODO 1: Activa el perfil "yanny"
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
+@Disabled("Ejercicio pendiente de resolver")
 class E2_ProfileExercise {
 
     @Autowired
@@ -30,4 +33,5 @@ class E2_ProfileExercise {
         // TODO 2: Comprueba que el resultado contiene "Yanny".
     }
 }
+
 

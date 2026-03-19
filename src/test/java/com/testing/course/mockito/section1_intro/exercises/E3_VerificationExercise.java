@@ -1,5 +1,7 @@
-ï»¿package com.testing.course.mockito.section1_intro.exercises;
+package com.testing.course.mockito.section1_intro.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;
 import com.testing.course.model.Vet;
@@ -19,6 +21,7 @@ import static org.mockito.Mockito.*;
  * OBJETIVO: Asegurar que las llamadas ocurren exactamente N veces.
  */
 @ExtendWith(MockitoExtension.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E3_VerificationExercise {
 
     @Mock
@@ -33,11 +36,12 @@ class E3_VerificationExercise {
         
         // TODO 1: Llama a vetService.save(vet).
         
-        // TODO 2: Verifica que el repositorio llamÃ³ a save() con cualquier objeto Vet.
+        // TODO 2: Verifica que el repositorio llamó a save() con cualquier objeto Vet.
         // PISTA: verify(mock).save(any(Clase.class));
         
-        // TODO 3: Verifica que llamÃ³ a save() una Ãºnica vez.
+        // TODO 3: Verifica que llamó a save() una única vez.
         // PISTA: verify(mock, times(1)).metodo(...);
     }
 }
+
 

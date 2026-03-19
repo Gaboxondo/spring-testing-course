@@ -1,25 +1,29 @@
-Ôªøpackage com.testing.course.junit5.section3_advanced.exercises;
+package com.testing.course.junit5.section3_advanced.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.*;
 
 /**
- * Ejercicio 9: Tests Repetidos e Inyecci√≥n de Dependencias.
+ * Ejercicio 9: Tests Repetidos e InyecciÛn de Dependencias.
  * Basado en: Section 6: Advanced JUnit Testing - 67, 68.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E3_RepeatedAndDIExercise {
 
     @Test
     // TODO 1: Usa @RepeatedTest para ejecutar este test 5 veces. 
-    // A√±ade la anotaci√≥n y cambia @Test por @RepeatedTest(5)
+    // AÒade la anotaciÛn y cambia @Test por @RepeatedTest(5)
     void repeatedTest() {
         System.out.println("Este test se repite");
     }
 
     @Test
-    // TODO 2: Inyecta 'TestReporter' como par√°metro de este m√©todo
-    // y util√≠zalo para publicar una entrada en el reporte con la clave "status" y el valor "OK".
+    // TODO 2: Inyecta 'TestReporter' como par·metro de este mÈtodo
+    // y utilÌzalo para publicar una entrada en el reporte con la clave "status" y el valor "OK".
     void diTest(/* TestReporter reporter */) {
         // ... reporter.publishEntry(...)
     }
 }
+
 

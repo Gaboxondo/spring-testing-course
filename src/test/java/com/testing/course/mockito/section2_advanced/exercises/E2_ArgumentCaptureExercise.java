@@ -1,5 +1,7 @@
-ï»¿package com.testing.course.mockito.section2_advanced.exercises;
+package com.testing.course.mockito.section2_advanced.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.repository.VisitRepository;
 import com.testing.course.service.VisitService;
 import com.testing.course.model.Visit;
@@ -21,6 +23,7 @@ import static org.mockito.Mockito.*;
  * OBJETIVO: Capturar la visita guardada en el repo y validar sus propiedades.
  */
 @ExtendWith(MockitoExtension.class)
+@Disabled("Ejercicio pendiente de resolver")
 class E2_ArgumentCaptureExercise {
 
     @Mock
@@ -33,14 +36,15 @@ class E2_ArgumentCaptureExercise {
 
     @Test
     void testSaveVisitCapture() {
-        Visit visit = new Visit("RevisiÃ³n Anual", null);
+        Visit visit = new Visit("Revisión Anual", null);
         
         // TODO 2: Llama al servicio save().
         
         // TODO 3: Verifica la llamada al repo y captura el objeto.
         // PISTA: verify(mock).save(captor.capture());
         
-        // TODO 4: Comprueba que la descripciÃ³n capturada es "RevisiÃ³n Anual".
+        // TODO 4: Comprueba que la descripción capturada es "Revisión Anual".
     }
 }
+
 

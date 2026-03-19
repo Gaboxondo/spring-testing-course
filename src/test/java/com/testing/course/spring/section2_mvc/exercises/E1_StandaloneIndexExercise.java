@@ -1,5 +1,7 @@
-Ôªøpackage com.testing.course.spring.section2_mvc.exercises;
+package com.testing.course.spring.section2_mvc.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.controller.IndexController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +13,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
- * Ejercicio L5: Setup Standalone del √çndice.
+ * Ejercicio L5: Setup Standalone del Õndice.
  * 
  * Basado en: Section 2 - L1_MockMVCStandaloneTheory.
  * 
  * OBJETIVO: Configurar MockMvc manualmente y testear el IndexController.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E1_StandaloneIndexExercise {
 
     IndexController indexController;
@@ -31,7 +34,8 @@ class E1_StandaloneIndexExercise {
 
     @Test
     void testIndexUrl() throws Exception {
-        // TODO: Ejecuta una petici√≥n GET a "/" y comprueba status 200 y vista "index".
+        // TODO: Ejecuta una peticiÛn GET a "/" y comprueba status 200 y vista "index".
     }
 }
+
 

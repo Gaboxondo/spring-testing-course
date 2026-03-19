@@ -1,5 +1,7 @@
-ï»¿package com.testing.course.junit5.section2_basics.exercises;
+package com.testing.course.junit5.section2_basics.exercises;
 
+
+import org.junit.jupiter.api.Disabled;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * PISTA: Consulta 'L1_AssertionsTheory.java' para ver la diferencia entre 
  * assertTimeout y assertTimeoutPreemptively.
  */
+@Disabled("Ejercicio pendiente de resolver")
 class E4_TimeoutsExercise {
 
     OwnerService ownerService;
@@ -24,14 +27,15 @@ class E4_TimeoutsExercise {
 
     @Test
     void testTimeoutOfService() {
-        // TODO 1: Comprobar que al llamar a ownerService.slowProcess() no tarda mÃ¡s de 600ms.
-        // Pista: usa assertTimeout(Duration.ofMillis(600), () -> { /* cÃ³digo a probar */ });
+        // TODO 1: Comprobar que al llamar a ownerService.slowProcess() no tarda más de 600ms.
+        // Pista: usa assertTimeout(Duration.ofMillis(600), () -> { /* código a probar */ });
     }
 
     @Test
     void testTimeoutPreemptivelyOfService() {
         // TODO 2: Comprobar con 'assertTimeoutPreemptively' que 'slowProcess' no excede los 100ms.
-        // (Nota: Este test fallarÃ¡ porque sabemos que el mÃ©todo tarda 500ms!)
+        // (Nota: Este test fallará porque sabemos que el método tarda 500ms!)
     }
 }
+
 
