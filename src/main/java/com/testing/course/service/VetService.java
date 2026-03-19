@@ -21,4 +21,12 @@ public class VetService {
         }
         vetRepository.save(vet);
     }
+
+    public void deleteById(Long id) {
+        vetRepository.deleteById(id);
+    }
+
+    public Vet findById(Long id) {
+        return vetRepository.findById(id);
+    }
 }

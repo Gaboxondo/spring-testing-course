@@ -6,5 +6,6 @@ import java.util.Collection;
 public interface VetRepository {
     Collection<Vet> findAll();
     Vet findById(Long id);
+    void deleteById(Long id);
     void save(Vet vet);
 }

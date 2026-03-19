@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Teoría: Verificaciones Avanzadas")
-class L3_VerificationAdvancedTheory {
+class L7_VerificationAdvancedTheory {
 
     @Mock
     VisitRepository visitRepository;

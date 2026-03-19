@@ -9,13 +9,17 @@ public class OwnerService {
     private final List<Owner> owners = new ArrayList<>();
 
     public void save(Owner owner) {
+        validateOwner(owner);
+        owners.add(owner);
+    }
+
+    public void validateOwner(Owner owner) {
         if (owner == null) {
             throw new IllegalArgumentException("El owner no puede ser nulo");
         }
         if (owner.getFirstName() == null || owner.getFirstName().isEmpty()) {
             throw new IllegalArgumentException("El nombre es obligatorio");
         }
-        owners.add(owner);
     }
 
     public Owner findByLastName(String lastName) {

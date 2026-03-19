@@ -58,15 +58,25 @@ Aislando la lógica de negocio simulando dependencias.
 *   **L1_IntroTheory**: Mocks manuales e Inline.
 *   **L2_AnnotationTheory**: `@Mock` y `@InjectMocks`.
 *   **L3_VerificationTheory**: `verify()` y Matchers (`any`).
-*   **L4_VetServiceExercise**: Tu primer mock sobre servicios.
+*   **L4_ManualMockingExercise**: Practica con `mock()` manual.
+*   **L6_AnnotationMockingExercise**: Uso profesional de anotaciones.
+*   **L8_VerificationExercise**: Asegura las interacciones y el número de llamadas.
+*   **Ubicación**: `src/test/java/com/testing/course/mockito/section1_intro`.
 
 ### 🎩 Sección 2: Advanced Mockito
 Validaciones profundas y casos complejos.
-*   **L1_Exceptions**: Forzando errores en dependencias.
-*   **L2_ArgumentCapture**: Captura de objetos con `@Captor`.
-*   **L3_VerificationAdvanced**: Orden de ejecución (`InOrder`).
-*   **L4_SpiesTheory**: Diferencias entre Mock y Spy (`@Spy`).
-*   **L5_VisitServiceExercise**: Ejercicio final de Mockito.
+*   **L1_ExceptionsTheory**: Forzando errores en dependencias (`doThrow`).
+*   **L2_ExceptionMockingExercise**: Practica la captura de excepciones.
+*   **L4_ArgumentCaptureTheory**: Captura de objetos complejos con `@Captor`.
+*   **L5_ArgumentCaptureExercise**: Desafío de validación de argumentos.
+*   **L7_VerificationAdvancedTheory**: Orden de ejecución (`InOrder`) e interacciones nulas.
+*   **L8_VerificationAdvancedExercise**: Garantía de flujo y validación de interacciones.
+*   **L10_SyntaxStruggleTheory**: La batalla final: `when().thenReturn()` vs `doReturn().when()`.
+*   **L11_SyntaxStruggleExercise**: Evita los efectos secundarios en Spies.
+*   **L13_PartialMockTheory**: Mocks parciales con `@Spy` (Mockear métodos de la misma clase).
+*   **L14_PartialMockExercise**: Validación parcial en `OwnerService`.
+*   **L16_SpyMockingExercise**: Dominio del espionaje y mocks parciales.
+*   **Ubicación**: `src/test/java/com/testing/course/mockito/section2_advanced`.
 
 ---
 

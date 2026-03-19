@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Teoría: Mockito Argument Capture")
-class L2_ArgumentCaptureTheory {
+class L4_ArgumentCaptureTheory {
 
     @Mock
     VisitRepository visitRepository;
