@@ -10,8 +10,8 @@ El objetivo de este proyecto es aprender desde las bases más simples (JUnit 5 p
 ---
 
 ## 🛠️ Tecnologías Incluidas
-*   **Java 17**
-*   **Spring Boot 3.2.3**
+*   **Java 25 (LTS)**
+*   **Spring Boot 3.5.3**
 *   **JUnit 5 (Jupiter)**: Motor de ejecución de tests.
 *   **AssertJ**: Librería para aserciones fluidas y legibles.
 *   **Maven**: Gestor de dependencias y ciclo de vida del proyecto.
