@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section6_properties.exercises;
+package com.testing.course.spring.section6_properties.exercises;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,17 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Ejercicio L3: Propiedades con @Value.
  * 
  * OBJETIVO: Crea una clase interna de configuración (@Configuration) que cargue 
- * un archivo de propiedades ".properties" desde el classpath y comprueba 
+ * un archivo de propiedades ".yaml" desde el classpath y comprueba 
  * que @Value inyecta el valor correctamente.
  */
 
-// TODO: Crea un archivo "exercise.properties" en src/test/resources con "app.name=TestingCourse"
+// TODO: Crea un archivo "exercise.yaml" en src/test/resources con las propiedades correspondientes
 @ExtendWith(SpringExtension.class)
 @DisplayName("Ej L3: Test de @Value con PropertySource")
 class E1_PropertiesExercise {
 
     @Configuration
-    // TODO: Usa @PropertySource para apuntar a "classpath:exercise.properties"
+    // TODO: Usa @PropertySource para apuntar a "classpath:exercise.yaml" y usa el YamlPropertySourceFactory
     static class TestConfig {
     }
 

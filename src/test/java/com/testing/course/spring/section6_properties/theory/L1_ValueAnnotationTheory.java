@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section6_properties.theory;
+package com.testing.course.spring.section6_properties.theory;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Sección 6 - L1: Testeando la anotación @Value.
  * 
  * La anotación @Value lee del entorno de Spring (Environment).
- * Para testear estos valores sin depender de application.properties, 
+ * Para testear estos valores sin depender de application.yaml, 
  * usamos @TestPropertySource.
  */
 @ExtendWith(SpringExtension.class)

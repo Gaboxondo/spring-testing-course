@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section1_context.theory;
+package com.testing.course.spring.section1_context.theory;
 
 import com.testing.course.spring.config.HearingConfig;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Sección 1 - L5: Propiedades en Testing (@TestPropertySource).
  * 
  * Podemos inyectar valores desde archivos de propiedades específicos del Test 
- * para simular configuraciones sin cambiar application.properties.
+ * para simular configuraciones sin cambiar application.yaml.
  */
 @TestPropertySource(properties = {"testing.property=TestValue"})
 @ExtendWith(SpringExtension.class)

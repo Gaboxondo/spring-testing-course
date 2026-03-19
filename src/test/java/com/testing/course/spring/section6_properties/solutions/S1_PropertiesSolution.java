@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section6_properties.solutions;
+package com.testing.course.spring.section6_properties.solutions;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ class S1_PropertiesSolution {
 
     @Configuration
     // SOLUCIÓN:
-    @PropertySource("classpath:exercise.properties")
+    @PropertySource(value = "classpath:exercise.yaml", factory = com.testing.course.spring.config.YamlPropertySourceFactory.class)
     static class TestConfig {
     }
 
