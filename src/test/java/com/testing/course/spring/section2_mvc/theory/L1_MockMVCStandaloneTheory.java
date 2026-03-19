@@ -1,4 +1,4 @@
-package com.testing.course.spring.section2_mvc.theory;
+﻿package com.testing.course.spring.section2_mvc.theory;
 
 import com.testing.course.controller.IndexController;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,3 +47,4 @@ class L1_MockMVCStandaloneTheory {
             .andExpect(status().isInternalServerError());
     }
 }
+

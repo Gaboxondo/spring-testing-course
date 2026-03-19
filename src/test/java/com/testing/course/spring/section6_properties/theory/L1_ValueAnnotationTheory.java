@@ -1,4 +1,4 @@
-package com.testing.course.spring.section6_properties.theory;
+﻿package com.testing.course.spring.section6_properties.theory;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,3 +36,4 @@ class L1_ValueAnnotationTheory {
         assertEquals(8080, port);
     }
 }
+

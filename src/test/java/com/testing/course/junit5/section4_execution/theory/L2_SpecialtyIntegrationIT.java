@@ -1,4 +1,4 @@
-package com.testing.course.junit5.section4_execution.theory;
+﻿package com.testing.course.junit5.section4_execution.theory;
 
 import com.testing.course.model.Specialty;
 import org.junit.jupiter.api.*;
@@ -29,3 +29,4 @@ class L2_SpecialtyIntegrationIT {
      * Verás que este test NO se ejecuta en 'mvn test' pero SI en 'mvn verify'.
      */
 }
+

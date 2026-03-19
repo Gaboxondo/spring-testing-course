@@ -1,4 +1,4 @@
-package com.testing.course.mockito.section2_advanced.theory;
+﻿package com.testing.course.mockito.section2_advanced.theory;
 
 import com.testing.course.repository.VisitRepository;
 import com.testing.course.service.VisitService;
@@ -64,3 +64,4 @@ class L1_ExceptionsTheory {
         });
     }
 }
+

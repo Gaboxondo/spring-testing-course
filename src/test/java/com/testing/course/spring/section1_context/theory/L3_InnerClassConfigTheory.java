@@ -1,4 +1,4 @@
-package com.testing.course.spring.section1_context.theory;
+﻿package com.testing.course.spring.section1_context.theory;
 
 import com.testing.course.spring.service.HearingInterpreter;
 import com.testing.course.spring.service.WordProducer;
@@ -46,3 +46,4 @@ class L3_InnerClassConfigTheory {
         assertEquals("Escuché: Yanny", interpreter.whatDidIHear());
     }
 }
+

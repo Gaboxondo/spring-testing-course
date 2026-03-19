@@ -1,4 +1,4 @@
-package com.testing.course.junit5.section3_advanced.theory;
+﻿package com.testing.course.junit5.section3_advanced.theory;
 
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;
@@ -84,3 +84,4 @@ class L1_AdvancedTheory {
         reporter.publishEntry("Ejecutando test con nombre: ", info.getDisplayName());
     }
 }
+

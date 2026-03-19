@@ -1,4 +1,4 @@
-package com.testing.course.spring.section3_boot.theory;
+﻿package com.testing.course.spring.section3_boot.theory;
 
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.DisplayName;
@@ -28,3 +28,4 @@ class L1_SpringBootTestTheory {
         assertTrue(ownerService.getOwnerCount() >= 0);
     }
 }
+

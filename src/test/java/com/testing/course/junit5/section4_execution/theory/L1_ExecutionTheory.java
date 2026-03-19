@@ -1,4 +1,4 @@
-package com.testing.course.junit5.section4_execution.theory;
+﻿package com.testing.course.junit5.section4_execution.theory;
 
 import org.junit.jupiter.api.*;
 
@@ -41,3 +41,4 @@ class L1_ExecutionTheory {
      *     - Se ejecuta desde la raíz del proyecto.
      */
 }
+

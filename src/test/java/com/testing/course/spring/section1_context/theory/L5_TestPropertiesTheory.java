@@ -1,4 +1,4 @@
-package com.testing.course.spring.section1_context.theory;
+﻿package com.testing.course.spring.section1_context.theory;
 
 import com.testing.course.spring.config.HearingConfig;
 import org.junit.jupiter.api.DisplayName;
@@ -31,3 +31,4 @@ class L5_TestPropertiesTheory {
         assertEquals("TestValue", testProperty);
     }
 }
+

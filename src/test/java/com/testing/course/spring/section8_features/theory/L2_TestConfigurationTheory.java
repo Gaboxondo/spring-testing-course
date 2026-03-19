@@ -1,4 +1,4 @@
-package com.testing.course.spring.section8_features.theory;
+﻿package com.testing.course.spring.section8_features.theory;
 
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;
@@ -47,3 +47,4 @@ class L2_TestConfigurationTheory {
         assertEquals("Test", found.getFirstName());
     }
 }
+
