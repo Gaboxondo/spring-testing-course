@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Ejercicio: El Ciclo de Vida de los Tests en JUnit 5.
  * Basado en: Section 4: Getting Started with JUnit 5 - 38.
  * 
- * PISTA: Consulta 'Section5AssertionsTheory.java' para ejemplos de aserciones.
+ * PISTA: Consulta 'L1_AssertionsTheory.java' para ejemplos de aserciones.
  */
-class LifecycleExercise {
+class L4_LifecycleExercise {
 
     OwnerService ownerService;
 

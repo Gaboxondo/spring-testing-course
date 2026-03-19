@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Basado en: Section 4: Getting Started with JUnit 5 - 38.
  */
 @DisplayName("Sección 4: Introducción a JUnit 5 (Hello World)")
-class HelloWorldSolution {
+class L2_HelloWorldSolution {
 
     @Test
     @DisplayName("🧪 Mi primer test Hola Mundo")

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * TODO: Crea un test que use 'assertTrue' para validar una expresión simple.
  */
-class HelloWorldExercise {
+class L1_HelloWorldExercise {
 
     @Test
     void testHelloWorld() {

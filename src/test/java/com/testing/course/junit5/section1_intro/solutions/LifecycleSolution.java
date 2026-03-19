@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * Solución: El Ciclo de Vida de los Tests en JUnit 5.
  * Basado en: Section 4: Getting Started with JUnit 5 - 38.
  */
-class LifecycleSolution {
+class L5_LifecycleSolution {
 
     OwnerService ownerService;
 
     @BeforeAll
     static void beforeAllTests() {
         // SOLUCIÓN: Este método se ejecuta UNA sola vez al principio de la suite.
-        System.out.println("🚀 Inicio de la suite de tests LifecycleSolution");
+        System.out.println("🚀 Inicio de la suite de tests L5_LifecycleSolution");
     }
 
     @BeforeEach
@@ -49,6 +49,6 @@ class LifecycleSolution {
     @AfterAll
     static void afterAllTests() {
         // SOLUCIÓN: Se ejecuta al final de todo.
-        System.out.println("🏁 Fin de la suite de tests LifecycleSolution");
+        System.out.println("🏁 Fin de la suite de tests L5_LifecycleSolution");
     }
 }

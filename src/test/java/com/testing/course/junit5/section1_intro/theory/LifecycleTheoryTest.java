@@ -17,7 +17,7 @@ import org.junit.jupiter.api.*;
  * - Mira el archivo 'pom.xml' para ver la dependencia 'spring-boot-starter-test' que incluye JUnit 5.
  */
 @DisplayName("Teoría: Ciclo de Vida y Anotaciones Base")
-class LifecycleTheoryTest {
+class L3_LifecycleTheory {
 
     @BeforeAll
     static void setupAll() {
@@ -25,7 +25,7 @@ class LifecycleTheoryTest {
          * POR QUÉ ES ESPECÍFICO:
          * Si ejecutas 'mvn test' en la raíz, Maven buscará todos los tests de todas las secciones. 
          * Para centrarte solo en esta lección y ahorrar tiempo, usa:
-         *     mvn test -Dtest=LifecycleTheoryTest
+         *     mvn test -Dtest=L3_LifecycleTheory
          */
         System.out.println("1. @BeforeAll: Se ejecuta UNA VEZ antes de todos los tests. Debe ser estático.");
     }
