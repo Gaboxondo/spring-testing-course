@@ -1,44 +1,83 @@
 # 🚀 Curso de Testing con Spring Boot (Juniors)
 
-¡Bienvenidos al curso de **Spring Boot Testing**! Este proyecto ha sido diseñado específicamente para estudiantes junior que están dando sus primeros pasos en el mundo del **Testing Automático** con Java y el ecosistema de Spring.
+¡Bienvenidos al curso de **Spring Boot Testing**! Este repositorio es tu laboratorio práctico para aprender a escribir tests automáticos desde cero hasta un nivel profesional.
 
 ---
 
-## 🎯 Objetivo
-El objetivo de este proyecto es aprender desde las bases más simples (JUnit 5 puro) hasta el uso avanzado de **Spring Testing**, **Mockito**, y pruebas de integración.
+## 🎯 Guía del Estudiante: Cómo avanzar por el curso
+El curso está estructurado en tres niveles para que puedas progresar de forma lógica:
+1.  **Teoría (`theory/`)**: Código de ejemplo para seguir las explicaciones del profesor.
+2.  **Ejercicios (`exercises/`)**: Plantillas con `TODO` para que pongas en práctica lo aprendido.
+3.  **Soluciones (`solutions/`)**: El código final esperado para comparar tus resultados.
 
 ---
 
-## 🛠️ Tecnologías Incluidas
-*   **Java 25 (LTS)**
-*   **Spring Boot 3.5.3**
-*   **JUnit 5 (Jupiter)**: Motor de ejecución de tests.
-*   **AssertJ**: Librería para aserciones fluidas y legibles.
-*   **Maven**: Gestor de dependencias y ciclo de vida del proyecto.
+## 🚦 Roadmap del Curso (JUnit 5 Puro)
+
+### 📦 Sección 4: Introducción a JUnit 5
+Aprende los fundamentos básicos del motor de ejecución y el ciclo de vida.
+*   **Temas**: `@BeforeEach`, `@BeforeAll`, `@AfterEach`, `@AfterAll`, `@Test` y `@Disabled`.
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section4_intro`.
+
+### 🧪 Sección 5: JUnit 5 Basics
+Domina las aserciones y el manejo de errores.
+*   **Temas**: `assertAll`, `assertThrows` (excepciones), `assertTimeout` (rendimiento), `assumeTrue` (asunciones condicionales).
+*   **Lógica Real**: Empezamos a usar `OwnerService` para probar comportamientos reales.
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section5_basics`.
+
+### 🏗️ Sección 6: Advanced JUnit Testing
+Organización y eficiencia para grandes proyectos.
+*   **Temas**: `@Nested`, `@Tag`, `@ParameterizedTest` (ValueSource, CsvSource, MethodSource) e inyección de dependencias (`TestInfo`, `TestReporter`).
+*   **Ubicación**: `src/test/java/com/gaboxondo/testing/junit5/section6_advanced`.
 
 ---
 
-## 🧪 Estructura de Ejemplos Actuales
+## 🛠️ Comandos de Maven Esenciales
 
-1.  **`src/main/java/com/gaboxondo/testing/CalculatorService.java`**:
-    *   Una clase de lógica de negocio extremadamente simple para entender qué es lo que queremos probar.
-2.  **`src/test/java/com/gaboxondo/testing/CalculatorServiceTest.java`**:
-    *   Nuestro primer test unitario. No usa Spring ni mocks, solo Java puro para entender el concepto de **Given/When/Then**.
+Para moverte por el curso, necesitarás ejecutar tests de forma específica. Aquí tienes los comandos clave:
 
----
-
-## 🚦 Cómo Ejecutar los Tests
-Si tienes Maven configurado globalmente, puedes usar:
+### 1. Ejecutar todos los tests del proyecto
 ```bash
 mvn test
 ```
-O simplemente abrir el proyecto en tu IDE favorito (**IntelliJ**, **VS Code**, etc.) y darle al botón de "Play" al lado de la clase de test.
+
+### 2. Ejecutar una clase de test específica (Teoría o Ejercicio)
+```bash
+# Ejemplo: Ejecutar la teoría de la sección 4
+mvn test -Dtest=LifecycleTheoryTest
+
+# Ejemplo: Ejecutar tu ejercicio de aserciones
+mvn test -Dtest=JUnit5AssertionsExercise
+```
+
+### 3. Ejecutar tests por Etiquetas (@Tag)
+En la Sección 6 aprenderás a etiquetar tests. Puedes filtrar la ejecución así:
+```bash
+# Ejecutar solo tests marcados como "smoke"
+mvn test -Dgroups="smoke"
+
+# Excluir tests marcados como "persistence"
+mvn test -DexcludedGroups="persistence"
+```
+
+### 4. Ejecutar un único método dentro de un test
+```bash
+mvn test -Dtest=OwnerServiceTest#testSaveOwner
+```
 
 ---
 
-## 📡 Repositorio Remoto
-Este repositorio ya tiene configurado el remoto:
-`https://github.com/Gaboxondo/spring-testing-course.git`
+## 🛠️ Estructura del Proyecto
+*   `src/main/java`: Contiene los modelos (`Owner`, `Pet`, `Vet`) y servicios (`OwnerService`) que estamos testeando.
+*   `src/test/java`: Contiene todo el material didáctico.
+
+---
+
+## 📡 Tecnologías Incluidas
+*   **Java 25 (LTS)**
+*   **Spring Boot 3.5.3**
+*   **Maven 3.9.14**
+*   **JUnit 5 (Jupiter)**: Motor de ejecución de tests.
 
 ---
 *Hecho con ❤️ para la comunidad de desarrolladores junior por Antigravity (Powered by Google Deepmind)*
