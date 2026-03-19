@@ -94,6 +94,53 @@ Cada sección contiene tres pilares fundamentales:
 
 ---
 
+## 🌱 Desglose de Contenidos (Spring Testing)
+
+### 🌳 Sección 1: Spring Framework Context
+Carga y gestión de dependencias en el contenedor de Spring.
+- **L1_SpringContextTheory**: Inyección de Beans reales (`@ContextConfiguration`).
+- **L2_PrimaryQualifierTheory**: Diferenciación de Beans (`@Primary`, `@Qualifier`).
+- **L3_InnerClassConfigTheory**: Mocks en clases de configuración internas.
+- **L4_ProfilesTheory**: Activando entornos con `@ActiveProfiles`.
+- **L5_TestPropertiesTheory**: Inyección de propiedades de test.
+- **L6_HearingExercise**: Desafío de configuración básica.
+- **L7_HearingSolution**: Solución al desafío.
+- **L8_ProfileExercise**: Desafío de perfiles Yanny/Laurel.
+- **L9_ProfileSolution**: Solución al desafío.
+
+### 🌐 Sección 2: Spring MVC Test (MockMVC)
+Pruebas de controladores web sin levantar el servidor.
+- **L1_MockMVCStandaloneTheory**: Setup ligero manual.
+- **L2_MockMVCWebContextTheory**: Slice Testing con `@WebMvcTest`.
+- **L3_FormParametersTheory**: Envío de datos de formulario y `@MockBean`.
+- **L4_ValidationErrorsTheory**: Validación de errores y redirecciones.
+- **L5_StandaloneIndexExercise**: Práctica de setup manual en el índice.
+- **L6_StandaloneIndexSolution**: Solución al setup.
+- **L7_FormValidationExercise**: Práctica de validación masiva.
+- **L8_FormValidationSolution**: Solución a la validación.
+
+### 🔌 Sección 3: Spring Boot Context
+Tests de integración total con la magia de Boot.
+- **L1_SpringBootTestTheory**: Levantando TODO el contexto con `@SpringBootTest`.
+- **L2_BootIntegrationExercise**: Práctica de servicios reales.
+- **L3_BootIntegrationSolution**: Solución al test de integración.
+
+### 📡 Sección 4: REST Controller Tests
+Validación de APIs JSON y clientes HTTP.
+- **L1_JsonPathTheory**: Navegando por el JSON con selecciones dinámicas.
+- **L2_VetRestExercise**: Práctica de validación REST.
+- **L3_VetRestSolution**: Solución al API REST.
+- **L6_TestRestTemplateTheory**: Peticiones HTTP reales al servidor en puerto aleatorio.
+
+### ☁️ Sección 5: Testing con Wiremock
+Simulación de APIs externas de terceros.
+- **L1_WiremockTheory**: Setup básico de servidor Mock HTTP.
+- **L2_WiremockRecordingTheory**: Uso pro de `@WireMockTest`.
+- **L3_WiremockExercise**: Práctica de simulación de errores externos.
+- **L4_WiremockSolution**: Solución al error simulado.
+
+---
+
 ## 🛠️ Comandos Maestros de Maven
 
 | Objetivo | Comando |

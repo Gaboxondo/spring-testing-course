@@ -1,0 +1,13 @@
+package com.testing.course.spring.service;
+
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
+@Component
+@Profile("yanny")
+public class YannyWordProducer implements WordProducer {
+    @Override
+    public String getWord() {
+        return "Yanny";
+    }
+}
