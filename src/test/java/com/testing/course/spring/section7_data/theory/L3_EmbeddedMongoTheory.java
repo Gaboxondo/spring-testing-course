@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section7_data.theory;
+package com.testing.course.spring.section7_data.theory;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

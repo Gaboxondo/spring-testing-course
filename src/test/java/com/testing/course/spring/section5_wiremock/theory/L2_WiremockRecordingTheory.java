@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section5_wiremock.theory;
+package com.testing.course.spring.section5_wiremock.theory;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import com.testing.course.spring.service.ExternalVetService;

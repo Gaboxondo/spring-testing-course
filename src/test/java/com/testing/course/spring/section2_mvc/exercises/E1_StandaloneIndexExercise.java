@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
- * Ejercicio L5: Setup Standalone del Õndice.
+ * Ejercicio L5: Setup Standalone del √çndice.
  * 
  * Basado en: Section 2 - L1_MockMVCStandaloneTheory.
  * 
@@ -34,7 +34,7 @@ class E1_StandaloneIndexExercise {
 
     @Test
     void testIndexUrl() throws Exception {
-        // TODO: Ejecuta una peticiÛn GET a "/" y comprueba status 200 y vista "index".
+        // TODO: Ejecuta una petici√≥n GET a "/" y comprueba status 200 y vista "index".
     }
 }
 

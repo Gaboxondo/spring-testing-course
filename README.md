@@ -116,7 +116,9 @@ Simulación de APIs externas de terceros.
 Control de infraestructuras y configuración.
 - **L1_ValueAnnotationTheory**: Inyección de propiedades del sistema.
 - **L2_YamlPropertyTheory**: Lectura avanzada de YAML con **Custom Factory**.
+- **L3_MockingValueTheory**: Mockear @Value sin levantar contexto.
 - **E1_PropertiesExercise**: Desafío de inyección de propiedades.
+- **E2_MockingValueExercise**: Desafío de simulación de propiedades.
 
 ### 💾 Sección 7: Data & Repositories (JPA/H2)
 Persistencia de datos y simulación de BBDD.
@@ -129,6 +131,7 @@ Trucos avanzados de la magia de Boot.
 - **L1_WebEnvironmentTheory**: Entornos Web: `MOCK` vs `RANDOM_PORT`.
 - **L2_TestConfigurationTheory**: Sobrescribiendo Beans en ejecución con `@TestConfiguration`.
 - **L3_LocalServerPortTheory**: Recuperación del puerto dinámico real.
+- **E1_RandomPortExercise**: Práctica de entorno web y puerto dinámico.
 
 ---
 

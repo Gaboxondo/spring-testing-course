@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio L2: Integración Total en la Clínica.
+ * Ejercicio L2: IntegraciÃ³n Total en la ClÃ­nica.
  * 
  * Basado en: Section 3 - L1_SpringBootTestTheory.
  * 
  * OBJETIVO: Cargar el contexto completo de Spring Boot para probar servicios reales.
  */
-@SpringBootTest // TODO: Añade la anotación necesaria para levantar el contexto de Boot
+@SpringBootTest // TODO: AÃ±ade la anotaciÃ³n necesaria para levantar el contexto de Boot
 @Disabled("Ejercicio pendiente de resolver")
 class E1_BootIntegrationExercise {
 

@@ -16,7 +16,7 @@ class E5_AssumptionsExercise {
 
     @Test
     void testOnlyOnDevelopment() {
-        // TODO: Usa 'assumeTrue' para hacer que este test solo continúe si la variable 
+        // TODO: Usa 'assumeTrue' para hacer que este test solo continÃºe si la variable 
         // de entorno "ENV" es igual a "DEV". 
         // Si no es DEV, el test debe abortarse (pero no fallar).
     }
@@ -24,7 +24,7 @@ class E5_AssumptionsExercise {
     @Test
     // TODO: Anota este test para que solo se ejecute en sistemas operativos WINDOWS
     void testWindowsOnly() {
-        // ... (Este código se basa en funcionalidades del sistema local Windows)
+        // ... (Este cÃ³digo se basa en funcionalidades del sistema local Windows)
     }
 }
 

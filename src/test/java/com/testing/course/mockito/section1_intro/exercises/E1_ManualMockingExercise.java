@@ -21,7 +21,7 @@ class E1_ManualMockingExercise {
     @Test
     void testFindAllManual() {
         // TODO 1: Crea un mock de VetRepository usando mock()
-        // TODO 2: Inicializa VetService pas·ndole el mock creado (InyecciÛn manual)
+        // TODO 2: Inicializa VetService pas√°ndole el mock creado (Inyecci√≥n manual)
         // TODO 3: Ejecuta vetService.findAll() y comprueba que no sea nulo.
     }
 }

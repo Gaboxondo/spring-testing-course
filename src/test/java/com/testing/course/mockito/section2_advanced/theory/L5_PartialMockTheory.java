@@ -1,4 +1,4 @@
-﻿package com.testing.course.mockito.section2_advanced.theory;
+package com.testing.course.mockito.section2_advanced.theory;
 
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;

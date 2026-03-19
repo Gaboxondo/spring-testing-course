@@ -27,14 +27,14 @@ class E4_TimeoutsExercise {
 
     @Test
     void testTimeoutOfService() {
-        // TODO 1: Comprobar que al llamar a ownerService.slowProcess() no tarda m·s de 600ms.
-        // Pista: usa assertTimeout(Duration.ofMillis(600), () -> { /* cÛdigo a probar */ });
+        // TODO 1: Comprobar que al llamar a ownerService.slowProcess() no tarda m√°s de 600ms.
+        // Pista: usa assertTimeout(Duration.ofMillis(600), () -> { /* c√≥digo a probar */ });
     }
 
     @Test
     void testTimeoutPreemptivelyOfService() {
         // TODO 2: Comprobar con 'assertTimeoutPreemptively' que 'slowProcess' no excede los 100ms.
-        // (Nota: Este test fallar· porque sabemos que el mÈtodo tarda 500ms!)
+        // (Nota: Este test fallar√° porque sabemos que el m√©todo tarda 500ms!)
     }
 }
 

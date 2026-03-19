@@ -1,4 +1,4 @@
-﻿package com.testing.course.mockito.section1_intro.solutions;
+package com.testing.course.mockito.section1_intro.solutions;
 
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;

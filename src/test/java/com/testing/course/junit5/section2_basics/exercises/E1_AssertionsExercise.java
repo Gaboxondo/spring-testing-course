@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio 1: Aserciones Est·ndar de JUnit 5 con LÛgica.
+ * Ejercicio 1: Aserciones Est√°ndar de JUnit 5 con L√≥gica.
  * Basado en: Section 5: Testing Java with JUnit 5 - 47, 48.
  *
- * PISTA: Consulta 'L1_AssertionsTheory.java' para ejemplos de aserciones din·micas 
+ * PISTA: Consulta 'L1_AssertionsTheory.java' para ejemplos de aserciones din√°micas 
  * con el OwnerService.
  */
 @Disabled("Ejercicio pendiente de resolver")
@@ -45,7 +45,7 @@ class E1_AssertionsExercise {
         ownerService.addPetToOwner(owner, pet);
 
         // TODO 3: Comprobar usando 'assertTrue' que la lista de mascotas contiene a "Bobby"
-        // TODO 4: Comprobar usando 'assertFalse' que la lista NO est· vacÌa
+        // TODO 4: Comprobar usando 'assertFalse' que la lista NO est√° vac√≠a
     }
 }
 

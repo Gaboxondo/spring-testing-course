@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section1_context.solutions;
+package com.testing.course.spring.section1_context.solutions;
 
 import com.testing.course.spring.config.HearingConfig;
 import com.testing.course.spring.service.HearingInterpreter;

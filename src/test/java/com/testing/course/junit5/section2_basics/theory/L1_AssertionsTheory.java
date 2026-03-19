@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section2_basics.theory;
+package com.testing.course.junit5.section2_basics.theory;
 
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;

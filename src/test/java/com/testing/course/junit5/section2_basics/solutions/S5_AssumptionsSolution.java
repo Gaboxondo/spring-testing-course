@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section2_basics.solutions;
+package com.testing.course.junit5.section2_basics.solutions;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;

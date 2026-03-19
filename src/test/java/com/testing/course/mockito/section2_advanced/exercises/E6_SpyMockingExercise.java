@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
  * 
  * Basado en: Section 2 - L4_SpiesTheory.
  * 
- * OBJETIVO: Espiar una instancia real y "pisar" uno de sus métodos.
+ * OBJETIVO: Espiar una instancia real y "pisar" uno de sus mÃ©todos.
  */
 @ExtendWith(MockitoExtension.class)
 @Disabled("Ejercicio pendiente de resolver")
@@ -27,10 +27,10 @@ class E6_SpyMockingExercise {
     void testSpyBehaviour() {
         // TODO 2: Comprueba con un aserto que owner.getFirstName() devuelve "Real".
         
-        // TODO 3: Usa 'doReturn' para que owner.getFirstName() devuelva "Espía".
-        // PISTA: doReturn("Espía").when(mock).metodo();
+        // TODO 3: Usa 'doReturn' para que owner.getFirstName() devuelva "EspÃ­a".
+        // PISTA: doReturn("EspÃ­a").when(mock).metodo();
         
-        // TODO 4: Comprueba que ahora devuelve "Espía".
+        // TODO 4: Comprueba que ahora devuelve "EspÃ­a".
     }
 }
 

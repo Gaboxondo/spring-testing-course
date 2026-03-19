@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section3_boot.solutions;
+package com.testing.course.spring.section3_boot.solutions;
 
 import com.testing.course.service.VetService;
 import org.junit.jupiter.api.Test;

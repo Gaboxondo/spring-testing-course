@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section6_properties.theory;
+package com.testing.course.spring.section6_properties.theory;
 
 import com.testing.course.spring.config.ExternalServiceConfig;
 import com.testing.course.spring.config.YamlPropertySourceFactory;

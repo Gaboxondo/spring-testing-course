@@ -12,15 +12,15 @@ import org.junit.jupiter.api.Test;
 class E6_AnnotationsExercise {
 
     @Test
-    // TODO 1: Añade un DisplayName amigable para este test
+    // TODO 1: AÃ±ade un DisplayName amigable para este test
     void testMeaningfulName() {
-        // ... (Tu código aquí)
+        // ... (Tu cÃ³digo aquÃ­)
     }
 
     @Test
-    // TODO 2: Deshabilita este test indicando el motivo en la anotación
+    // TODO 2: Deshabilita este test indicando el motivo en la anotaciÃ³n
     void testTBD() {
-        // Este test no está acabado aún y no queremos que falle el build.
+        // Este test no estÃ¡ acabado aÃºn y no queremos que falle el build.
     }
 }
 

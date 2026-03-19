@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section7_data.theory;
+package com.testing.course.spring.section7_data.theory;
 
 import com.testing.course.model.Owner;
 import com.testing.course.repository.OwnerRepository;

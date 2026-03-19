@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section2_mvc.solutions;
+package com.testing.course.spring.section2_mvc.solutions;
 
 import com.testing.course.controller.IndexController;
 import org.junit.jupiter.api.BeforeEach;

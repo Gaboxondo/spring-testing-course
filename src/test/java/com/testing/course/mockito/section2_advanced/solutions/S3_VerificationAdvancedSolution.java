@@ -1,4 +1,4 @@
-﻿package com.testing.course.mockito.section2_advanced.solutions;
+package com.testing.course.mockito.section2_advanced.solutions;
 
 import com.testing.course.repository.VisitRepository;
 import com.testing.course.service.VisitService;

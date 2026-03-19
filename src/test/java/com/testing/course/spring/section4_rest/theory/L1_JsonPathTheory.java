@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section4_rest.theory;
+package com.testing.course.spring.section4_rest.theory;
 
 import com.testing.course.controller.VetRestController;
 import com.testing.course.model.Vet;

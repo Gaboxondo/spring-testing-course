@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio L8: El Desafío Yanny (Perfiles).
+ * Ejercicio L8: El DesafÃ­o Yanny (Perfiles).
  * 
  * Basado en: Section 1 - L4_ProfilesTheory.
  * 

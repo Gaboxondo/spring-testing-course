@@ -14,11 +14,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Ejercicio L7: Validación de Formularios en MVC.
+ * Ejercicio L7: ValidaciÃ³n de Formularios en MVC.
  * 
  * Basado en: Section 2 - L4_ValidationErrorsTheory.
  * 
- * OBJETIVO: Testear que el sistema detecta errores al enviar datos vacíos.
+ * OBJETIVO: Testear que el sistema detecta errores al enviar datos vacÃ­os.
  */
 @WebMvcTest(OwnerController.class)
 @Disabled("Ejercicio pendiente de resolver")
@@ -32,9 +32,9 @@ class E2_FormValidationExercise {
 
     @Test
     void testFormPostInvalidData() throws Exception {
-        // TODO: Envía un POST a "/owners/new" con campos lastName vacío y firstName vacío.
+        // TODO: EnvÃ­a un POST a "/owners/new" con campos lastName vacÃ­o y firstName vacÃ­o.
         // TODO: Comprueba que el status sea 200 (Vuelve al formulario).
-        // TODO: Comprueba que el modelo contenga errores de validación.
+        // TODO: Comprueba que el modelo contenga errores de validaciÃ³n.
         // TODO: Comprueba que la vista se mantenga en "owners/createOrUpdateOwnerForm".
     }
 }

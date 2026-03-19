@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class L3_MockingValueTheory {
 
     // 1. Servicio que usa la propiedad internamente
-    @Service
     static class FeatureToggleService {
         
         @Value("${feature.new-algorithm.enabled}")

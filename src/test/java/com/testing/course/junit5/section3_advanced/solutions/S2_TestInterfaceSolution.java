@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section3_advanced.solutions;
+package com.testing.course.junit5.section3_advanced.solutions;
 
 import com.testing.course.model.Owner;
 import com.testing.course.service.OwnerService;

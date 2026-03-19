@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Ejercicio L8_VerificationAdvancedExercise_VerificationAdvancedExercise_VerificationAdvancedExercise: Verificaciones Cronol骻icas e Interacciones.
+ * Ejercicio L8_VerificationAdvancedExercise_VerificationAdvancedExercise_VerificationAdvancedExercise: Verificaciones Cronol贸gicas e Interacciones.
  * 
  * Basado en: Section 2 - L3_VerificationAdvancedTheory.
  * 
- * OBJETIVO: Asegurar que NO hay interacciones en caso de fallo de validaci髇 
+ * OBJETIVO: Asegurar que NO hay interacciones en caso de fallo de validaci贸n 
  * y comprobar que el orden es correcto.
  */
 @ExtendWith(MockitoExtension.class)
@@ -33,9 +33,9 @@ class E3_VerificationAdvancedExercise {
 
     @Test
     void testNoInteractionsOnValidationError() {
-        Visit visit = new Visit("", null); // Descripci髇 vac韆 -> Fallo validaci髇
+        Visit visit = new Visit("", null); // Descripci贸n vac铆a -> Fallo validaci贸n
         
-        // TODO 1: Intenta guardar la visita en el servicio y captura la excepci髇.
+        // TODO 1: Intenta guardar la visita en el servicio y captura la excepci贸n.
         // TODO 2: Verifica que el mock 'visitRepository' NO ha sido llamado.
         // PISTA: verifyNoInteractions(mock);
     }

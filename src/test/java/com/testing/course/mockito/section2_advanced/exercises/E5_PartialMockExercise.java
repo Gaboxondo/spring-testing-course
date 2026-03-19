@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
  * 
  * Basado en: Section 2 - L5_PartialMockTheory.
  * 
- * OBJETIVO: Mockear el método validateOwner() en OwnerService mientras el resto sigue Real.
+ * OBJETIVO: Mockear el mÃ©todo validateOwner() en OwnerService mientras el resto sigue Real.
  */
 @ExtendWith(MockitoExtension.class)
 @Disabled("Ejercicio pendiente de resolver")
@@ -30,7 +30,7 @@ class E5_PartialMockExercise {
     void testPartialMockValidation() {
         Owner owner = new Owner("Test", "Spy");
 
-        // TODO 1: Usa doNothing().when(...) para mockear el método validateOwner(any());
+        // TODO 1: Usa doNothing().when(...) para mockear el mÃ©todo validateOwner(any());
         
         // TODO 2: Llama a ownerServiceSpy.save(owner);
         

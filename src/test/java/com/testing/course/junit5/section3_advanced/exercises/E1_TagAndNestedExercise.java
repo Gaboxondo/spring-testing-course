@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio 7: Organización Dinámica con @Tag y @Nested.
+ * Ejercicio 7: OrganizaciÃ³n DinÃ¡mica con @Tag y @Nested.
  * Basado en: Section 6: Advanced JUnit Testing - 63, 64.
  * 
- * PISTA: Mira la clase 'L1_AdvancedTheory.java' para ver cómo las clases @Nested 
+ * PISTA: Mira la clase 'L1_AdvancedTheory.java' para ver cÃ³mo las clases @Nested 
  * heredan propiedades de la clase padre.
  */@Tag("smoke")
 @Disabled("Ejercicio pendiente de resolver")
@@ -28,13 +28,13 @@ class E1_TagAndNestedExercise {
     }
 
     @Test
-    // TODO 1: Añade una etiqueta "@Tag" para identificar este test como 'creation'
+    // TODO 1: AÃ±ade una etiqueta "@Tag" para identificar este test como 'creation'
     void testInitialStatus() {
         assertEquals(0, ownerService.getOwnerCount());
     }
 
-    // TODO 2: Crea una clase @Nested llamada "FindingTests" para anidar las búsquedas.
-    // TODO 3: Añade una etiqueta @Tag("persistence") a la clase anidada.
+    // TODO 2: Crea una clase @Nested llamada "FindingTests" para anidar las bÃºsquedas.
+    // TODO 3: AÃ±ade una etiqueta @Tag("persistence") a la clase anidada.
     
     // class FindingTests { ... }
 }

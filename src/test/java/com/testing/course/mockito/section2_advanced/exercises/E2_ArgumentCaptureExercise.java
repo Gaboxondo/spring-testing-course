@@ -36,14 +36,14 @@ class E2_ArgumentCaptureExercise {
 
     @Test
     void testSaveVisitCapture() {
-        Visit visit = new Visit("Revisión Anual", null);
+        Visit visit = new Visit("RevisiÃ³n Anual", null);
         
         // TODO 2: Llama al servicio save().
         
         // TODO 3: Verifica la llamada al repo y captura el objeto.
         // PISTA: verify(mock).save(captor.capture());
         
-        // TODO 4: Comprueba que la descripción capturada es "Revisión Anual".
+        // TODO 4: Comprueba que la descripciÃ³n capturada es "RevisiÃ³n Anual".
     }
 }
 

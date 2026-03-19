@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section1_context.theory;
+package com.testing.course.spring.section1_context.theory;
 
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;

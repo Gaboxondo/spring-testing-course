@@ -1,4 +1,4 @@
-﻿package com.testing.course.spring.section1_context.solutions;
+package com.testing.course.spring.section1_context.solutions;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

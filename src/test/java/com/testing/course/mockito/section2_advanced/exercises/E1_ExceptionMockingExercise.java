@@ -37,7 +37,7 @@ class E1_ExceptionMockingExercise {
         // TODO 1: Haz que el mock 'visitRepository' lance una RuntimeException("DB Error") al llamar a save().
         // PISTA: doThrow(...).when(mock).metodo(...);
         
-        // TODO 2: Lanza el test y comprueba usando 'assertThrows' que se propaga la excepción.
+        // TODO 2: Lanza el test y comprueba usando 'assertThrows' que se propaga la excepciÃ³n.
     }
 }
 

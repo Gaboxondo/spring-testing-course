@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section4_execution.theory;
+package com.testing.course.junit5.section4_execution.theory;
 
 import org.junit.jupiter.api.*;
 

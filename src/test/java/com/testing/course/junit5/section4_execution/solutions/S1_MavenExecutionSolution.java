@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section4_execution.solutions;
+package com.testing.course.junit5.section4_execution.solutions;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section1_intro.solutions;
+package com.testing.course.junit5.section1_intro.solutions;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

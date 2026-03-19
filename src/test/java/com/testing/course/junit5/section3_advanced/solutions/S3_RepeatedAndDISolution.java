@@ -1,4 +1,4 @@
-﻿package com.testing.course.junit5.section3_advanced.solutions;
+package com.testing.course.junit5.section3_advanced.solutions;
 
 import org.junit.jupiter.api.*;
 

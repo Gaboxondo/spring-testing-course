@@ -28,7 +28,7 @@ class E1_WiremockExercise {
         // TODO: Escenario: La API externa falla con un error 500.
         // - Configura un stub para "/api/error" que devuelva status 500.
         // - Llama a externalService.getVetFromExternalApi y comprueba el resultado.
-        // (En este caso RestTemplate lanzar· una excepciÛn, o devolver· null si lo manejas).
+        // (En este caso RestTemplate lanzar√° una excepci√≥n, o devolver√° null si lo manejas).
     }
 }
 
