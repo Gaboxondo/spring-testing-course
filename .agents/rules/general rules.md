@@ -76,6 +76,10 @@ Debe marcarse como `@Disabled` para evitar que afecte a la ejecución completa d
 - Ningún test de teoría o solución debe romper el build.
 - El proyecto debe poder ejecutar correctamente `mvn clean install` en todo momento.
 
+## Actualizacion del repo remoto
+
+- acuerdate siempre de hacer git add, commit y push al repo remoto
+
 ## ✅ Buenas prácticas adicionales
 - Mantener consistencia en nombres y estructura.
 - Evitar dejar código temporal o artefactos innecesarios en el repositorio.
