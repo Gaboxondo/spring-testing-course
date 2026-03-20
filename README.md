@@ -52,10 +52,12 @@ Cada sección contiene tres pilares fundamentales:
 ### 🃏 Sección 1: Introducción a Mockito
 - **L1_IntroTheory**: Conceptos base de Mocking.
 - **L2_AnnotationTheory**: `@Mock` y `@InjectMocks` profesional.
-- **L3_VerificationTheory**: Uso de `verify()` y Matchers.
+- **L3_VerificationTheory**: Uso de `verify()` y Matchers basics.
+- **L4_MatchersTheory**: Argument Matchers avanzados (`any`, `eq`, `anyString`).
 - **E1_ManualMockingExercise**: Practica con `mock()` manual.
 - **E2_AnnotationMockingExercise**: Uso de anotaciones intensivo.
 - **E3_VerificationExercise**: Asegura las interacciones y el número de llamadas.
+- **E4_MatchersExercise**: Reto: Stubs flexibles y la regla de mezcla de Matchers.
 
 ### 🎩 Sección 2: Spies y Partial Mocking
 - **L1_SpyTheory**: Teoría fundamental de Spies, `doReturn` vs `when`.

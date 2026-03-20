@@ -73,6 +73,9 @@ class L1_SpyTheory {
         
         // Podemos verificar cuántas veces se llamó (importante en Spies)
         verify(bankService, times(1)).auditTransaction(anyString(), any());
+
+        // esto mismo se puede hacer solo con un verify
+        verify(bankService, times(1)).auditTransaction(eq("DEPOSIT"), any());
     }
 
     /**
