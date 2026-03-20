@@ -13,62 +13,57 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Sección 2 - L10: La lucha de Sintaxis (when vs doReturn).
+ * <h1>TEORÍA: El duelo de Sintaxis (when vs doReturn)</h1>
  * 
- * Es uno de los puntos donde más se lían los alumnos al empezar con Spies.
- * Mockito ofrece dos formas de programar comportamiento (stubbing), cada una con pros y contras.
+ * <p><b>Qué hace:</b> Compara las dos formas principales de configurar stubs en 
+ * Mockito, analizando su seguridad de tipado y su impacto en objetos reales (spies).</p>
+ * 
+ * <p><b>Por qué existe:</b> Es uno de los puntos de mayor confusión. Mientras que 
+ * <code>when().thenReturn()</code> es intuitivo y tipado, <code>doReturn().when()</code> 
+ * es imprescindible para evitar la ejecución accidental de código real en Spies.</p>
+ * 
+ * <h2>Comparativa Técnica:</h2>
+ * <ul>
+ *   <li><b>when().thenReturn():</b> 100% Type-Safe. El compilador valida los tipos. 
+ *   Ideal para <code>@Mock</code>.</li>
+ *   <li><b>doReturn().when():</b> No es Type-Safe en tiempo de compilación. 
+ *   <b>Evita la ejecución del método real</b> durante la configuración. Obligatorio para <code>@Spy</code>.</li>
+ * </ul>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Sección 2 - L10: when().thenReturn() vs doReturn().when()")
+@DisplayName("Sección 3 - L4: when().thenReturn() vs doReturn().when()")
 class L4_SyntaxStruggleTheory {
 
     @Mock
-    VetRepository vetRepository;
+    private VetRepository vetRepository;
 
     @Spy
-    Vet vetSpy = new Vet("Real", "Vet");
+    private Vet vetSpy = new Vet("Real", "Vet");
 
     /**
-     * SINTAXIS: when(mock.metodo()).thenReturn(valor)
-     * 
-     * 1. TYPE-SAFE: Al escribir 'when(vetRepository.findAll())', Mockito detecta que findAll() 
-     *    devuelve una 'Collection<Vet>'. El compilador fallará si intentas usar thenReturn(123).
-     * 
-     * 2. EL PITFALL (Peligro): Para evaluar el 'when', Java primero TIENE que ejecutar 
-     *    'vetRepository.findAll()'. 
-     *    - Si el objeto es un @Mock (hueco), no pasa nada.
-     *    - Si el objeto es un @Spy (real), ¡SE EJECUTA EL CÓDIGO REAL DEL MÉTODO! 
-     *      Si ese código lanza una excepción o borra algo, tu test fallará antes de ser mockeado.
+     * <h2>CASO 1: La comodidad y seguridad de when()</h2>
+     * <p>Al usar un mock puro, el método no tiene cuerpo real, por lo que 
+     * <code>when()</code> es seguro y además nos protege con tipos genéricos.</p>
      */
     @Test
-    @DisplayName("🧪 Uso de when().thenReturn() (Tradicional y Seguro para Mocks)")
+    @DisplayName("🧪 Demo 5: Stubbing tradicional y seguro")
     void testWhenThenReturn() {
-        // JpaRepository.findById devuelve Optional<Vet>. Debemos usar Optional.of().
         when(vetRepository.findById(1L)).thenReturn(Optional.of(new Vet("Mock", "Vet")));
-        
         assertTrue(vetRepository.findById(1L).isPresent());
     }
 
     /**
-     * SINTAXIS: doReturn(valor).when(mock).metodo()
-     * 
-     * 1. NO ES TYPE-SAFE: 'doReturn' acepta un 'Object'. Podrías intentar devolver un Elefante 
-     *    donde se espera un Perro y el compilador no dirá nada hasta que ejecutes el test.
-     * 
-     * 2. LA VENTAJA (Obligatorio para Spies): Con esta sintaxis, Mockito primero recibe la orden 
-     *    de qué devolver y LUEGO se le indica el método. Esto evita que el método REAL se llegue 
-     *    a ejecutar durante la configuración.
+     * <h2>CASO 2: La necesidad de doReturn() en Spies</h2>
+     * <p>Si usamos <code>when(spy.getFirstName())</code>, Java intentará entrar 
+     * físicamente en el método del objeto real antes de que Mockito pueda interceptarlo. 
+     * <code>doReturn</code> soluciona este problema "invisible".</p>
      */
     @Test
-    @DisplayName("🧪 Uso de doReturn().when() (Imprescindible para Spies)")
+    @DisplayName("🧪 Demo 6: Stubbing de Spies con doReturn")
     void testDoReturnWhen() {
-        // Si usáramos when(vetSpy.getFirstName()).thenReturn("Mock"), Java entraría 
-        // en el método getFirstName() real de la clase Vet antes de mockearlo.
+        // Mockito intercepta la llamada sin ejecutar el código real de Vet.getFirstName()
+        doReturn("Mocked Name").when(vetSpy).getFirstName();
         
-        // Con doReturn, Mockito 'atrapa' la llamada al vuelo sin ejecutarla.
-        doReturn("Mock").when(vetSpy).getFirstName();
-        
-        assertEquals("Mock", vetSpy.getFirstName());
+        assertEquals("Mocked Name", vetSpy.getFirstName());
     }
 }
-

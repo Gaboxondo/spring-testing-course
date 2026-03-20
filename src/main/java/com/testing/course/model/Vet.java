@@ -4,6 +4,17 @@ import java.util.HashSet;
 import java.util.Set;
 import jakarta.persistence.*;
 
+/**
+ * <h1>MODELO: Entidad Vet (Veterinario)</h1>
+ * 
+ * <p><b>Qué hace:</b> Representa al personal médico de la clínica veterinaria.</p>
+ * 
+ * <p><b>Por qué existe:</b> Para gestionar la asignación de especialistas a las visitas 
+ * y mantener el catálogo de profesionales disponibles en el sistema.</p>
+ * 
+ * <p><b>Cómo se usa:</b> Es la entidad principal en los tests de <code>VetService</code> 
+ * y se busca frecuentemente por su especialidad mediante Mockito.</p>
+ */
 @Entity
 public class Vet {
 

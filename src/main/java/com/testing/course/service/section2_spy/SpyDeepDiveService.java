@@ -6,50 +6,53 @@ import java.util.List;
 /**
  * <h1>SERVICIO DE APOYO: Deep Dive en Spies</h1>
  * 
- * <p>Este servicio contiene elementos específicos para demostrar comportamientos 
- * "bajo el capó" de Mockito Spies, como:</p>
+ * <p><b>Qué hace:</b> Contiene elementos técnicos para demostrar el comportamiento 
+ * interno "bajo el capó" de los Mockito Spies.</p>
+ * 
+ * <p><b>Por qué existe:</b> Facilita la comprensión de conceptos avanzados como:</p>
  * <ul>
- *   <li><b>Métodos Finales:</b> Para demostrar que no se pueden espiar.</li>
- *   <li><b>Estado Interno:</b> Para demostrar el mecanismo de copiado.</li>
- *   <li><b>Clase Abstracta:</b> Para demostrar cómo espiar sin implementación concreta.</li>
+ *   <li><b>Métodos Finales:</b> Demostrar que no son interceptables tradicionalmente.</li>
+ *   <li><b>Estado Interno:</b> Clave para entender el mecanismo de copiado (sombras).</li>
+ *   <li><b>Clase Abstracta:</b> Permite espiar sin necesidad de una implementación real.</li>
  * </ul>
+ * 
+ * <p><b>Cómo se usa:</b> Objeto central de la lección <code>L3_SpyDeepDiveTheory</code>. 
+ * Se instancia habitualmente con <code>mock(SpyDeepDiveService.class, CALLS_REAL_METHODS)</code>.</p>
  */
 public abstract class SpyDeepDiveService {
 
     private final List<String> logs = new ArrayList<>();
 
     /**
-     * Método real normal que afecta al estado interno.
+     * Método real normal que afecta al estado interno (mutación).
      */
     public void recordLog(String message) {
         logs.add(message);
     }
 
     /**
-     * Devuelve el número de logs registrados.
+     * Devuelve el número de logs registrados para aserciones de estado.
      */
     public int getLogCount() {
         return logs.size();
     }
 
     /**
-     * <b>MÉTODO FINAL:</b> Mockito NO puede interceptar llamadas a este método.
-     * Siempre ejecutará el código real.
+     * <b>MÉTODO FINAL:</b> Mockito NO puede interceptar fácilmente llamadas a este método 
+     * en implementaciones heredadas por proxy clásico.
      */
     public final String getSecurityToken() {
         return "REAL_SECURE_TOKEN_XYZ";
     }
 
     /**
-     * <b>MÉTODO ABSTRACTO:</b> Demostraremos que Mockito puede espiar una 
-     * clase abstracta y permitirnos mockear solo este método mientras
-     * el resto de métodos reales (como recordLog) siguen funcionando.
+     * <b>MÉTODO ABSTRACTO:</b> Usado para demostrar que Mockito puede 'rellenar' 
+     * métodos sin cuerpo manteniendo la lógica de los concretos.
      */
     public abstract String fetchExternalConfig();
 
     /**
      * Genera un reporte combinando lógica de métodos abstractos, finales y concretos.
-     * <p>Este método sirve para probar el flujo completo en un Spy.</p>
      * 
      * @return String con el reporte generado.
      */

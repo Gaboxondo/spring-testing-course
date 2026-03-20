@@ -13,28 +13,41 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Sección 1 - L2: @Primary vs @Qualifier.
+ * <h1>TEORÍA: Prioridad y Cualificación (@Primary vs @Qualifier)</h1>
  * 
- * ¿Y si tenemos varias clases que implementan la misma interfaz?
- * Spring nos da dos formas de elegir Cuál inyectar:
+ * <p><b>Qué hace:</b> Proporciona mecanismos para resolver la ambigüedad cuando 
+ * existen múltiples Beans del mismo tipo candidatos a ser inyectados.</p>
+ * 
+ * <p><b>Por qué existe:</b> Evita excepciones de tipo <code>NoUniqueBeanDefinitionException</code> 
+ * permitiendo indicar una implementación por defecto o forzar una específica por nombre.</p>
+ * 
+ * <h2>Mecanismos de Selección:</h2>
+ * <ul>
+ *   <li><b>@Primary:</b> Selecciona este Bean por defecto cuando no se indica nada más (la opción 'Vip').</li>
+ *   <li><b>@Qualifier:</b> Permite elegir a mano qué Bean inyectar usando su ID o un alias único.</li>
+ * </ul>
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
-@DisplayName("Sección 1 - L2: @Primary vs @Qualifier")
+@DisplayName("Sección 1 - L2: Resolución de Ambigüedad entre Beans")
 class L2_PrimaryQualifierTheory {
 
     @Autowired
-    HearingInterpreter defaultInterpreter; // Recibirá Laurel por ser @Primary.
+    private HearingInterpreter defaultInterpreter; // Inyectará LaurelWordProducer (tiene @Primary)
 
     @Autowired
     @Qualifier("yannyWordProducer") 
-    WordProducer specialProducer; // Recibirá Yanny al forzarle el id de componente.
+    private WordProducer specialProducer; // Fuerza la inyección de YannyWordProducer
 
+    /**
+     * <h2>DEMO: Diferenciación de Beans por Cualificador</h2>
+     * <p>Comprobamos que Spring respeta tanto la prioridad marcando a Laurel como 
+     * protagonista, como el cualificador forzando el uso de Yanny.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar la diferenciación de Beans")
+    @DisplayName("🧪 Demo 2: Trabajo con Qualifiers y Primaries")
     void testBeanQualifiers() {
         assertEquals("Escuché: Laurel", defaultInterpreter.whatDidIHear());
         assertEquals("Yanny", specialProducer.getWord());
     }
 }
-

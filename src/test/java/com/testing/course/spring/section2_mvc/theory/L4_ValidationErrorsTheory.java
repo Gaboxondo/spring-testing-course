@@ -13,31 +13,42 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Sección 2 - L4: Errores de Validación.
+ * <h1>TEORÍA: Validación de Entrada en la Capa Web</h1>
  * 
- * Si un campo es obligatorio (@NotNull) y lo enviamos vacío, @Valid de Spring 
- * devuelve errores en el BindingResult.
+ * <p><b>Qué hace:</b> Comprueba el comportamiento del controlador cuando recibe 
+ * datos que no cumplen las reglas de anotación (Validation API @NotNull, @Size).</p>
+ * 
+ * <p><b>Por qué existe:</b> Es fundamental asegurar que las reglas de negocio 
+ * declaradas en las entidades se aplican correctamente en la frontera HTTP, 
+ * evitando que datos corruptos lleguen a la capa de servicio.</p>
+ * 
+ * <h2>Detección de Errores:</h2>
+ * <p>MockMVC permite usar <code>model().hasErrors()</code> para verificar que 
+ * el <code>BindingResult</code> de Spring ha capturado las violaciones de integridad.</p>
  */
 @WebMvcTest(OwnerController.class)
-@DisplayName("Sección 2 - L4: Errores de Validación en MVC")
+@DisplayName("Sección 2 - L4: Gestión de Errores en Formularios")
 class L4_ValidationErrorsTheory {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    OwnerService ownerService;
+    private OwnerService ownerService;
 
+    /**
+     * <h2>DEMO: Re-visualización de formulario tras error</h2>
+     * <p>Al enviar campos obligatorios vacíos, el controlador debe devolver 
+     * el mismo formulario con los mensajes de error inyectados en el modelo.</p>
+     */
     @Test
-    @DisplayName("🧪 Probar fallo de validación al enviar campos vacíos")
+    @DisplayName("🧪 Demo 6: Verificación de errores de validación (POST)")
     void testProcessCreationFormFail() throws Exception {
-        // Al enviar campos vacíos que en el 'model' tienen @NotNull/@NotEmpty...
         mockMvc.perform(post("/owners/new")
-                .param("firstName", "")
+                .param("firstName", "") // Inválido: @NotEmpty
                 .param("lastName", ""))
-            .andExpect(status().isOk()) // El servidor responde 200 porque vuelve al formulario.
-            .andExpect(model().hasErrors()) // El modelo contiene errores de validación.
+            .andExpect(status().isOk()) // Vuelve al formulario (no hay redirect)
+            .andExpect(model().hasErrors())
             .andExpect(view().name("owners/createOrUpdateOwnerForm"));
     }
 }
-

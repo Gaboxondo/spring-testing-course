@@ -15,41 +15,51 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * TEORÍA SECCIÓN 11: Captura de Argumentos con Mockito.
+ * <h1>TEORÍA: Captura de Argumentos (@Captor)</h1>
  * 
- * Basado en: Section 11 - Lección 129.
+ * <p><b>Qué hace:</b> Permite interceptar y "guardar" el objeto real que un mock 
+ * recibió durante la ejecución de un test.</p>
  * 
- * DETALLE FINO:
- * - 'ArgumentCaptor': Permite capturar el valor REAL que un mock recibió 
- *   durante la ejecución para realizar aserciones sobre sus propiedades internas.
- * - @Captor: Anotación para declarar el capturador de forma elegante.
+ * <p><b>Por qué existe:</b> A veces <code>any()</code> es demasiado genérico y 
+ * <code>eq()</code> demasiado rígido. El <code>ArgumentCaptor</code> nos permite extraer 
+ * el objeto y realizar aserciones detalladas de sus campos internos (estado profundo).</p>
+ * 
+ * <h2>Flujo de Trabajo:</h2>
+ * <ol>
+ *   <li>Declarar el capturador con <code>@Captor</code> indicando el tipo.</li>
+ *   <li>Usar <code>captor.capture()</code> dentro del método <code>verify()</code>.</li>
+ *   <li>Extraer el valor con <code>captor.getValue()</code> para aserciones de JUnit.</li>
+ * </ol>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Teoría: Mockito Argument Capture")
+@DisplayName("Sección 3 - L2: Captura de Argumentos con @Captor")
 class L2_ArgumentCaptureTheory {
 
     @Mock
-    VisitRepository visitRepository;
+    private VisitRepository visitRepository;
 
     @InjectMocks
-    VisitService visitService;
+    private VisitService visitService;
 
     @Captor
-    ArgumentCaptor<Visit> visitCaptor;
+    private ArgumentCaptor<Visit> visitCaptor;
 
+    /**
+     * <h2>DEMO: Inspección profunda de un objeto capturado</h2>
+     * <p>Validamos que el servicio, al guardar la visita, no ha modificado 
+     * erróneamente la descripción original.</p>
+     */
     @Test
-    @DisplayName("🧪 Demo 5: Capturar y validar el objeto recibido")
+    @DisplayName("🧪 Demo 3: Capturar y validar el objeto recibido")
     void captureDemo() {
-        // Ejecutar proceso real
         Visit visit = new Visit("Control mensual", null);
         visitService.save(visit);
 
-        // Capturar lo que recibió el mock al llamar a 'save'
+        // Capturar la instancia real que el servicio pasó al repositorio
         verify(visitRepository).save(visitCaptor.capture());
         
-        // Obtener el valor capturado y lanzar aserciones profundas
+        // Realizar aserciones sobre el estado interno
         Visit captured = visitCaptor.getValue();
         assertEquals("Control mensual", captured.getDescription());
     }
 }
-

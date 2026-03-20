@@ -11,34 +11,40 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Sección 1 - L10: MockitoExtension vs SpringExtension.
+ * <h1>TEORÍA: Mockito puro vs Integración con Spring</h1>
  * 
- * En Spring Boot solemos abusar de @SpringBootTest o @ExtendWith(SpringExtension.class).
- * Sin embargo, si lo que estás testeando es un SERVICIO en solitario que no necesita 
- * de la base de datos ni de el contexto de Spring, lo ideal es usar MockitoExtension.
+ * <p><b>Qué hace:</b> Compara el uso de <code>MockitoExtension</code> contra 
+ * <code>SpringExtension</code> para el testeo de servicios unitarios.</p>
  * 
- * VENTAJAS:
- * 1. Mucho más rápido (segundos vs milisegundos).
- * 2. Puramente unitario.
- * 3. No levanta el servidor ni inyecta beans reales.
+ * <p><b>Por qué existe:</b> En Spring Boot existe la tentación de usar @SpringBootTest para todo. 
+ * Sin embargo, para testear lógica pura de un servicio, los tests de Mockito son órdenes 
+ * de magnitud más rápidos (ms vs s).</p>
+ * 
+ * <h2>Diferencias Clave:</h2>
+ * <ul>
+ *   <li><b>SpringExtension:</b> Lenta. Levanta Beans reales. Test de Integración.</li>
+ *   <li><b>MockitoExtension:</b> Ultra-rápida. Mocks puros. Test Unitario puro.</li>
+ * </ul>
  */
-@ExtendWith(MockitoExtension.class) // JUnit 5 extension for Mockito.
-@DisplayName("Sección 1 - L10: MockitoExtension")
+@ExtendWith(MockitoExtension.class)
+@DisplayName("Sección 1 - L6: Mockito puro sin ApplicationContext")
 class L6_MockitoExtensionTheory {
 
     @Mock
-    VetRepository vetRepository; // Mock standard de Mockito.
+    private VetRepository vetRepository;
 
     @InjectMocks
-    VetService vetService; // Mockito intentará inyectar los mocks arriba declarados.
+    private VetService vetService;
 
+    /**
+     * <h2>DEMO: Inyección simple de Mockito</h2>
+     * <p>Comprobamos que las dependencias están disponibles incluso sin tener 
+     * un servidor Spring arrancado de fondo.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar inyección de mocks sin contexto de Spring")
+    @DisplayName("🧪 Demo 6: Test unitario ultra-rápido con Mockito puro")
     void testStandardMockito() {
-        // No hay @Autowired aquí. Spring NO está funcionando. ES Mockito puro.
         assertNotNull(vetRepository);
         assertNotNull(vetService);
     }
 }
-
-

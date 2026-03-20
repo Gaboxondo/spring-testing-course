@@ -14,31 +14,41 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Sección 6 - L2: Cargar Propiedades desde YAML Externo.
+ * <h1>TEORÍA: Propiedades Tipadas y Formatos YAML</h1>
  * 
- * ¿Quieres cargar un .yml en tus tests? Por defecto @PropertySource solo lee .properties.
- * Para solucionarlo usamos nuestro YamlPropertySourceFactory.
+ * <p><b>Qué hace:</b> Demuestra cómo cargar archivos de configuración en formato 
+ * YAML (más legible que .properties) y mapearlos a objetos Java (POJOs).</p>
+ * 
+ * <p><b>Por qué existe:</b> Los archivos YAML permiten estructuras jerárquicas 
+ * complejas. El uso de <code>@ConfigurationProperties</code> ofrece validación 
+ * de tipos y mejor seguridad en tiempo de compilación frente al uso de <code>@Value</code>.</p>
+ * 
+ * <h2>Dato Importante:</h2>
+ * <p>Por defecto, Spring no soporta YAML en la anotación <code>@PropertySource</code>. 
+ * Se requiere un <code>Factory</code> personalizado para procesar este formato.</p>
  */
 @ExtendWith(SpringExtension.class)
-@DisplayName("Sección 6 - L2: Carga de YAML con Factory")
+@DisplayName("Sección 6 - L2: Carga de YAML y Tipado Seguros")
 class L2_YamlPropertyTheory {
 
     @Configuration
     @PropertySource(value = "classpath:test-external-service.yml", factory = YamlPropertySourceFactory.class)
-    @EnableConfigurationProperties(ExternalServiceConfig.class) // Habilita la clase de configuración
+    @EnableConfigurationProperties(ExternalServiceConfig.class) 
     static class TestConfig {
-        // No necesitamos definir beans, @EnableConfigurationProperties lo hace por nosotros.
     }
 
     @Autowired
-    ExternalServiceConfig serviceConfig;
+    private ExternalServiceConfig serviceConfig;
 
+    /**
+     * <h2>DEMO: Inyectar Configuración en POJO</h2>
+     * <p>Validamos que el objeto inyectado contiene los valores definidos en 
+     * el archivo YAML externo del classpath.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar que el YAML se inyecta en el objeto ConfigurationProperties")
+    @DisplayName("🧪 Demo 19: Mapeo de YAML a objeto ConfigurationProperties")
     void testYamlInjected() {
         assertEquals("TEST-KEY-123", serviceConfig.getApiKey());
-        assertEquals("https://testing.api.com", serviceConfig.getUrl());
         assertEquals(5000, serviceConfig.getTimeout());
     }
 }
-

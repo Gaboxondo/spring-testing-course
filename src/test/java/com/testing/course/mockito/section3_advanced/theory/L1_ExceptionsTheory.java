@@ -13,33 +13,42 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Sección 2 - L1: Mockeando Excepciones.
+ * <h1>TEORÍA: Forzando Excepciones con Mockito</h1>
  * 
- * Mockito permite simular fallos controlados para ver cómo responde nuestro sistema.
- * Es crucial cuando nuestra lógica de negocio debe atrapar errores de infraestructura (DB, Red).
+ * <p><b>Qué hace:</b> Permite programar un mock para que lance una excepción específica 
+ * cuando se invoca uno de sus métodos.</p>
+ * 
+ * <p><b>Por qué existe:</b> Es fundamental para testear la robustez del sistema 
+ * ante fallos controlados, como errores de base de datos (DB offline), falta de 
+ * conectividad de red o errores de integridad de datos.</p>
+ * 
+ * <h2>Sintaxis Recomendada:</h2>
+ * <ul>
+ *   <li><b>doThrow():</b> Imprescindible para métodos que devuelven <code>void</code> 
+ *   o cuando trabajamos con <code>@Spy</code> (para evitar ejecutar el código real).</li>
+ *   <li><b>when().thenThrow():</b> Preferible para métodos que devuelven un valor, 
+ *   ya que es más legible y ofrece mejores chequeos de tipos en tiempo de compilación.</li>
+ * </ul>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Sección 2 - L1: Forzando Excepciones")
+@DisplayName("Sección 3 - L1: Mockeando Errores y Excepciones")
 class L1_ExceptionsTheory {
 
     @Mock
-    VisitRepository visitRepository;
+    private VisitRepository visitRepository;
 
     @InjectMocks
-    VisitService visitService;
+    private VisitService visitService;
 
     /**
-     * ¿Cuándo usar doThrow()?
-     * 1. CUANDO EL MÉTODO ES 'void': since when(mock.voidMethod()) no compila.
-     * 2. CUANDO TRABAJAS CON @Spy: para evitar llamar al método real antes de atrapar el error.
+     * <h2>CASO 1: Forzando error en método void (doThrow)</h2>
+     * <p>Utilizamos <code>doThrow</code> porque el método <code>save(Visit)</code> 
+     * no devuelve nada y la sintaxis <code>when()</code> no compila.</p>
      */
     @Test
-    @DisplayName("🧪 Forzando error en método void con doThrow()")
+    @DisplayName("🧪 Demo 1: Error en método void con doThrow()")
     void testVoidMethodException() {
         Visit visit = new Visit("Cita", null);
-        
-        // El repositorio tiene el método void save(Visit).
-        // when(visitRepository.save(any())).thenThrow(...) -> ¡ERROR de compilación!
         
         doThrow(new RuntimeException("DB offline")).when(visitRepository).save(any());
 
@@ -49,14 +58,12 @@ class L1_ExceptionsTheory {
     }
 
     /**
-     * ¿Cuándo usar when().thenThrow()?
-     * Cuando el método devuelva ALGO (Objeto, Primitivo, etc.). Es la opción preferída 
-     * por ser más legible y ofrecer mayor chequeo de tipos.
+     * <h2>CASO 2: Forzando error en método con retorno (thenThrow)</h2>
+     * <p>Al devolver un objeto, podemos usar la sintaxis fluida de <code>when</code>.</p>
      */
     @Test
-    @DisplayName("🧪 Forzando error en método con retorno con when().thenThrow()")
+    @DisplayName("🧪 Demo 2: Error en método con retorno mediante thenThrow()")
     void testReturnMethodException() {
-        // El repositorio tiene findById(1L) que devuelve un objeto Visit.
         when(visitRepository.findById(anyLong())).thenThrow(new RuntimeException("No encontrado"));
 
         assertThrows(RuntimeException.class, () -> {
@@ -64,4 +71,3 @@ class L1_ExceptionsTheory {
         });
     }
 }
-

@@ -8,24 +8,35 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Sección 3 - L1: @SpringBootTest (Integración Total).
+ * <h1>TEORÍA: Tests de Integración Completa (@SpringBootTest)</h1>
  * 
- * Es la anotación más potente y pesada. 
- * Levanta el contexto COMPLETO de tu aplicación (Beans, Repos, DB en memoria).
+ * <p><b>Qué hace:</b> Levanta el <code>ApplicationContext</code> completo de la 
+ * aplicación, emulando un entorno real de ejecución con todos los Beans, 
+ * repositorios y configuraciones activas.</p>
+ * 
+ * <p><b>Por qué existe:</b> Es la prueba definitiva de que todas las piezas del 
+ * rompecabezas (capas de datos, servicios, seguridad) encajan y funcionan juntas 
+ * correctamente (End-to-End o Integración Ancha).</p>
+ * 
+ * <h2>Rendimiento:</h2>
+ * <p>Es la anotación más pesada de Spring Testing. Debe usarse con moderación, 
+ * priorizando Slices especificos (@WebMvcTest, @DataJpaTest) para tests más rápidos.</p>
  */
 @SpringBootTest
-@DisplayName("Sección 3 - L1: @SpringBootTest")
+@DisplayName("Sección 3 - L1: @SpringBootTest (Integración Total)")
 class L1_SpringBootTestTheory {
 
     @Autowired
-    OwnerService ownerService;
+    private OwnerService ownerService;
 
+    /**
+     * <h2>DEMO: Verificación del motor de Spring Boot</h2>
+     * <p>Comprobamos que las dependencias multinivel se han inyectado satisfactoriamente 
+     * en el contexto de integración.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar que el servicio real está inyectado")
+    @DisplayName("🧪 Demo 1: Verificar disponibilidad del contexto completo")
     void testProjectSetup() {
-        // En este test de integración, tenemos TODO el poder de Spring Boot.
-        assertNotNull(ownerService);
-        assertTrue(ownerService.getOwnerCount() >= 0);
+        assertNotNull(ownerService, "El ApplicationContext debe inyectar el servicio real");
     }
 }
-

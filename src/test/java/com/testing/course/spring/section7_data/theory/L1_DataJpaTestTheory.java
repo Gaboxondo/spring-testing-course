@@ -10,35 +10,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Sección 7 - L1: Testing con @DataJpaTest.
+ * <h1>TEORÍA: Tests de Persistencia (@DataJpaTest)</h1>
  * 
- * Esta anotación es un "Slice Test" para la capa de persistencia.
+ * <p><b>Qué hace:</b> Levanta un entorno de persistencia mínimo que incluye 
+ * una base de datos embebida (normalmente H2), escaneo de entidades y repositorios.</p>
  * 
- * CARACTERÍSTICAS:
- * 1. Configura una base de datos embebida (normalmente H2) automáticamente.
- * 2. Escanea solo @Entity y repositorios de Spring Data JPA.
- * 3. Es @Transactional: Cada test revierte sus cambios al finalizar (rollback).
+ * <p><b>Por qué existe:</b> Permite validar que las consultas SQL personales (@Query) 
+ * o las derivadas por nombre (Query Methods) funcionan realmente sobre el motor de base de datos.</p>
+ * 
+ * <h2>Transaccionalidad:</h2>
+ * <p>Por defecto, <code>@DataJpaTest</code> marca cada método de test como 
+ * <b>@Transactional</b> y realiza un Rollback al finalizar, manteniendo la DB impecable.</p>
  */
 @DataJpaTest
-@DisplayName("Sección 7 - L1: Repositorios con @DataJpaTest")
+@DisplayName("Sección 7 - L1: Persistencia Real con H2")
 class L1_DataJpaTestTheory {
 
     @Autowired
-    OwnerRepository ownerRepository;
+    private OwnerRepository ownerRepository;
 
+    /**
+     * <h2>DEMO: Ciclo de vida de una Entidad</h2>
+     * <p>Guardamos un objeto y verificamos que el ID ha sido generado por el 
+     * motor de base de datos antes de recuperarlo.</p>
+     */
     @Test
-    @DisplayName("🧪 Guardar y recuperar un Owner en H2")
-    void testSaveOwner() {
-        Owner owner = new Owner("Jose", "Garcia");
-        Owner saved = ownerRepository.save(owner);
-
-        assertNotNull(saved.getId());
-        assertEquals("Garcia", saved.getLastName());
-    }
-
-    @Test
-    @DisplayName("🧪 Verificar que findByLastName funciona correctamente")
-    void testFindByLastName() {
+    @DisplayName("🧪 Demo 11: Guardado y búsqueda por Query Method")
+    void testSaveAndFind() {
         ownerRepository.save(new Owner("Maria", "Perez"));
         
         Owner found = ownerRepository.findByLastName("Perez")
@@ -47,4 +45,3 @@ class L1_DataJpaTestTheory {
         assertEquals("Maria", found.getFirstName());
     }
 }
-

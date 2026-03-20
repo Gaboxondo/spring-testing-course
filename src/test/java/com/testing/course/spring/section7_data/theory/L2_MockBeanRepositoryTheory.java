@@ -13,37 +13,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
- * Sección 7 - L2: Simulando la BBDD con @MockBean.
+ * <h1>TEORÍA: Aislamiento de Capas (@MockBean en Repositorios)</h1>
  * 
- * ¿Y si mi aplicación usa MongoDB o una BBDD cloud pesada y lenta?
- * No siempre queremos H2. A veces solo queremos testear la lógica 
- * del SERVICE simulando lo que devuelve el REPOSITORY.
+ * <p><b>Qué hace:</b> Sustituye el repositorio real de la base de datos por un 
+ * mock de Mockito dentro del ApplicationContext global de Spring.</p>
  * 
- * @MockBean permite inyectar un Mock de Mockito EN EL CONTEXTO de Spring.
- * Esto sustituye el bean real de la BBDD por un simulacro controlado.
+ * <p><b>Por qué existe:</b> No siempre queremos una base de datos real (ni siquiera H2). 
+ * A veces solo queremos testear la lógica del SERVICIO simulando el escenario 
+ * de datos que necesitemos (ej: si el repo devuelve nulo, si lanza error de timeout, etc).</p>
  */
 @SpringBootTest
-@DisplayName("Sección 7 - L2: Mockeando Repositorios")
+@DisplayName("Sección 7 - L2: Control de Datos mediante MockBean")
 class L2_MockBeanRepositoryTheory {
 
     @MockBean
-    OwnerRepository ownerRepository; // Inyecta un mock en el contexto de Spring.
+    private OwnerRepository ownerRepository; 
 
     @Autowired
-    OwnerService ownerService; // Spring inyectará el mock arriba declarado dentro de este service.
+    private OwnerService ownerService; 
 
+    /**
+     * <h2>DEMO: Inyección de Mock en Servicio real</h2>
+     * <p>Programamos el mock del repositorio para devolver a "Ruiz" y validamos 
+     * que el servicio lo recibe y procesa correctamente.</p>
+     */
     @Test
-    @DisplayName("🧪 Testear Service simulando respuesta del Repository")
+    @DisplayName("🧪 Demo 12: Simulación de flujo de datos (Service -> Repo Mock)")
     void testServiceWithMockedRepo() {
-        // GIVEN: El Repo simulará que ha encontrado a "Ruiz"
         Owner simulatedOwner = new Owner("Paco", "Ruiz");
         when(ownerRepository.findByLastName("Ruiz")).thenReturn(Optional.of(simulatedOwner));
 
-        // WHEN: El Service hace su trabajo
         Owner result = ownerService.findByLastName("Ruiz");
 
-        // THEN: Los asserts comprueban que el service recibió el dato del mock
         assertEquals("Paco", result.getFirstName());
     }
 }
-

@@ -12,39 +12,53 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 /**
- * Sección 2 - L1: MockMVC Standalone Setup.
+ * <h1>TEORÍA: configuración Standalone de MockMVC</h1>
  * 
- * ¿Cómo probamos un controlador de Spring MVC sin arrancar el servidor (Tomcat)?
- * Usamos MockMVC. El modo 'Standalone' es el más ligero: solo carga EL controlador.
+ * <p><b>Qué hace:</b> Permite testear un controlador de Spring MVC de forma aislada 
+ * instanciándolo manualmente y configurando MockMVC sin cargar el contexto de Spring.</p>
+ * 
+ * <p><b>Por qué existe:</b> Es la forma más rápida y pura de testear la lógica de 
+ * un controlador (rutas, nombres de vistas, códigos de estado) sin la sobrecarga 
+ * de arrancar el servidor embebido (Tomcat/Jetty) ni el ApplicationContext.</p>
+ * 
+ * <h2>Modo Standalone:</h2>
+ * <p>Se utiliza <code>MockMvcBuilders.standaloneSetup(controlador)</code>. Solo registra 
+ * la infraestructura mínima necesaria para procesar peticiones HTTP simuladas contra ese Bean.</p>
  */
-@DisplayName("Sección 2 - L1: MockMVC Standalone")
+@DisplayName("Sección 2 - L1: MockMVC Standalone (Sin Contexto)")
 class L1_MockMVCStandaloneTheory {
 
-    IndexController indexController;
-    MockMvc mockMvc;
+    private IndexController indexController;
+    private MockMvc mockMvc;
 
     @BeforeEach
     void setUp() {
         indexController = new IndexController();
-        // Configuramos MockMvc manualmente pasándole el controlador real.
+        // Configuración manual del entorno de ejecución de peticiones
         mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
     }
 
+    /**
+     * <h2>DEMO: Petición GET básica</h2>
+     * <p>Simulamos el acceso a la raíz y comprobamos que el controlador devuelve 
+     * el nombre de la plantilla HTML 'index'.</p>
+     */
     @Test
-    @DisplayName("🧪 Probar GET /index")
+    @DisplayName("🧪 Demo 1: Probar GET /index con MockMvc")
     void testIndex() throws Exception {
-        // Ejecutamos la petición simulada.
         mockMvc.perform(get("/"))
-            .andExpect(status().isOk())         // HTTP 200
-            .andExpect(view().name("index"));  // Debe devolver la vista "index"
+            .andExpect(status().isOk())
+            .andExpect(view().name("index"));
     }
 
+    /**
+     * <h2>DEMO: Gestión de Errores Críticos (500)</h2>
+     * <p>Verificamos que las excepciones no capturadas se traducen en errores de servidor.</p>
+     */
     @Test
-    @DisplayName("🧪 Probar error 500 en /oups")
+    @DisplayName("🧪 Demo 2: Simulación de error interno (500)")
     void testOups() throws Exception {
-        // Al lanzar una excepción no capturada en standalone, MockMvc espera un Internal Server Error.
         mockMvc.perform(get("/oups"))
             .andExpect(status().isInternalServerError());
     }
 }
-

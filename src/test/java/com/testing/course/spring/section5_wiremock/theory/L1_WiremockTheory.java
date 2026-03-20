@@ -10,25 +10,31 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Sección 5 - L1: Introducción a Wiremock.
+ * <h1>TEORÍA: Servidores HTTP de Simulación (WireMock)</h1>
  * 
- * ¿Qué pasa si tu microservicio depende de una API externa (Google, Stripe, etc.)?
- * No quieres llamar a la API real en cada test. Wiremock levanta un SERVIDOR REAL 
- * local al que le programas respuestas HTTP.
+ * <p><b>Qué hace:</b> Levanta un servidor HTTP real en un puerto local, permitiendo 
+ * interceptar y responder a peticiones salientes de nuestra aplicación.</p>
+ * 
+ * <p><b>Por qué existe:</b> Es la herramienta estándar para testear integraciones 
+ * con APIs de terceros (Stripe, Twilio, Google). Evita realizar llamadas reales 
+ * a internet, ahorrando costes y garantizando un entorno determinista.</p>
+ * 
+ * <h2>Principios del Stubbing:</h2>
+ * <p>A diferencia de Mockito (que mockea objetos Java), WireMock mockea el 
+ * <b>canal de red</b>. El código de producción "cree" que está hablando con la API real.</p>
  */
-@DisplayName("Sección 5 - L1: Wiremock Standalone Server")
+@DisplayName("Sección 5 - L1: WireMock Standalone Server")
 class L1_WiremockTheory {
 
-    WireMockServer wireMockServer;
-    ExternalVetService externalVetService;
+    private WireMockServer wireMockServer;
+    private ExternalVetService externalVetService;
 
     @BeforeEach
     void setUp() {
-        // Arrancamos el servidor en el puerto 8089.
+        // Inicialización manual del servidor en puerto fijo
         wireMockServer = new WireMockServer(8089);
         wireMockServer.start();
         configureFor("localhost", 8089);
-
         externalVetService = new ExternalVetService();
     }
 
@@ -37,10 +43,14 @@ class L1_WiremockTheory {
         wireMockServer.stop();
     }
 
+    /**
+     * <h2>DEMO: Mockeo de respuesta JSON</h2>
+     * <p>Programamos el servidor para que cuando reciba un GET específico, 
+     * devuelva un cuerpo JSON simulado con cabeceras reales.</p>
+     */
     @Test
-    @DisplayName("🧪 Simular una respuesta HTTP 200 de una API externa")
+    @DisplayName("🧪 Demo 16: Simular respuesta HTTP 200 de API Externa")
     void testExternalApiCall() {
-        // Stubbing de la API externa: "Cuando recibas GET /api/external, devuelve JSON"
         stubFor(get(urlEqualTo("/api/external"))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -48,8 +58,6 @@ class L1_WiremockTheory {
                         .withBody("{\"status\": \"Mocked by Wiremock\"}")));
 
         String response = externalVetService.getVetFromExternalApi("http://localhost:8089/api/external");
-        
         assertTrue(response.contains("Mocked by Wiremock"));
     }
 }
-

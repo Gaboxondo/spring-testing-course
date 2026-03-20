@@ -6,30 +6,23 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Sección 7 - L5: Testeando MongoDB (Embebido o con Slices).
+ * <h1>TEORÍA: Estrategias para Bases de Datos NoSQL</h1>
  * 
- * Al igual que con JPA, Spring Boot ofrece @DataMongoTest.
+ * <p><b>Qué hace:</b> Describe las herramientas de Spring para testear MongoDB u 
+ * otros sistemas documentales, similares a @DataJpaTest.</p>
  * 
- * OPCIONES PARA MONGODB:
- * 1. MONGODB EMBEDDED: Se suele añadir 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
- *    en el pom.xml. Spring levantará un Mongo real en memoria para el test.
- * 
- * 2. TESTCONTAINERS: (Recomendado hoy día). Levanta un contenedor Docker 
- *    con Mongo real. Es más lento pero 100% fiel a producción.
- * 
- * 3. MOCKING (@MockBean): Si solo queremos probar un Service y no nos importa 
- *    Mongo, mockeamos el MongoRepository como vimos en L2.
+ * <p><b>Por qué existe:</b> Las aplicaciones modernas a menudo usan bases de datos 
+ * heterogéneas. Spring proporciona abstracciones similares (<code>@DataMongoTest</code>) 
+ * para garantizar la uniformidad en el testing independientemente de la tecnología.</p>
  */
-// @DataMongoTest // Descomentar si se tiene la dependencia de Mongo
-@DisplayName("Sección 7 - L5: Conceptos de MongoDB")
+@DisplayName("Sección 7 - L5: Conceptuación de MongoDB en Testing")
 class L3_EmbeddedMongoTheory {
 
     @Test
-    @DisplayName("🧪 Teoría Documental")
+    @DisplayName("🧪 Nota Técnica: MongoDB y Slices")
     void explainMongoTesting() {
-        // En este curso nos centramos en JPA/H2, pero las bases son iguales:
-        // Se inyecta el Repository y se usa @DataMongoTest para aislar la capa.
+        // En este curso priorizamos JPA/SQL, pero las bases son gemelas:
+        // @DataMongoTest activa el escaneo de documentos y repositorios mongo.
         assertTrue(true);
     }
 }
-

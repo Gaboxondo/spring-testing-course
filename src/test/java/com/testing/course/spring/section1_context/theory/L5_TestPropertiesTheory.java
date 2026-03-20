@@ -11,24 +11,31 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Sección 1 - L5: Propiedades en Testing (@TestPropertySource).
+ * <h1>TEORÍA: Inyección de Valor (@Value y @TestPropertySource)</h1>
  * 
- * Podemos inyectar valores desde archivos de propiedades específicos del Test 
- * para simular configuraciones sin cambiar application.yaml.
+ * <p><b>Qué hace:</b> Permite definir propiedades de configuración específicas 
+ * para el test que sobreescriben o complementan a las de producción.</p>
+ * 
+ * <p><b>Por qué existe:</b> Facilita el testeo de clases que dependen de 
+ * configuraciones externas (URLs de APIs, credenciales, límites) sin necesidad 
+ * de crear múltiples archivos application.properties físicamente.</p>
  */
 @TestPropertySource(properties = {"testing.property=TestValue"})
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
-@DisplayName("Sección 1 - L5: Inyección de Propiedades")
+@DisplayName("Sección 1 - L5: Propiedades en Tiempo de Test")
 class L5_TestPropertiesTheory {
 
     @Value("${testing.property}")
-    String testProperty;
+    private String testProperty;
 
+    /**
+     * <h2>DEMO: Inyección desde TestPropertySource</h2>
+     * <p>El valor del campo es inyectado por Spring al momento de inicializar el test.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar la inyección de propiedades inline")
+    @DisplayName("🧪 Demo 5: Verificar inyección de propiedades inline")
     void testPropertyInjection() {
         assertEquals("TestValue", testProperty);
     }
 }
-

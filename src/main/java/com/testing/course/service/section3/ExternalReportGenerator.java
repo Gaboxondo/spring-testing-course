@@ -4,10 +4,17 @@ import com.testing.course.model.Visit;
 import java.util.UUID;
 
 /**
- * <h1>SERVICIO DE APOYO: Clases Auxiliares para Mockito Avanzado</h1>
+ * <h1>SERVICIO DE APOYO: ExternalReportGenerator</h1>
  * 
- * <p>Esta es una clase de utilidad que será instanciada internamente por 
- * <code>AdvancedService</code> para demostrar el mockeo de constructores.</p>
+ * <p><b>Qué hace:</b> Genera identificadores y reportes externos para visitas médicas.</p>
+ * 
+ * <p><b>Por qué existe:</b> Sirve como ejemplo de una clase secundaria que se 
+ * instancia internamente mediante <code>new</code> dentro de un servicio principal, 
+ * siendo el centro del test de <b>Mocked Construction</b> de Mockito.</p>
+ * 
+ * <p><b>Cómo se usa:</b> Es instanciada en <code>AdvancedService.handleInternalCreation</code>. 
+ * En los tests, se intercepta su constructor para verificar que el servicio principal 
+ * interactúa correctamente con este generador "oculto".</p>
  */
 public class ExternalReportGenerator {
 
@@ -18,13 +25,18 @@ public class ExternalReportGenerator {
     }
 
     /**
-     * Genera un reporte basado en una visita.
+     * Genera un reporte basado en los datos de la visita.
+     * 
+     * @param visit Información de la visita a procesar.
+     * @return String con el reporte estructurado.
      */
     public String generate(Visit visit) {
-        // Lógica compleja imaginaria
         return "ID [" + reportId + "] - Reporte para: " + visit.getDescription();
     }
 
+    /**
+     * Obtiene el identificador único del reporte generado.
+     */
     public String getReportId() {
         return reportId;
     }

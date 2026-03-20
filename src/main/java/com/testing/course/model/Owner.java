@@ -5,6 +5,17 @@ import jakarta.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>MODELO: Entidad Owner (Propietario)</h1>
+ * 
+ * <p><b>Qué hace:</b> Representa al cliente de la clínica, dueño de una o varias mascotas.</p>
+ * 
+ * <p><b>Por qué existe:</b> Es la entidad central para la gestión de datos de contacto, 
+ * direcciones de facturación y propiedad de mascotas en el sistema.</p>
+ * 
+ * <p><b>Cómo se usa:</b> Ampliamente utilizada en tests de controladores de Spring MVC 
+ * y en aserciones complejas de validación con Bean Validation (@NotEmpty).</p>
+ */
 @Entity
 public class Owner {
     @Id

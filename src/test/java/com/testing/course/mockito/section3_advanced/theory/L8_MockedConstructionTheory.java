@@ -16,21 +16,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
- * <h1>TEORÍA: Mocking de Constructores (new Object())</h1>
+ * <h1>TEORÍA: Mocking de Constructores (Interceptación de 'new')</h1>
  * 
- * <p>A menudo nos topamos con código (especialmente legado) donde se instancian 
- * objetos internamente mediante el operador <code>new</code>. Esto hace que sea 
- * imposible inyectar un mock de forma tradicional mediante el constructor.</p>
+ * <p><b>Qué hace:</b> Intercepta cualquier instanciación mediante el operador 
+ * <code>new</code> de una clase específica durante un hilo de ejecución dado.</p>
  * 
- * <h2>MockedConstruction al rescate</h2>
- * <p>Desde Mockito 3.5.0, existe <code>MockedConstruction<T></code>. 
- * Esta API intercepta CUALQUIER llamada al constructor de una clase específica 
- * durante la ejecución del test y devuelve un mock en su lugar.</p>
+ * <p><b>Por qué existe:</b> Es la solución definitiva para testear <b>código legado</b> 
+ * o arquitecturas rígidas donde las dependencias no se inyectan, sino que se crean 
+ * localmente dentro de los métodos del servicio.</p>
  * 
- * @see <a href="https://javadoc.io/static/org.mockito/mockito-core/5.11.0/org/mockito/Mockito.html#mock_construction">Mockito Mocked Construction</a>
+ * <h2>Consideraciones de Seguridad:</h2>
+ * <p>Debido a que altera el comportamiento global de la JVM en el hilo actual, 
+ * debe usarse siempre dentro de un bloque <code>try-with-resources</code> para 
+ * garantizar que el hook se libere al finalizar el test.</p>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Sección 3 - L8: Mocking de Constructores (Internal New)")
+@DisplayName("Sección 3 - L8: Mocking de Constructores (MockedConstruction)")
 class L8_MockedConstructionTheory {
 
     @Mock
@@ -40,43 +41,23 @@ class L8_MockedConstructionTheory {
     private AdvancedService advancedService;
 
     /**
-     * <h2>DEMO: Interceptando el 'new' de ExternalReportGenerator</h2>
-     * 
-     * <p><b>Qué hace:</b> Cuando <code>handleInternalCreation</code> hace 
-     * <code>new ExternalReportGenerator()</code>, Mockito interviene y 
-     * entrega un objeto simulado.</p>
-     * 
-     * <p><b>Por qué es importante:</b> Es el "último recurso" si no podemos 
-     * refactorizar el código de producción para usar inyección de dependencias.</p>
-     * 
-     * <p><b>Cómo se usa:</b> Mediante <code>try (MockedConstruction<T> mocked = mockConstruction(Clase.class))</code>. 
-     * IMPORTANTE: Siempre usar try-with-resources para liberar el hook del constructor al final del test.</p>
+     * <h2>DEMO: Capturando la creación de ExternalReportGenerator</h2>
+     * <p>El servicio principal instancia el generador internamente. Aquí lo 
+     * interceptamos para extraer el mock creado y realizar verificaciones.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 1: Mock de objeto creado internamente con 'new'")
+    @DisplayName("🧪 Demo 1: Interceptar el 'new' oculto en el servicio")
     void testMockedConstruction() {
         Visit visit = new Visit("Chequeo Anual", null);
 
-        // Activamos el hook sobre el constructor de ExternalReportGenerator
         try (MockedConstruction<ExternalReportGenerator> mocked = mockConstruction(ExternalReportGenerator.class)) {
             
-            // Cada 'new ExternalReportGenerator()' que ocurra AQUÍ DENTRO 
-            // será interceptado. Mockito guardará los mocks creados en 'mocked.constructed()'.
-            
-            // Ejecutamos el método que tiene el 'new' oculto
-            String result = advancedService.handleInternalCreation(visit);
+            advancedService.handleInternalCreation(visit);
 
-            // Obtenemos el mock que Mockito inyectó en el 'new' (el primero, index 0)
+            // Extraemos el mock que fue inyectado automáticamente en el operador 'new'
             ExternalReportGenerator generatorMock = mocked.constructed().get(0);
             
-            // Podemos programar el mock capturado (o Mockito generará uno por defecto)
-            // Por defecto los mocks devuelven null, por eso el resultado sería null
-            // a menos que Mockito genere un valor por defecto.
-            
-            // Verificamos interacciones en el objeto interno que 'no podíamos ver'
             verify(generatorMock).generate(visit);
         }
-        
-        // Fuera del bloque try, el hook desaparece y 'new' vuelve a ser real.
     }
 }

@@ -14,37 +14,48 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * TEORÍA SECCIÓN 9: Mockito con Anotaciones e Inyección.
+ * <h1>TEORÍA: Mockito con Anotaciones (@Mock, @InjectMocks)</h1>
  * 
- * Basado en: Section 9 - Lecciones 105, 106, 107.
+ * <p><b>Qué hace:</b> Automatiza la creación e inyección de objetos simulados 
+ * mediante el uso de anotaciones y la extensión de JUnit 5.</p>
  * 
- * DETALLE FINO:
- * - @Mock: Crea una instancia simulada de la dependencia.
- * - @InjectMocks: Crea una instancia REAL de la clase bajo test y le "inyecta" 
- *   los mocks marcados con @Mock de forma automática.
- * - @ExtendWith(MockitoExtension.class): Activa el motor de Mockito para JUnit 5.
+ * <p><b>Por qué existe:</b> Reduce el código repetitivo (biolerplate) de instanciación manual 
+ * y mejora la legibilidad de la clase de test al declarar las dependencias de forma clara.</p>
+ * 
+ * <h2>Anotaciones Principales:</h2>
+ * <ul>
+ *   <li><b>@Mock:</b> Crea una instancia simulada (mock) de la interfaz o clase marcada.</li>
+ *   <li><b>@InjectMocks:</b> Crea una instancia REAL de la clase bajo prueba e intenta 
+ *   inyectarle automáticamente los mocks definidos anteriormente.</li>
+ *   <li><b>@ExtendWith(MockitoExtension.class):</b> Indica a JUnit 5 que debe inicializar 
+ *   el motor de Mockito antes de ejecutar los tests.</li>
+ * </ul>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Teoría: Mockito con Anotaciones")
+@DisplayName("Sección 1 - L2: Mockito con Anotaciones e Inyección")
 class L2_AnnotationTheory {
 
     @Mock
-    VetRepository vetRepository;
+    private VetRepository vetRepository;
 
     @InjectMocks
-    VetService vetService;
+    private VetService vetService;
 
+    /**
+     * <h2>DEMO: Trabajo profesional con inyección automática</h2>
+     * <p>En este flujo, Mockito se encarga de instanciar <code>VetService</code> 
+     * y pasarle el <code>VetRepository</code> (mock) por su constructor.</p>
+     */
     @Test
-    @DisplayName("🧪 Demo 2: Trabajo profesional con inyección automática")
+    @DisplayName("🧪 Demo 2: Inyección automática de dependencias")
     void mockAnnotationDemo() {
         // Programar el comportamiento del mock inyectado
         when(vetRepository.findAll()).thenReturn(Collections.singletonList(new Vet("Test", "LastName")));
 
-        // Ejecutar el método del servicio REAL (que usa el mock inyectado)
+        // Ejecutar el método del servicio REAL
         assertNotNull(vetService.findAll());
 
-        // Verificar que el servicio llamó al mock
+        // Verificar la interacción
         verify(vetRepository, times(1)).findAll();
     }
 }
-

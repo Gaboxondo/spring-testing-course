@@ -9,31 +9,38 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Sección 6 - L1: Testeando la anotación @Value.
+ * <h1>TEORÍA: Inyección de Configuración Variable (@Value)</h1>
  * 
- * La anotación @Value lee del entorno de Spring (Environment).
- * Para testear estos valores sin depender de application.yaml, 
- * usamos @TestPropertySource.
+ * <p><b>Qué hace:</b> Permite inyectar valores escalares del entorno (propiedades) 
+ * directamente en los campos de nuestras clases.</p>
+ * 
+ * <p><b>Por qué existe:</b> Facilita la externalización de parámetros de negocio 
+ * y técnicos, permitiendo que el mismo binario de la aplicación se comporte 
+ * distinto en Dev, Staging o Prod cambiando solo su configuración.</p>
  */
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(properties = {
     "server.host=localhost",
     "server.port=8080"
 })
-@DisplayName("Sección 6 - L1: Inyección con @Value")
+@DisplayName("Sección 6 - L1: Inyección de Valores del Entorno")
 class L1_ValueAnnotationTheory {
 
     @Value("${server.host}")
-    String host;
+    private String host;
 
     @Value("${server.port}")
-    int port;
+    private int port;
 
+    /**
+     * <h2>DEMO: Resolución de Placeholders</h2>
+     * <p>El motor de Spring lee de la anotación <code>@TestPropertySource</code> 
+     * y resuelve las expresiones <code>${...}</code> antes de ejecutar el test.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar que @Value inyecta los valores de @TestPropertySource")
+    @DisplayName("🧪 Demo 18: Inyección básica de propiedades inline")
     void testValueInjected() {
         assertEquals("localhost", host);
         assertEquals(8080, port);
     }
 }
-

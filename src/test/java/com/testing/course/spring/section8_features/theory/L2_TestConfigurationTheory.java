@@ -14,22 +14,28 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- * Sección 8 - L2: Sobrescribiendo beans con @TestConfiguration.
+ * <h1>TEORÍA: Configuración de Test (@TestConfiguration)</h1>
  * 
- * Si queremos cambiar un Bean por una configuración especial de test, 
- * usamos @TestConfiguration.
+ * <p><b>Qué hace:</b> Permite extender o sobrescribir Beans del contexto 
+ * principal de Spring específicamente para un test.</p>
  * 
- * NOTA: Esta anotación añade cosas al contexto principal, 
- * pudiendo incluso sobrescribir beans con @Primary.
+ * <p><b>Por qué existe:</b> A menudo necesitamos que en un test un Bean de 
+ * integración (ej: cliente de API externa) se comporte de forma distinta, 
+ * sin tener que cambiar la base de código de producción.</p>
+ * 
+ * <h2>Comportamiento Crítico:</h2>
+ * <p>A diferencia de <code>@Configuration</code> normal, <code>@TestConfiguration</code> 
+ * no inhabilita el escaneo automático, sino que se añade al contexto existente, 
+ * por lo que suele requerir <code>@Primary</code> para priorizar el Bean de test.</p>
  */
 @SpringBootTest
-@DisplayName("Sección 8 - L2: @TestConfiguration")
+@DisplayName("Sección 8 - L2: Sobrescritura mediante TestConfiguration")
 class L2_TestConfigurationTheory {
 
-    @TestConfiguration // Indica configuración específica para este test.
+    @TestConfiguration 
     static class OverrideConfig {
         @Bean
-        @Primary // Fuerza a que este sea el Service que se inyecte aquí.
+        @Primary 
         public OwnerService mockOwnerService() {
             OwnerService mock = mock(OwnerService.class);
             when(mock.findByLastName("Override")).thenReturn(new Owner("Test", "Override"));
@@ -38,13 +44,17 @@ class L2_TestConfigurationTheory {
     }
 
     @Autowired
-    OwnerService ownerService; // Recibe el bean inyectado por @TestConfiguration.
+    private OwnerService ownerService; 
 
+    /**
+     * <h2>DEMO: Verificación de Bean interceptado</h2>
+     * <p>El test consulta al servicio y comprueba que ha recibido el mock 
+     * configurado en la clase estática interna.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar bean sobrescrito por @TestConfiguration")
+    @DisplayName("🧪 Demo 14: Trabajo con Beans auxiliares de test")
     void testBeanOverride() {
         Owner found = ownerService.findByLastName("Override");
         assertEquals("Test", found.getFirstName());
     }
 }
-

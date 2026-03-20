@@ -11,34 +11,40 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Sección 1 - L1: Introducción al Contexto de Spring.
+ * <h1>TEORÍA: Introducción al Contexto de Spring (Dependency Injection)</h1>
  * 
- * ¿Para qué sirve esto?
- * En lugar de usar Mockito para simular todo, a veces queremos que Spring cree 
- * los Beans REALES (Inyección de Dependencias) y los inyecte en nuestro Test.
+ * <p><b>Qué hace:</b> Activa el soporte de Spring en JUnit 5 y levanta un 
+ * contenedor (ApplicationContext) para gestionar e inyectar Beans reales.</p>
  * 
- * ANOTACIONES:
- * - @ExtendWith(SpringExtension.class): Activa el soporte de Spring en JUnit 5.
- * - @ContextConfiguration: Le dice a Spring dónde están los Beans o la Configuración.
+ * <p><b>Por qué existe:</b> En lugar de simular (mockear) cada componente, a menudo 
+ * necesitamos testear cómo interactúan varios Beans reales (Tests de Integración), 
+ * asegurando que las reglas de inyección se cumplen correctamente.</p>
+ * 
+ * <h2>Anotaciones Clave:</h2>
+ * <ul>
+ *   <li><b>@ExtendWith(SpringExtension.class):</b> El puente oficial entre JUnit 5 y Spring.</li>
+ *   <li><b>@ContextConfiguration:</b> Define el archivo XML o la clase Java <code>@Configuration</code> 
+ *   que servirá de base al contexto.</li>
+ *   <li><b>@Autowired:</b> Solicita a Spring que busque e inyecte una instancia del tipo indicado.</li>
+ * </ul>
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
-@DisplayName("Sección 1 - L1: Cargando el Contexto de Spring")
+@DisplayName("Sección 1 - L1: Inyección de Dependencias y Contexto")
 class L1_SpringContextTheory {
 
     @Autowired
-    HearingInterpreter hearingInterpreter;
+    private HearingInterpreter hearingInterpreter;
 
+    /**
+     * <h2>DEMO: Verificación de carga de Bean real</h2>
+     * <p>El test comprueba que el intérprete ha sido inyectado y funciona con 
+     * el productor de palabras real (sin intervención de Mockito).</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar la carga del Bean real")
+    @DisplayName("🧪 Demo 1: Inyección de Bean real gestionado por Spring")
     void testWhatDidIHear() {
-        // En este caso, el Bean REAL está cargado. No hay Mocks.
         String result = hearingInterpreter.whatDidIHear();
-        
-        System.out.println("El sistema dice: " + result);
-        
-        // Por defecto, LaurelWordProducer es @Primary, así que escuchamos Laurel.
-        assertTrue(result.contains("Laurel"));
+        assertTrue(result.contains("Laurel"), "El Bean @Primary debe ser Laurel");
     }
 }
-

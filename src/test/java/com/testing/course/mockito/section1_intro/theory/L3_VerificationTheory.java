@@ -13,37 +13,47 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
- * TEORÍA SECCIÓN 9: Verificaciones y Argument Matchers.
+ * <h1>TEORÍA: Verificaciones y Comprobación de Interacciones</h1>
  * 
- * Basado en: Section 9 - Lecciones 108, 112.
+ * <p><b>Qué hace:</b> Se centra en el uso de <code>verify()</code> para asegurar 
+ * que el objeto bajo test interactúa correctamente con sus dependencias.</p>
  * 
- * DETALLE FINO:
- * - 'verify': Comprueba LA LLAMADA al mock.
- * - 'any()': Es un Argument Matcher que acepta CUALQUIER objeto de ese tipo.
- * - 'times(n)': Es un verificador que comprueba el NÚMERO exacto de veces que ocurre la llamada.
+ * <p><b>Por qué existe:</b> En métodos que no devuelven nada (void), no podemos 
+ * usar aserciones tradicionales. La única forma de saber si el código funciona es 
+ * verificando que realizó las llamadas esperadas a sus colaboradores.</p>
+ * 
+ * <h2>conceptos clave:</h2>
+ * <ul>
+ *   <li><b>'verify':</b> Comprueba que una llamada ocurrió con parámetros exactos o matchers.</li>
+ *   <li><b>'any()':</b> Argument Matcher básico que acepta cualquier objeto del tipo especificado.</li>
+ *   <li><b>'times(n)':</b> Verificador de cardinalidad (frecuencia de llamadas).</li>
+ * </ul>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Teoría: Verificaciones y Matchers")
+@DisplayName("Sección 1 - L3: Verificaciones y Matchers Básicos")
 class L3_VerificationTheory {
 
     @Mock
-    VetRepository vetRepository;
+    private VetRepository vetRepository;
 
     @InjectMocks
-    VetService vetService;
+    private VetService vetService;
 
+    /**
+     * <h2>DEMO: Argument Matchers y Verificación de cardinalidad</h2>
+     * <p>Comprobamos que al salvar un veterinario, el servicio llama al repositorio 
+     * exactamente el número de veces esperado.</p>
+     */
     @Test
-    @DisplayName("🧪 Demo 3: Argument Matchers y Verificación")
+    @DisplayName("🧪 Demo 3: Verificación de llamadas y uso de any()")
     void verificationDemo() {
-        // Ejecutar llamada real del servicio
+        // Ejecutar acción
         vetService.save(new Vet("Paco", "Ruiz"));
 
         // Verificar que el repositorio recibió CUALQUIER objeto tipo Vet
-        // PISTA: No es necesario usar 'when' si el método devuelve void.
         verify(vetRepository).save(any(Vet.class));
         
-        // Verificar que se llamó exactamente 1 vez
+        // Verificar frecuencia exacta (1 vez)
         verify(vetRepository, times(1)).save(any(Vet.class));
     }
 }
-

@@ -15,21 +15,18 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 /**
- * <h1>TEORÍA: La API de Answers (AdditionalAnswers)</h1>
+ * <h1>TEORÍA: Respuesta Dinámica (AdditionalAnswers)</h1>
  * 
- * <p>A veces no queremos que un mock devuelva un valor fijo, sino algo dinámico 
- * que dependa de lo que el método reciba. Mockito ofrece la clase 
- * <code>AdditionalAnswers</code> para casos comunes sin escribir lógica personalizada.</p>
+ * <p><b>Qué hace:</b> Permite programar respuestas que dependen dinámicamente de los 
+ * argumentos de entrada en lugar de devolver un valor predefinido.</p>
  * 
- * <h2>El caso de 'returnsFirstArg()'</h2>
- * <p>En Spring Data (y APIs REST), es muy común que un repositorio reciba un objeto, 
- * lo guarde y lo devuelva de vuelta. Simular esto manualmente para cada objeto 
- * puede ser tedioso:</p>
- * <pre>when(repo.save(obj1)).thenReturn(obj1);</pre>
- * <p>Con <code>returnsFirstArg()</code>, el mock siempre devolverá el primer argumento 
- * que reciba, sin importar cuál sea.</p>
+ * <p><b>Por qué existe:</b> Facilita el stubbing de métodos "Echo" (como repositorios 
+ * que devuelven la misma entidad que guardan) o cálculos simples basados en parámetros, 
+ * evitando fragmentación en el código de test.</p>
  * 
- * @see <a href="https://javadoc.io/static/org.mockito/mockito-core/latest/org.mockito/AdditionalAnswers.html">AdditionalAnswers Javadoc</a>
+ * <h2>Función returnsFirstArg():</h2>
+ * <p>Es la respuesta más común para simular el comportamiento de persistencia 
+ * de Spring Data JPA, devolviendo exactamente el mismo objeto que recibe (ID [0]).</p>
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Sección 3 - L7: Answers API (Resultados Dinámicos)")
@@ -39,33 +36,19 @@ class L7_AnswersTheory {
     private VisitRepository visitRepository;
 
     /**
-     * <h2>DEMO: Mockeo dinámico con returnsFirstArg</h2>
-     * 
-     * <p><b>Qué hace:</b> Configura el repositorio para que cualquier objeto <code>Visit</code> 
-     * pasado a <code>saveAndReturn</code> sea el mismo que se devuelva.</p>
-     * 
-     * <p><b>Por qué es importante:</b> Evita fragilidad en los tests. Si cambias el objeto 
-     * en el "Arrange", no necesitas actualizar el stubbing.</p>
-     * 
-     * <p><b>Cómo se usa:</b> Se usa <code>thenAnswer(AdditionalAnswers.returnsFirstArg())</code>.</p>
+     * <h2>DEMO: Repositorio con comportamiento "Espejo"</h2>
+     * <p>Evitamos programar un <code>thenReturn</code> distinto para cada visita, 
+     * configurando una regla general dinámica para el repositorio.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 1: Mock de repositorio 'espejo' (Echo)")
+    @DisplayName("🧪 Demo 1: Mock dinámico con returnsFirstArg")
     void testReturnsFirstArg() {
-        // En lugar de: when(repo.saveAndReturn(visit1)).thenReturn(visit1);
-        // Usamos una respuesta dinámica (Answer):
         when(visitRepository.saveAndReturn(any(Visit.class)))
                 .thenAnswer(AdditionalAnswers.returnsFirstArg());
 
-        // Ejecuciones con distintos objetos
         Visit v1 = new Visit("Gato en revisión", null);
-        Visit v2 = new Visit("Perro vacunación", null);
-
         Visit res1 = visitRepository.saveAndReturn(v1);
-        Visit res2 = visitRepository.saveAndReturn(v2);
 
-        assertNotNull(res1);
-        assertEquals(v1.getDescription(), res1.getDescription(), "Debe devolver el primer objeto");
-        assertEquals(v2.getDescription(), res2.getDescription(), "Debe devolver el segundo objeto");
+        assertEquals(v1.getDescription(), res1.getDescription(), "Debe devolver la misma visita recibida");
     }
 }

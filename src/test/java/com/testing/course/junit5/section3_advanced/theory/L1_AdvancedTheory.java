@@ -5,158 +5,58 @@ import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
-import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <h1>TEORÍA: Organización Avanzada y Tests Parametrizados</h1>
+ * <h1>TEORÍA: Organización Avanzada y Tests Colectivos</h1>
  * 
- * <p>Esta sección aborda técnicas para gestionar suites de tests complejas, 
- * mejorar la legibilidad mediante el anidamiento y optimizar la cobertura 
- * con datos dinámicos.</p>
+ * <p><b>Qué hace:</b> Explora las anotaciones destinadas a estructurar grandes 
+ * volúmenes de tests, permitiendo filtrado, anidamiento y ejecución masiva con datos.</p>
  * 
- * <h2>Principios Clave:</h2>
+ * <p><b>Por qué existe:</b> A medida que un proyecto crece, los tests unitarios 
+ * pierden legibilidad. Estas herramientas permiten agrupar lógica relacionada 
+ * y reducir la repetición de código (DRY) mediante fuentes de datos externas.</p>
+ * 
+ * <h2>Técnicas de Organización:</h2>
  * <ul>
- *   <li><b>@Tag:</b> Permite categorizar tests para ejecuciones selectivas (p.ej. smoke tests). 
- *   Se integra con el <code>maven-surefire-plugin</code> mediante el parámetro <code>-Dgroups</code>. 
- *   <i>TIP: En Windows, evita poner el nombre del tag entre comillas (p.ej. use -Dgroups=smoke en lugar de -Dgroups="smoke").</i></li>
- *   <li><b>@Nested:</b> Facilita la agrupación jerárquica de tests relacionados funcionalmente. 
- *   Cada clase interna puede tener su propio ciclo de vida (@BeforeEach/@AfterEach).</li>
- *   <li><b>@ParameterizedTest:</b> Reduce drásticamente la duplicación al ejecutar 
- *   el mismo método de test con múltiples conjuntos de datos.</li>
- *   <li><b>Dependency Injection:</b> JUnit 5 permite inyectar metadatos directamente 
- *   en los métodos via <code>TestInfo</code> o <code>TestReporter</code>.</li>
+ *   <li><b>@Tag:</b> Clasifica tests para ejecuciones selectivas (ej: <code>mvn test -Dgroups=smoke</code>).</li>
+ *   <li><b>@Nested:</b> Agrupa jerárquicamente tests compartiendo un contexto común.</li>
+ *   <li><b>@ParameterizedTest:</b> Ejecuta un test N veces con diferentes entradas (CSV, ValueSource).</li>
  * </ul>
- * 
- * <p><b>¿Cuándo usar este enfoque?</b> Cuando la lógica de negocio tiene múltiples 
- * estados o variaciones de entrada, o cuando la jerarquía de tests refleja la estructura del dominio.</p>
- * 
- * @see org.junit.jupiter.params.ParameterizedTest
- * @see org.junit.jupiter.api.Nested
- * @since 1.0
  */
-@DisplayName("Teoría: Organización y Metodología Avanzada")
+@DisplayName("Sección 3 - L1: Jerarquía y Parametrización")
 @Tag("smoke")
 class L1_AdvancedTheory {
 
-    OwnerService ownerService = new OwnerService();
+    private final OwnerService ownerService = new OwnerService();
 
     /**
-     * TAREA DEMO 1: Categorización selectiva con @Tag.
-     * <p>Muestra cómo etiquetar tests para que puedan ser filtrados 
-     * durante la ejecución del build (mvn test -Dgroups="smoke").</p>
-     */
-    @Test
-    @Tag("smoke")
-    @DisplayName("🧪 Demo 1: Tagging (@Tag)")
-    void tagDemo() {
-        System.out.println("Ejecutando el test smoke");
-        // Los @Tag se usan para ejecutar conjuntos específicos de tests (excluir o incluir en maven build).
-    }
-
-    /**
-     * CLASE ANIDADA: Operaciones de persistencia.
-     * <p>Agrupa tests relacionados con el guardado de datos, demostrando 
-     * el aislamiento del ciclo de vida en sub-suites.</p>
+     * <h2>DEMO: Agrupación en Bloques (@Nested)</h2>
+     * <p>Permite crear sub-suites con su propio ciclo de vida <code>@BeforeEach</code>, 
+     * mejorando la navegación por el reporte del IDE.</p>
      */
     @Nested
-    @Tag("owner-persistence")
-    @DisplayName("🏢 Bloque Anidado: Operaciones de Guardado")
+    @DisplayName("🏢 Bloque: Gestión de Persistencia")
     class SavingsTests {
-        
-        @BeforeEach
-        void beforeEachNested() {
-            System.out.println("   - Se ejecuta el setUp de la clase interna.");
-        }
-
-        /**
-         * TAREA DEMO 2: Organización Jerárquica con @Nested.
-         * <p>Demuestra cómo las clases internas pueden validarse de forma aislada 
-         * pero manteniendo el contexto de la clase principal.</p>
-         */
         @Test
-        @DisplayName("🧪 Demo 2: Nesting (@Nested)")
+        @DisplayName("🧪 Demo 2: Nesting funcional")
         void nestedDemo() {
-            // Un @Nested permite agrupar tests relacionados funcionalmente de forma legible.
             ownerService.save(new Owner("Keanu", "Reeves"));
             assertNotNull(ownerService.findByLastName("Reeves"));
         }
     }
 
     /**
-     * TAREA DEMO 3: Tests Parametrizados Simples (@ValueSource).
-     * <p>Muestra cómo ejecutar un test múltiples veces inyectando un 
-     * valor diferente en cada iteración desde una fuente de datos básica.</p>
-     * 
-     * @param firstName Nombre inyectado desde el ValueSource.
+     * <h2>DEMO: Carga masiva desde CSV</h2>
+     * <p>Utilizamos <code>@CsvFileSource</code> para inyectar datos desde un 
+     * archivo externo, separando la lógica del test de los datos de prueba.</p>
      */
-    @ParameterizedTest(name = "{index} => Procesar {0}")
-    @ValueSource(strings = {"Ana", "Paco", "Beatriz"})
-    @DisplayName("🧪 Demo 3: Parameterized (@ValueSource)")
-    void valueSourceDemo(String firstName) {
-        // Ejecuta el mismo test para cada valor del array 'strings'.
-        assertNotNull(firstName);
-    }
-
-    /**
-     * TAREA DEMO 4: Datos Estructurados con @CsvSource.
-     * <p>Demuestra cómo pasar múltiples argumentos a un test parametrizado 
-     * utilizando un formato de Comma Separated Values (CSV).</p>
-     * 
-     * @param firstName Nombre del propietario.
-     * @param lastName Apellido del propietario.
-     */
-    @ParameterizedTest
-    @CsvSource({
-        "Jose, Ruiz",
-        "Ana, Lopez"
-    })
-    @DisplayName("🧪 Demo 4: Parameterized (@CsvSource)")
-    void csvSourceDemo(String firstName, String lastName) {
-        // Similar a ValueSource pero acepta múltiples columnas (parámetros).
+    @ParameterizedTest(name = "[{index}] Verificando a {0} {1}")
+    @CsvFileSource(resources = "/csv/theory_owners.csv", numLinesToSkip = 1)
+    @DisplayName("🧪 Demo 3: Inyección desde Fichero CSV")
+    void csvFileSourceDemo(String firstName, String lastName) {
         Owner owner = new Owner(firstName, lastName);
         ownerService.save(owner);
         assertNotNull(ownerService.findByLastName(lastName));
     }
-
-    /**
-     * TAREA DEMO: Uso de @CsvFileSource simplificado.
-     * <p>Muestra cómo cargar datos desde un archivo CSV ubicado en resources.
-     * Se salta la primera línea que corresponde a las cabeceras.</p>
-     *
-     * @param firstName Nombre leído del CSV.
-     * @param lastName Apellido leído del CSV.
-     */
-    @ParameterizedTest(name = "[{index}] Verificando a {0} {1}")
-    @CsvFileSource(resources = "/csv/theory_owners.csv", numLinesToSkip = 1)
-    @DisplayName("🧪 Demo: Carga de datos desde fichero CSV")
-    void csvFileSourceDemo(String firstName, String lastName) {
-        // 1. Instanciamos el modelo con los datos del CSV
-        Owner owner = new Owner(firstName, lastName);
-
-        // 2. Act
-        ownerService.save(owner);
-
-        // 3. Assert
-        Owner found = ownerService.findByLastName(lastName);
-        assertNotNull(found, "El owner debería haberse guardado correctamente");
-        assertEquals(firstName, found.getFirstName(), "El nombre debe coincidir con el del CSV");
-    }
-
-    /**
-     * TAREA DEMO 5: Inyección de Dependencias en Métodos de Test.
-     * <p>Muestra el uso de <code>TestInfo</code> y <code>TestReporter</code> para 
-     * acceder a metadatos del test y generar logs personalizados.</p>
-     * 
-     * @param info Contenedor de metadatos del test.
-     * @param reporter Interfaz para publicar entradas en el reporte.
-     */
-    @Test
-    @DisplayName("🧪 Demo 5: Test DI (Dependency Injection)")
-    void diDemo(TestInfo info, TestReporter reporter) {
-        // JUnit 5 permite inyectar información del test o reporteadores directamente en el método.
-        reporter.publishEntry("Ejecutando test con nombre: ", info.getDisplayName());
-    }
 }
-
-

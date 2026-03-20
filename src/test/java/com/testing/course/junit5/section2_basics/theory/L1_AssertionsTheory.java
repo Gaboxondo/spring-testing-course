@@ -1,7 +1,6 @@
 package com.testing.course.junit5.section2_basics.theory;
 
 import com.testing.course.model.Owner;
-import com.testing.course.model.Pet;
 import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.*;
 import java.time.Duration;
@@ -9,111 +8,65 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
 /**
- * <h1>TEORÍA: Aserciones, Excepciones, Timeouts y Asunciones</h1>
+ * <h1>TEORÍA: Aserciones y Control de Errores</h1>
  * 
- * <p>Esta sección profundiza en las herramientas de control 
- * de flujo de tests proporcionadas por JUnit 5, desde lo más básico a lo avanzado.</p>
+ * <p><b>Qué hace:</b> Define el núcleo de las evaluaciones de JUnit 5, desde 
+ * comparaciones de igualdad básicas hasta aserciones de excepciones y tiempos de respuesta.</p>
  * 
- * <h2>Principios Clave:</h2>
+ * <p><b>Por qué existe:</b> Sin aserciones un test no tiene valor; es la forma 
+ * de declarar contractualmente qué comportamiento esperamos del código de producción.</p>
+ * 
+ * <h2>Tipos de Aserciones:</h2>
  * <ul>
- *   <li><b>Aserciones Simples:</b> <code>assertEquals</code>, <code>assertTrue</code>, 
- *   <code>assertNotNull</code>, etc. Son la base de cualquier test.</li>
- *   <li><b>AssertAll (Grouped Assertions):</b> Permite agrupar múltiples aserciones. 
- *   Si una falla, las demás se siguen ejecutando, proporcionando un informe completo.</li>
- *   <li><b>AssertThrows:</b> El mecanismo idiomático de JUnit 5 para validar 
- *   que el código lanza la excepción esperada ante entradas incorrectas.</li>
- *   <li><b>AssertTimeout:</b> Controla que un bloque de código no exceda un tiempo máximo 
- *   de ejecución, vital para SLAs de rendimiento.</li>
- *   <li><b>Asunciones (Assumptions):</b> Permiten abortar un test (Skipped) en lugar de 
- *   fallarlo si el entorno no es el adecuado (p.ej., perfil de CI/CD incorrecto).</li>
+ *   <li><b>AssertAll (Grouped):</b> Permite ver fallos múltiples en una sola pasada de test.</li>
+ *   <li><b>AssertThrows:</b> El estándar para validar la gestión de errores (Exceptions).</li>
+ *   <li><b>AssertTimeout:</b> Verifica contratos de tiempo (performance) sin bloquear la ejecución.</li>
+ *   <li><b>Assume:</b> Aborta el test graciosamente si no se cumple el entorno (Skipped).</li>
  * </ul>
- * 
- * @see org.junit.jupiter.api.Assertions
- * @since 1.0
  */
-@DisplayName("Teoría: Aserciones y Control de Flujo")
+@DisplayName("Sección 2 - L1: Aserciones, Excepciones y Timeouts")
 class L1_AssertionsTheory {
 
     private final OwnerService ownerService = new OwnerService();
 
     /**
-     * TAREA DEMO 1: Aserciones simples.
-     * <p>Muestra el uso de las aserciones más comunes para validar estados simples.</p>
+     * <h2>DEMO: Aserciones Agrupadas (assertAll)</h2>
+     * <p>Garantiza que todos los campos del propietario se validen, incluso si el 
+     * primer campo ya presentaba un error cosmético.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 1: Aserciones simples (assertEquals, assertTrue, assertNotNull)")
-    void simpleAssertionsDemo() {
-        String name = "JUnit 5";
-        Owner owner = new Owner("Paco", "García");
-        
-        // assertEquals: Compara igualdad
-        assertEquals("JUnit 5", name, "Los nombres deberían ser iguales");
-        
-        // assertTrue / assertFalse: Valida condiciones booleanas
-        assertTrue(name.startsWith("J"), "Debería empezar por J");
-        
-        // assertNotNull / assertNull: Valida si un objeto existe o no
-        assertNotNull(owner, "El objeto owner no debería ser nulo");
-    }
-
-    /**
-     * TAREA DEMO 2: Aserciones agrupadas.
-     * <p>Usa <code>assertAll</code> para validar múltiples propiedades de un objeto 
-     * sin detener la ejecución al primer error. Esto es más avanzado que las aserciones simples.</p>
-     */
-    @Test
-    @DisplayName("🧪 Demo 2: Aserciones agrupadas (assertAll)")
+    @DisplayName("🧪 Demo 2: Validación profunda (assertAll)")
     void groupedAssertionsDemo() {
         Owner owner = new Owner("Paco", "García");
         
-        // assertAll permite que todos los tests se ejecututen incluso si uno falla.
-        // Si usamos assertEquals seguidos (sin assertAll), el test se para en el primer fallo.
-        assertAll("Validación de campos del Owner",
-            () -> assertEquals("Paco", owner.getFirstName(), "El nombre no coincide"),
-            () -> assertEquals("García", owner.getLastName(), "El apellido no coincide")
+        assertAll("Validación de estado del Owner",
+            () -> assertEquals("Paco", owner.getFirstName(), "Nombre inválido"),
+            () -> assertEquals("García", owner.getLastName(), "Apellido inválido")
         );
     }
 
     /**
-     * TAREA DEMO 3: Gestión de Excepciones.
-     * <p>Muestra cómo validar que el servicio <code>OwnerService</code> lanza 
-     * <code>IllegalArgumentException</code> cuando se le pasa un objeto nulo.</p>
+     * <h2>DEMO: Validación de Fallos Controlados</h2>
+     * <p>Utilizamos <code>assertThrows</code> para asegurar que el sistema no 
+     * permite el guardado de objetos nulos lanzando la excepción adecuada.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 3: Gestión de Excepciones (assertThrows)")
+    @DisplayName("🧪 Demo 3: Captura de Excepciones de negocio")
     void exceptionsDemo() {
-        // Validamos que el sistema responde correctamente a errores de negocio.
         assertThrows(IllegalArgumentException.class, () -> {
             ownerService.save(null);
-        }, "Debería lanzar IllegalArgumentException si el objeto es nulo");
+        }, "Debe protegerse contra entradas nulas");
     }
 
     /**
-     * TAREA DEMO 4: Control de Tiempos.
-     * <p>Asegura que el proceso lento no tarde más de 600 milisegundos mediante 
-     * <code>assertTimeout</code>.</p>
+     * <h2>DEMO: Control de Rendimiento (Timeout)</h2>
+     * <p>Verificamos que el procesamiento lento no supere el umbral SLA de 600ms.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 4: Control de Tiempos (assertTimeout)")
+    @DisplayName("🧪 Demo 4: Aserción de Tiempo Límite")
     void timeoutsDemo() {
         assertTimeout(Duration.ofMillis(600), () -> {
             ownerService.slowProcess();
         });
     }
-
-    /**
-     * TAREA DEMO 5: Asunciones.
-     * <p>Ejemplo de test condicional que solo se ejecuta si la variable de entorno 
-     * <code>ENV</code> es igual a <code>DESARROLLO</code>.</p>
-     */
-    @Test
-    @DisplayName("🧪 Demo 5: Asunciones (assumeTrue)")
-    void assumptionsDemo() {
-        // El test se marcará como 'Ignorado' (Skipped) si no se cumple la asunción.
-        assumeTrue("DESARROLLO".equalsIgnoreCase(System.getenv("ENV")), 
-            "Abortando: Solo se ejecuta en entorno de DESARROLLO");
-        
-        System.out.println("Lógica específica de entorno local ejecutada.");
-    }
 }
-

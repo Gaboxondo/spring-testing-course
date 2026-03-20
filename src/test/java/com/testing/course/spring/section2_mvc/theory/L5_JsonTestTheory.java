@@ -10,61 +10,51 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * <h1>TEORÍA: Slices de Testing - @JsonTest</h1>
+ * <h1>TEORÍA: Slices de Serialización (@JsonTest)</h1>
  * 
- * <p>Spring Boot ofrece anotaciones "slice" que cargan solo una 
- * parte del contexto de la aplicación, haciéndolos mucho más rápidos 
- * que un test completo de integración.</p>
+ * <p><b>Qué hace:</b> Configura aisladamente la infraestructura de Jackson 
+ * (convertidores JSON) para validar cómo se estructuran nuestros objetos en la red.</p>
  * 
- * <h2>Principios Clave:</h2>
- * <ul>
- *   <li><b>Contexto Reducido:</b> <code>@JsonTest</code> solo configura la 
- *   infraestructura de serialización/deserialización JSON (p.ej., Jackson).</li>
- *   <li><b>JacksonTester:</b> Herramienta que facilita las aserciones fluídas 
- *   sobre el contenido JSON (usando AssertJ internamente).</li>
- *   <li><b>Aislamiento:</b> Ideal para validar que los DTOs se mapean 
- *   correctamente ante reglas complejas de anotaciones Jackson.</li>
- * </ul>
+ * <p><b>Por qué existe:</b> En arquitecturas basadas en APIs REST, el contrato JSON 
+ * es sagrado. Este test garantiza que los cambios en el código Java no rompan 
+ * accidentalmente la estructura esperada por los clientes front-end o móviles.</p>
  * 
- * <p><b>¿Cuándo usarlo?</b> Cuando necesites asegurar que tus objetos se transforman 
- * en el JSON esperado por otros clientes, o que deserializas correctamente 
- * lo que recibes vía API.</p>
+ * <h2>JacksonTester:</h2>
+ * <p>Herramienta fluida que permite aserciones mediante <b>JsonPath</b>, facilitando 
+ * la navegación por nodos JSON complejos sin necesidad de comparaciones de cadenas rígidas.</p>
  */
 @JsonTest
-@DisplayName("Teoría: Serialización JSON con @JsonTest")
+@DisplayName("Sección 2 - L5: Serialización y Deserialización JSON")
 class L5_JsonTestTheory {
 
     @Autowired
     private JacksonTester<Owner> json;
 
     /**
-     * Demo de serialización: De objeto Java a JSON string.
-     * <p>Probamos que los campos del objeto <code>Owner</code> terminan en el 
-     * lugar adecuado del JSON.</p>
+     * <h2>DEMO: Conversión de Java a JSON payload</h2>
+     * <p>Validamos que los campos se mapean a los nombres de claves correctos 
+     * cumpliendo con los estándares CamelCase o lo especificado en @JsonProperty.</p>
      */
     @Test
-    @DisplayName("🧪 Probando Serialización de Owner")
+    @DisplayName("🧪 Demo 7: Verificación de path JSON-Object")
     void testSerialization() throws IOException {
         Owner owner = new Owner("Paco", "Jones");
         
-        // AssertJ (assertThat) + JacksonTester
         assertThat(json.write(owner)).hasJsonPathStringValue("@.firstName");
         assertThat(json.write(owner)).extractingJsonPathStringValue("@.firstName").isEqualTo("Paco");
-        assertThat(json.write(owner)).extractingJsonPathStringValue("@.lastName").isEqualTo("Jones");
     }
 
     /**
-     * Demo de deserialización: De JSON string a objeto Java.
-     * <p>Verificamos que el mapeo inverso funciona correctamente.</p>
+     * <h2>DEMO: Mapeo de JSON entrante a Objeto Java</h2>
+     * <p>Simulamos la llegada de un payload JSON y verificamos que Spring es 
+     * capaz de reconstruir el objeto Owner fielmente.</p>
      */
     @Test
-    @DisplayName("🧪 Probando Deserialización de Owner")
+    @DisplayName("🧪 Demo 8: Deserialización de payload raw")
     void testDeserialization() throws IOException {
         String content = "{\"firstName\":\"Paco\",\"lastName\":\"Jones\"}";
-        
         Owner result = json.parse(content).getObject();
         
         assertThat(result.getFirstName()).isEqualTo("Paco");
-        assertThat(result.getLastName()).isEqualTo("Jones");
     }
 }

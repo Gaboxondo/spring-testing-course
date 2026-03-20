@@ -12,26 +12,31 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Sección 1 - L4: Perfiles en Testing (@ActiveProfiles).
+ * <h1>TEORÍA: Filtro de Beans mediante @ActiveProfiles</h1>
  * 
- * ¿Cómo cambiamos los Beans que se cargan según el entorno?
- * Usamos el sistema de perfiles de Spring.
+ * <p><b>Qué hace:</b> Indica a Spring qué perfiles de entorno debe considerar 
+ * "activos" al levantar el ApplicationContext para el test.</p>
+ * 
+ * <p><b>Por qué existe:</b> Permite alternar implementaciones según el entorno 
+ * (ej: conectar a una H2 real para tests vs MySql real para prod) de forma declarativa.</p>
  */
 @ActiveProfiles("yanny")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
-@DisplayName("Sección 1 - L4: Activando Perfiles")
+@DisplayName("Sección 1 - L4: Perfiles y Testing Condicional")
 class L4_ProfilesTheory {
 
     @Autowired
-    HearingInterpreter hearingInterpreter;
+    private HearingInterpreter hearingInterpreter;
 
+    /**
+     * <h2>DEMO: Activación del perfil Yanny</h2>
+     * <p>Aunque Laurel sea <code>@Primary</code>, al no estar bajo el perfil activo, 
+     * Spring selecciona a YannyWordProducer.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar que el perfil yanny está activo")
+    @DisplayName("🧪 Demo 4: Verificación de Beans condicionados por perfil")
     void testActiveProfile() {
-        // Al activar 'yanny', el Bean Laurel (aunque sea @Primary) no se carga 
-        // porque su @Profile("laurel") no coincide.
-        assertEquals("Escuché: Yanny", hearingInterpreter.whatDidIHear());
+        assertEquals("Escuché: Yanny", hearingInterpreter.whatDidIHear(), "Debe cargar el Bean del perfil 'yanny'");
     }
 }
-

@@ -16,35 +16,48 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.*;
 
 /**
- * Sección 4 - L1: Probar REST con JsonPath.
+ * <h1>TEORÍA: Validación de APIs REST con JsonPath</h1>
  * 
- * ¿Cómo validamos que el JSON devuelto por una API REST es correcto?
- * Usamos JsonPath. Es como CSS Selectors pero para JSON.
+ * <p><b>Qué hace:</b> Permite inspeccionar la estructura y el contenido de un 
+ * cuerpo de respuesta JSON utilizando una sintaxis de consulta similar a XPath.</p>
+ * 
+ * <p><b>Por qué existe:</b> En servicios REST, no basta con recibir un HTTP 200. 
+ * Es vital verificar que los datos viajan en el formato esperado (nombres de campos, 
+ * tipos de datos, longitud de listas) sin necesidad de deserializar el objeto a Java.</p>
+ * 
+ * <h2>Sintaxis Básica:</h2>
+ * <ul>
+ *   <li><b>$ :</b> Representa la raíz del documento JSON.</li>
+ *   <li><b>$.campo :</b> Accede a una propiedad de un objeto.</li>
+ *   <li><b>$[n] :</b> Accede al elemento de un array por su índice.</li>
+ * </ul>
  */
 @WebMvcTest(VetRestController.class)
-@DisplayName("Sección 4 - L1: REST con JsonPath")
+@DisplayName("Sección 4 - L1: Navegación JSON con JsonPath")
 class L1_JsonPathTheory {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @MockBean
-    VetRepository vetRepository;
+    private VetRepository vetRepository;
 
+    /**
+     * <h2>DEMO: Verificación de lista de recursos</h2>
+     * <p>Comprobamos que la API devuelve un array con un único veterinario y 
+     * que sus atributos coinciden con los del mock.</p>
+     */
     @Test
-    @DisplayName("🧪 Verificar el contenido del JSON")
+    @DisplayName("🧪 Demo 9: Validar array y campos anidados en JSON")
     void testGetVetsJson() throws Exception {
-        // Configuramos el mock para devolver datos reales.
         Vet vet = new Vet("House", "M.D.");
         when(vetRepository.findAll()).thenReturn(List.of(vet));
 
         mockMvc.perform(get("/api/vets"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json"))
-            // Usamos $[index] para navegar por la lista devuelta.
             .andExpect(jsonPath("$", hasSize(1))) 
             .andExpect(jsonPath("$[0].firstName", is("House")))
             .andExpect(jsonPath("$[0].lastName", is("M.D.")));
     }
 }
-

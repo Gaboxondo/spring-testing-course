@@ -17,15 +17,18 @@ import static org.mockito.Mockito.*;
 /**
  * <h1>TEORÍA: Argument Matchers con Lambdas (argThat)</h1>
  * 
- * <p>En Mockito, <code>any()</code> es a veces demasiado genérico y 
- * <code>eq()</code> demasiado específico. <code>argThat</code> nos permite pasar 
- * un predicado (función booleana) para validar que el argumento cumple 
- * con condiciones de negocio complejas.</p>
+ * <p><b>Qué hace:</b> Permite definir una lógica de validación personalizada para 
+ * los argumentos de un método utilizando predicados (funciones booleanas).</p>
  * 
- * <h2>El poder de argThat</h2>
- * <p>En lugar de capturar el argumento con <code>@Captor</code> y luego hacer asertos 
- * fuera del <code>verify</code>, <code>argThat</code> permite validar el estado 
- * interno del objeto JURANTE la verificación o el stubbing.</p>
+ * <p><b>Por qué existe:</b> Ofrece más flexibilidad que <code>any()</code> y 
+ * evita la verbosidad de capturar el argumento con <code>@Captor</code> para realizar 
+ * aserciones externas simples.</p>
+ * 
+ * <h2>Ventajas:</h2>
+ * <ul>
+ *   <li><b>Legibilidad:</b> La condición de negocio queda incrustada en el verify/when.</li>
+ *   <li><b>Poder Predictivo:</b> Puedes validar múltiples propiedades del objeto al mismo tiempo.</li>
+ * </ul>
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Sección 3 - L9: Argument Matchers con Lambdas (argThat)")
@@ -38,34 +41,21 @@ class L9_LambdaMatchersTheory {
     private AdvancedService advancedService;
 
     /**
-     * <h2>DEMO: Verificación compleja con predicados</h2>
-     * 
-     * <p><b>Qué hace:</b> Verifica que se llamó a <code>save</code> con una visita que 
-     * tenga una descripción que contenga el texto "URGENTE".</p>
-     * 
-     * <p><b>Por qué es importante:</b> Es más declarativo y legible que usar un captor. 
-     * Combina la aserción con la verificación de la llamada.</p>
-     * 
-     * <p><b>Cómo se usa:</b> <code>argThat(argument -> argument.getAttr().contains("..."))</code>.</p>
+     * <h2>DEMO: Verificación mediante reglas de negocio (Lambda)</h2>
+     * <p>Comprobamos que el servicio pasó una visita que cumple con la regla 
+     * de marcarse como "URGENTE".</p>
      */
     @Test
-    @DisplayName("🧪 Demo 1: Verificación con predicado Lambda")
+    @DisplayName("🧪 Demo 1: Verificación con predicado Lambda detallado")
     void testLambdaMatcher() {
         Visit seriousVisit = new Visit("URGENTE: Herida grave", null);
         
-        // Ejecutamos la lógica que debería llamar al repo
-        boolean processed = advancedService.processVisitWithRules(seriousVisit);
+        advancedService.processVisitWithRules(seriousVisit);
 
-        assertTrue(processed);
-
-        // VERIFICACIÓN: No nos vale que guardara CUALQUIER visita (any()).
-        // Queremos asegurar que guardó una visita que cumple con nuestras reglas:
+        // Verificamos que se llamó a save() con una visita cuyo texto empiece por URGENTE
         verify(visitRepository).save(argThat(v -> 
                 v.getDescription() != null && 
                 v.getDescription().startsWith("URGENTE")
         ));
-        
-        // También funciona para PROGRAMAR comportamientos (Stubbing):
-        // when(repo.process(argThat(v -> v.isPriority()))).thenReturn(true);
     }
 }

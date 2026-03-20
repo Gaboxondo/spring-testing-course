@@ -9,31 +9,45 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Servicio de Owner.
- * Soporta dos modos:
- * 1. Con repositorio JPA (inyectado por Spring, para producción/integración).
- * 2. Sin repositorio (lista en memoria), para tests unitarios puros de las secciones JUnit5/Mockito.
+ * <h1>SERVICIO: OwnerService</h1>
+ * 
+ * <p><b>Qué hace:</b> Orquesta las operaciones sobre los propietarios y sus mascotas asociadas.</p>
+ * 
+ * <p><b>Por qué existe:</b> Soporta dos modos de operación para facilitar el aprendizaje:</p>
+ * <ul>
+ *   <li><b>Modo JPA:</b> Utiliza <code>OwnerRepository</code> para persistencia real.</li>
+ *   <li><b>Modo In-Memory:</b> Usa una lista local para tests unitarios puros sin infraestructura pesada.</li>
+ * </ul>
+ * 
+ * <p><b>Cómo se usa:</b> Se emplea en los primeros capítulos de JUnit 5 para practicar aserciones 
+ * simples, aserciones agrupadas y manejo de excepciones.</p>
  */
 @Service
 public class OwnerService {
 
     private final OwnerRepository ownerRepository;
-    // Lista en memoria para tests unitarios que instancian new OwnerService()
     private final List<Owner> inMemoryOwners = new ArrayList<>();
     private final boolean useRepository;
 
-    /** Constructor para Spring (inyección de dependencias vía JPA). */
+    /** 
+     * Constructor para Spring (Inyección de dependencias).
+     */
     public OwnerService(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
         this.useRepository = true;
     }
 
-    /** Constructor sin argumentos para tests unitarios puros (sin Spring ni BBDD). */
+    /** 
+     * Constructor sin argumentos para tests unitarios simples en memoria.
+     */
     public OwnerService() {
         this.ownerRepository = null;
         this.useRepository = false;
     }
 
+    /**
+     * Guarda un propietario tras validarlo.
+     */
     public void save(Owner owner) {
         validateOwner(owner);
         if (useRepository) {
@@ -43,6 +57,11 @@ public class OwnerService {
         }
     }
 
+    /**
+     * Lógica de validación obligatoria para el registro.
+     * 
+     * @throws IllegalArgumentException si los datos son inválidos.
+     */
     public void validateOwner(Owner owner) {
         if (owner == null) {
             throw new IllegalArgumentException("El owner no puede ser nulo");
@@ -52,6 +71,9 @@ public class OwnerService {
         }
     }
 
+    /**
+     * Busca por apellido (no sensible a mayúsculas).
+     */
     public Owner findByLastName(String lastName) {
         if (useRepository) {
             return ownerRepository.findByLastName(lastName).orElse(null);
@@ -63,6 +85,9 @@ public class OwnerService {
         }
     }
 
+    /**
+     * Vincula una mascota a un propietario.
+     */
     public void addPetToOwner(Owner owner, Pet pet) {
         if (pet == null) {
             throw new IllegalArgumentException("La mascota no puede ser nula");
@@ -70,6 +95,9 @@ public class OwnerService {
         owner.getPets().add(pet.getName());
     }
 
+    /**
+     * Devuelve el recuento total de propietarios registrados.
+     */
     public long getOwnerCount() {
         if (useRepository) {
             return ownerRepository.count();
@@ -78,6 +106,9 @@ public class OwnerService {
         }
     }
 
+    /**
+     * Simula un proceso pesado para demostrar tests de timeout.
+     */
     public void slowProcess() {
         try {
             Thread.sleep(500);
