@@ -73,7 +73,10 @@ Cada sección contiene tres pilares fundamentales:
 - **L4_SyntaxStruggleTheory**: El duelo final: `when` vs `doReturn`.
 - **L5_PartialMockTheory**: Spies y Mocks Parciales de métodos locales.
 - **L6_MockStaticTheory**: Mocking de métodos estáticos y lógica Singleton.
-- **E1 a E6**: Ejercicios correspondientes de excepciones, captura y flujo avanzado.
+- **L7_AnswersTheory**: Respuestas dinámicas con `AdditionalAnswers.returnsFirstArg()`.
+- **L8_MockedConstructionTheory**: Mocking de constructores (`new Object()`) en código legado.
+- **L9_LambdaMatchersTheory**: Verificaciones complejas con predicados Lambda (`argThat`).
+- **E1 a E10**: Ejercicios correspondientes de excepciones, captura, constructores y lógica avanzada.
 
 ---
 
