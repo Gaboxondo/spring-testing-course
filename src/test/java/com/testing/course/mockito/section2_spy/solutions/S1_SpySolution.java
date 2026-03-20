@@ -29,29 +29,30 @@ import static org.mockito.Mockito.*;
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Sección 2 - S1: Solución de Spies y API Mocking")
-public class S1_SpySolution {
+class S1_SpySolution {
 
     @Spy
-    PromotionService promotionService = new PromotionService();
+    private PromotionService promotionService = new PromotionService();
 
-    /**
-     * TAREA SOLUCIONADA: Carga el PromotionService como Spy, mockea el API de 
-     * descuentos para devolver un 20%, y valida el cálculo final.
-     */
     @Test
-    @DisplayName("🧪 Test Solución: Cálculo de precios con descuento (Spy API)")
+    @DisplayName("🧪 Solución: Cálculo de precios con descuento (Spy API)")
     void testPriceCalculationWithSpy() {
-        // 1. Configuramos el mock parcial: Queremos un 20% de descuento.
-        // Usamos doReturn para NO llamar a la lógica real del API.
-        doReturn(new BigDecimal("0.2")).when(promotionService).fetchDiscountFactorFromAPI("SUMMER2026");
+        // 1. Stub parcial: Mockear solo la llamada a la API
+        doReturn(new BigDecimal("0.15"))
+            .when(promotionService).fetchDiscountFactorFromAPI("SUMMER24");
+
+        // 2. Act: Ejecutar el método real
+        BigDecimal basePrice = new BigDecimal("200.00");
+        BigDecimal result = promotionService.calculatePriceAfterDiscount(basePrice, "SUMMER24");
+
+        // 3. Assert: 200 * (1 - 0.15) = 170
+        BigDecimal expected = new BigDecimal("170.00");
+        assertEquals(0, expected.compareTo(result), "El precio debería tener un 15% de descuento");
+
+        // 4. Verify: Verificar que se llamó a la API mockeada internamente
+        verify(promotionService, times(1)).fetchDiscountFactorFromAPI("SUMMER24");
         
-        // 2. Ejecutar la lógica REAL de cálculo basado en el mock parcial
-        BigDecimal finalPrice = promotionService.calculatePriceAfterDiscount(new BigDecimal("100"), "SUMMER2026");
-        
-        // 3. Validamos que el precio resultante es correcto (100 * (1 - 0.2) = 80)
-        assertEquals(new BigDecimal("80.0"), finalPrice, "El precio tras el descuento debería ser 80");
-        
-        // 4. Verificamos que efectivamente se consultó al API
-        verify(promotionService).fetchDiscountFactorFromAPI("SUMMER2026");
+        // Verificamos que para otros códigos NO se llamó
+        verify(promotionService, never()).fetchDiscountFactorFromAPI("OTHER");
     }
 }
