@@ -120,6 +120,30 @@ class L1_AdvancedTheory {
     }
 
     /**
+     * TAREA DEMO: Uso de @CsvFileSource simplificado.
+     * <p>Muestra cómo cargar datos desde un archivo CSV ubicado en resources.
+     * Se salta la primera línea que corresponde a las cabeceras.</p>
+     *
+     * @param firstName Nombre leído del CSV.
+     * @param lastName Apellido leído del CSV.
+     */
+    @ParameterizedTest(name = "[{index}] Verificando a {0} {1}")
+    @CsvFileSource(resources = "/csv/theory_owners.csv", numLinesToSkip = 1)
+    @DisplayName("🧪 Demo: Carga de datos desde fichero CSV")
+    void csvFileSourceDemo(String firstName, String lastName) {
+        // 1. Instanciamos el modelo con los datos del CSV
+        Owner owner = new Owner(firstName, lastName);
+
+        // 2. Act
+        ownerService.save(owner);
+
+        // 3. Assert
+        Owner found = ownerService.findByLastName(lastName);
+        assertNotNull(found, "El owner debería haberse guardado correctamente");
+        assertEquals(firstName, found.getFirstName(), "El nombre debe coincidir con el del CSV");
+    }
+
+    /**
      * TAREA DEMO 5: Inyección de Dependencias en Métodos de Test.
      * <p>Muestra el uso de <code>TestInfo</code> y <code>TestReporter</code> para 
      * acceder a metadatos del test y generar logs personalizados.</p>
