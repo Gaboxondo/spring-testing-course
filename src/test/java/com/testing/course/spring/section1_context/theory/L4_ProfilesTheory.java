@@ -1,7 +1,7 @@
 package com.testing.course.spring.section1_context.theory;
 
 import com.testing.course.spring.config.HearingConfig;
-import com.testing.course.spring.service.HearingInterpreter;
+import com.testing.course.spring.service.WordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +18,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * "activos" al levantar el ApplicationContext para el test.</p>
  * 
  * <p><b>Por qué existe:</b> Permite alternar implementaciones según el entorno 
- * (ej: conectar a una H2 real para tests vs MySql real para prod) de forma declarativa.</p>
+ * sin cambiar una sola línea de código de negocio.</p>
+ * 
+ * <h2>Aislamiento de Perfiles:</h2>
+ * <p>A diferencia de @Primary (que marca una preferencia global), un perfil 
+ * excluye físicamente al Bean del contenedor si no es el activo.</p>
  */
 @ActiveProfiles("yanny")
 @ExtendWith(SpringExtension.class)
@@ -27,16 +31,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class L4_ProfilesTheory {
 
     @Autowired
-    private HearingInterpreter hearingInterpreter;
+    private WordService wordService; // Spring elegirá YannyWordService porque profile "yanny" es activo
 
     /**
      * <h2>DEMO: Activación del perfil Yanny</h2>
-     * <p>Aunque Laurel sea <code>@Primary</code>, al no estar bajo el perfil activo, 
-     * Spring selecciona a YannyWordProducer.</p>
+     * <p>Comprobamos que al activar "yanny", la implementación LaurelWordService 
+     * (marcada con !yanny) queda excluida y solo YannyWordService está disponible.</p>
      */
     @Test
     @DisplayName("🧪 Demo 4: Verificación de Beans condicionados por perfil")
     void testActiveProfile() {
-        assertEquals("Escuché: Yanny", hearingInterpreter.whatDidIHear(), "Debe cargar el Bean del perfil 'yanny'");
+        assertEquals("Yanny", wordService.getWord(), "Debe cargar el Bean del perfil 'yanny'");
     }
 }

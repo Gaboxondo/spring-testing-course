@@ -1,9 +1,7 @@
 package com.testing.course.spring.section1_context.exercises;
 
-
-import org.junit.jupiter.api.Disabled;
 import com.testing.course.spring.config.HearingConfig;
-import com.testing.course.spring.service.HearingInterpreter;
+import com.testing.course.spring.service.WordService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +15,19 @@ import static org.junit.jupiter.api.Assertions.*;
  * 
  * Basado en: Section 1 - L4_ProfilesTheory.
  * 
- * OBJETIVO: Activar el perfil "yanny" para ignorar el @Primary de Laurel.
+ * OBJETIVO: Activar el perfil "yanny" para ignorar por completo a Laurel.
  */
-@ActiveProfiles("yanny") // TODO 1: Activa el perfil "yanny"
+@ActiveProfiles("yanny") // TODO: Activa el perfil "yanny"
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
-@Disabled("Ejercicio pendiente de resolver")
 class EX2_ProfileExercise {
 
     @Autowired
-    HearingInterpreter hearingInterpreter;
+    private WordService wordService;
 
     @Test
     void testHearingYanny() {
-        // TODO 2: Comprueba que el resultado contiene "Yanny".
+        // TODO: Comprueba que el resultado es exactamente "Yanny".
+        assertEquals("Yanny", wordService.getWord());
     }
 }
-
-

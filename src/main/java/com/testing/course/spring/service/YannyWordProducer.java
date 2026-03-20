@@ -1,6 +1,5 @@
 package com.testing.course.spring.service;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,11 +7,11 @@ import org.springframework.stereotype.Component;
  * 
  * <p><b>Qué hace:</b> Implementa la voz de 'Yanny' para el sistema auditivo.</p>
  * 
- * <p><b>Mecanismo:</b> Solo se incluye en el contexto cuando el perfil 
- * 'yanny' está activado mediante <code>@ActiveProfiles("yanny")</code>.</p>
+ * <p><b>Mecanismo:</b> Está disponible de forma global en el contexto para 
+ * permitir demostraciones de <code>@Qualifier</code> en clases como 
+ * <code>L2_PrimaryQualifierTheory</code>.</p>
  */
-@Component
-@Profile("yanny")
+@Component("yannyWordProducer")
 public class YannyWordProducer implements WordProducer {
     @Override
     public String getWord() {
