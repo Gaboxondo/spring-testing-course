@@ -4,6 +4,12 @@ trigger: always_on
 
 # 🧠 Reglas del Agente - Tests y Flujo de Trabajo
 
+## Documentacion oficial de lo tratado en el curso
+
+- ten siempre como referencia estas URLs de doc oficial
+  - https://docs.junit.org/5.5.0/user-guide/
+  - https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html
+  - https://docs.spring.io/spring-boot/reference/testing/index.html
 ## 📌 Control de cambios
 - Siempre realiza `git commit` y `git push` después de aplicar cambios.
 - Si creas archivos temporales (por ejemplo, `.txt` para lectura de datos), asegúrate de eliminarlos una vez finalizado su uso.
@@ -75,6 +81,10 @@ Debe marcarse como `@Disabled` para evitar que afecte a la ejecución completa d
   - Se ejecutan sin errores.
 - Ningún test de teoría o solución debe romper el build.
 - El proyecto debe poder ejecutar correctamente `mvn clean install` en todo momento.
+
+
+## ✅ Dificultad de los ejercicios
+- Los ejercicios deben de ser medianamente complejos, no solo ejercicios simples iguales que lo que se muestra en la teoria
 
 ## Actualizacion del repo remoto
 

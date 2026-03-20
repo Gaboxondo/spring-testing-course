@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * <h2>Principios Clave:</h2>
  * <ul>
  *   <li><b>@Tag:</b> Permite categorizar tests para ejecuciones selectivas (p.ej. smoke tests). 
- *   Se integra con el <code>maven-surefire-plugin</code> mediante el parámetro <code>-Dgroups</code>.</li>
+ *   Se integra con el <code>maven-surefire-plugin</code> mediante el parámetro <code>-Dgroups</code>. 
+ *   <i>TIP: En Windows, evita poner el nombre del tag entre comillas (p.ej. use -Dgroups=smoke en lugar de -Dgroups="smoke").</i></li>
  *   <li><b>@Nested:</b> Facilita la agrupación jerárquica de tests relacionados funcionalmente. 
  *   Cada clase interna puede tener su propio ciclo de vida (@BeforeEach/@AfterEach).</li>
  *   <li><b>@ParameterizedTest:</b> Reduce drásticamente la duplicación al ejecutar 
@@ -49,6 +50,7 @@ class L1_AdvancedTheory {
     @Tag("smoke")
     @DisplayName("🧪 Demo 1: Tagging (@Tag)")
     void tagDemo() {
+        System.out.println("Ejecutando el test smoke");
         // Los @Tag se usan para ejecutar conjuntos específicos de tests (excluir o incluir en maven build).
     }
 
