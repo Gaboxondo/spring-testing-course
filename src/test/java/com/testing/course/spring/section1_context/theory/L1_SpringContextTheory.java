@@ -22,50 +22,27 @@ import static org.junit.jupiter.api.Assertions.*;
  * <p>Es la extensión oficial que permite a JUnit 5 "hablar" con Spring. 
  * Sin esta anotación, JUnit ejecutará el test pero ignorará por completo anotaciones 
  * como <code>@Autowired</code> o <code>@Value</code>, dejando los campos en <code>null</code>.</p>
- * <ul>
- *   <li>Habilita el ciclo de vida de Spring dentro del test.</li>
- *   <li>Permite la inyección de dependencias en campos y métodos de test.</li>
- *   <li>Gestiona el "TestContext", que se encarga de cachear el ApplicationContext entre tests.</li>
- * </ul>
  * 
  * <h3>2. @ContextConfiguration - El Plano de Construcción</h3>
  * <p>Define <b>exactamente qué Beans</b> deben cargarse en el contenedor para este test. 
- * En este ejemplo, le decimos a Spring que use la clase <code>HearingConfig</code> 
- * como receta para crear los objetos.</p>
- * <ul>
- *   <li>Permite cargar solo los fragmentos de la aplicación que nos interesan.</li>
- *   <li>Es manual: Si olvidas registrar un Bean necesario, el test fallará al arrancar.</li>
- * </ul>
+ * En este caso, usamos la clase <code>HearingConfig</code> como guía.</p>
  * 
  * <h3>3. Diferencia con @SpringBootTest</h3>
  * <p><code>@SpringBootTest</code> es una anotación "paraguas" que ya incluye 
  * <code>@ExtendWith(SpringExtension.class)</code> e intenta buscar automáticamente 
  * la clase principal de la aplicación para cargar el <b>contexto completo</b>.</p>
- * <table>
- *   <tr>
- *     <th>Funcionalidad</th>
- *     <th>SpringExtension + ContextConfig</th>
- *     <th>@SpringBootTest</th>
- *   </tr>
- *   <tr>
- *     <td>Velocidad</td>
- *     <td>Alta (Solo carga lo indicado)</td>
- *     <td>Media/Baja (Levanta toda la App)</td>
- *   </tr>
- *   <li>Escaneo Automático</td>
- *     <td>No (Manual por clase de config)</td>
- *     <td>Sí (Busca @SpringBootApplication)</td>
- *   </tr>
- * </table>
+ * 
+ * <h2>⚠️ Sobre la resolución de Beans (Laurel vs Yanny):</h2>
+ * <p>Es posible que en este test obtengas 'Yanny' si no has configurado bien los 
+ * perfiles. Para que este test funcione por defecto con 'Laurel', hemos marcado 
+ * a <code>LaurelWordProducer</code> como la implementación primaria cuando el 
+ * perfil 'yanny' NO esté activo.</p>
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
 @DisplayName("Sección 1 - L1: @ExtendWith vs @ContextConfiguration")
 class L1_SpringContextTheory {
 
-    /**
-     * Bean real levantado por Spring gracias a HearingConfig.
-     */
     @Autowired
     private HearingInterpreter hearingInterpreter;
 
@@ -79,7 +56,13 @@ class L1_SpringContextTheory {
     @DisplayName("🧪 Demo 1: Verificación de Inyección de Dependencias manual")
     void testWhatDidIHear() {
         assertNotNull(hearingInterpreter, "SpringExtension no pudo inyectar el Bean");
+        
         String result = hearingInterpreter.whatDidIHear();
-        assertTrue(result.contains("Laurel"), "El Bean @Primary debe ser Laurel");
+        
+        // El test espera encontrar a LAUREL porque es el @Primary y ya que
+        // NO hemos activado el perfil de 'yanny' mediante @ActiveProfiles, 
+        // LaurelWordProducer debería ser la elección automática del contenedor.
+        assertTrue(result.contains("Laurel"), 
+            "ERROR CRÍTICO: Se esperaba recibir LAUREL pero se recibió -> " + result);
     }
 }

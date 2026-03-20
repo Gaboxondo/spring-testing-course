@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
  * sepa qué clases debe convertir en Beans gestionados por el contenedor de Spring.</p>
  */
 @Configuration
-@ComponentScan(basePackages = "com.testing.course.spring")
+@ComponentScan(basePackages = {
+    "com.testing.course.spring.service",
+    "com.testing.course.spring.config"
+})
 public class HearingConfig {
 }
