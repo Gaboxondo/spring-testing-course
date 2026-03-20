@@ -17,7 +17,7 @@ Cada sección contiene tres pilares fundamentales:
 
 ---
 
-## 📦 Desglose de Contenidos (JUnit 5 Core)
+## 📦 JUnit 5 Core: Desglose de Contenidos
 
 ### 🏗️ Sección 1: El Motor de JUnit 5
 - **L1_HelloWorldExercise**: Tu primer test y aserción básica.
@@ -47,7 +47,7 @@ Cada sección contiene tres pilares fundamentales:
 
 ---
 
-## 🎭 Desglose de Contenidos (Mockito)
+## 🎭 Mockito: Desglose de Contenidos
 
 ### 🃏 Sección 1: Introducción a Mockito
 - **L1_IntroTheory**: Conceptos base de Mocking.
@@ -57,22 +57,26 @@ Cada sección contiene tres pilares fundamentales:
 - **E2_AnnotationMockingExercise**: Uso de anotaciones intensivo.
 - **E3_VerificationExercise**: Asegura las interacciones y el número de llamadas.
 
-### 🎩 Sección 2: Advanced Mockito
+### 🎩 Sección 2: Spies y Partial Mocking
+- **L1_SpyTheory**: Teoría fundamental de Spies, `doReturn` vs `when`.
+- **L2_AdvancedSpyTheory**: Diferencia entre `@Spy` y `Mockito.spy()` manual.
+- **E1_SpyExercise**: Simulación de API con stubbing parcial.
+- **E2_LegacySpyExercise**: Testeando código legado y efectos secundarios (auditoría).
+- **E3_SpyCollections**: Espionaje de listas reales y vigilancia de flujos.
+- **S1, S2, S3**: Soluciones detalladas para cada reto de espionaje.
+
+### 🛡️ Sección 3: Advanced Mockito
 - **L1_ExceptionsTheory**: Forzando errores controlados (`doThrow`).
-- **E1_ExceptionMockingExercise**: Desafío de errores forzados.
 - **L2_ArgumentCaptureTheory**: Captura de objetos complejos con `@Captor`.
-- **E2_ArgumentCaptureExercise**: Desafío de validación de argumentos.
 - **L3_VerificationAdvancedTheory**: Orden cronológico (`InOrder`).
-- **E3_VerificationAdvancedExercise**: Garantía de flujo y no-interacciones.
 - **L4_SyntaxStruggleTheory**: El duelo final: `when` vs `doReturn`.
-- **E4_SyntaxStruggleExercise**: Evita los efectos secundarios en Spies.
 - **L5_PartialMockTheory**: Spies y Mocks Parciales de métodos locales.
-- **E5_PartialMockExercise**: Validación parcial en `OwnerService`.
-- **E6_SpyMockingExercise**: Desafío final de espionaje integral.
+- **L6_MockStaticTheory**: Mocking de métodos estáticos y lógica Singleton.
+- **E1 a E6**: Ejercicios correspondientes de excepciones, captura y flujo avanzado.
 
 ---
 
-## 🌱 Desglose de Contenidos (Spring Testing)
+## 🌱 Spring Testing: Desglose de Contenidos
 
 ### 🌳 Sección 1: Spring Framework Context
 Carga y gestión de dependencias en el contenedor de Spring.
@@ -146,5 +150,3 @@ Trucos avanzados de la magia de Boot.
 
 > [!TIP]
 > **Ahorro de Tiempo**: Utiliza siempre `-Dtest=NombreDeLaClase` para no ejecutar los tests de las lecciones superadas.
-
-
