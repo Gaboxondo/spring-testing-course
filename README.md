@@ -60,10 +60,11 @@ Cada sección contiene tres pilares fundamentales:
 ### 🎩 Sección 2: Spies y Partial Mocking
 - **L1_SpyTheory**: Teoría fundamental de Spies, `doReturn` vs `when`.
 - **L2_AdvancedSpyTheory**: Diferencia entre `@Spy` y `Mockito.spy()` manual.
+- **L3_SpyDeepDiveTheory**: Funcionamiento interno (Shadow Copies), Clases Abstractas y Métodos Finales.
 - **E1_SpyExercise**: Simulación de API con stubbing parcial.
 - **E2_LegacySpyExercise**: Testeando código legado y efectos secundarios (auditoría).
 - **E3_SpyCollections**: Espionaje de listas reales y vigilancia de flujos.
-- **S1, S2, S3**: Soluciones detalladas para cada reto de espionaje.
+- **E4_SpyDeepDiveExercise**: Reto avanzado: el mecanismo de copiado y abstracciones.
 
 ### 🛡️ Sección 3: Advanced Mockito
 - **L1_ExceptionsTheory**: Forzando errores controlados (`doThrow`).
