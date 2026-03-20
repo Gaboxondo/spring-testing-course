@@ -11,39 +11,74 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * <h1>TEORÍA: Introducción al Contexto de Spring (Dependency Injection)</h1>
+ * <h1>TEORÍA: El Motor de Integración (SpringExtension y ContextConfiguration)</h1>
  * 
- * <p><b>Qué hace:</b> Activa el soporte de Spring en JUnit 5 y levanta un 
- * contenedor (ApplicationContext) para gestionar e inyectar Beans reales.</p>
+ * <p><b>Qué hace:</b> Esta clase demuestra cómo conectar el motor de JUnit 5 con el 
+ * contenedor de Inyección de Dependencias de Spring de forma manual y controlada.</p>
  * 
- * <p><b>Por qué existe:</b> En lugar de simular (mockear) cada componente, a menudo 
- * necesitamos testear cómo interactúan varios Beans reales (Tests de Integración), 
- * asegurando que las reglas de inyección se cumplen correctamente.</p>
+ * <h2>Diferencias entre el Aislamiento de Spring:</h2>
  * 
- * <h2>Anotaciones Clave:</h2>
+ * <h3>1. @ExtendWith(SpringExtension.class) - El Puente</h3>
+ * <p>Es la extensión oficial que permite a JUnit 5 "hablar" con Spring. 
+ * Sin esta anotación, JUnit ejecutará el test pero ignorará por completo anotaciones 
+ * como <code>@Autowired</code> o <code>@Value</code>, dejando los campos en <code>null</code>.</p>
  * <ul>
- *   <li><b>@ExtendWith(SpringExtension.class):</b> El puente oficial entre JUnit 5 y Spring.</li>
- *   <li><b>@ContextConfiguration:</b> Define el archivo XML o la clase Java <code>@Configuration</code> 
- *   que servirá de base al contexto.</li>
- *   <li><b>@Autowired:</b> Solicita a Spring que busque e inyecte una instancia del tipo indicado.</li>
+ *   <li>Habilita el ciclo de vida de Spring dentro del test.</li>
+ *   <li>Permite la inyección de dependencias en campos y métodos de test.</li>
+ *   <li>Gestiona el "TestContext", que se encarga de cachear el ApplicationContext entre tests.</li>
  * </ul>
+ * 
+ * <h3>2. @ContextConfiguration - El Plano de Construcción</h3>
+ * <p>Define <b>exactamente qué Beans</b> deben cargarse en el contenedor para este test. 
+ * En este ejemplo, le decimos a Spring que use la clase <code>HearingConfig</code> 
+ * como receta para crear los objetos.</p>
+ * <ul>
+ *   <li>Permite cargar solo los fragmentos de la aplicación que nos interesan.</li>
+ *   <li>Es manual: Si olvidas registrar un Bean necesario, el test fallará al arrancar.</li>
+ * </ul>
+ * 
+ * <h3>3. Diferencia con @SpringBootTest</h3>
+ * <p><code>@SpringBootTest</code> es una anotación "paraguas" que ya incluye 
+ * <code>@ExtendWith(SpringExtension.class)</code> e intenta buscar automáticamente 
+ * la clase principal de la aplicación para cargar el <b>contexto completo</b>.</p>
+ * <table>
+ *   <tr>
+ *     <th>Funcionalidad</th>
+ *     <th>SpringExtension + ContextConfig</th>
+ *     <th>@SpringBootTest</th>
+ *   </tr>
+ *   <tr>
+ *     <td>Velocidad</td>
+ *     <td>Alta (Solo carga lo indicado)</td>
+ *     <td>Media/Baja (Levanta toda la App)</td>
+ *   </tr>
+ *   <li>Escaneo Automático</td>
+ *     <td>No (Manual por clase de config)</td>
+ *     <td>Sí (Busca @SpringBootApplication)</td>
+ *   </tr>
+ * </table>
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HearingConfig.class})
-@DisplayName("Sección 1 - L1: Inyección de Dependencias y Contexto")
+@DisplayName("Sección 1 - L1: @ExtendWith vs @ContextConfiguration")
 class L1_SpringContextTheory {
 
+    /**
+     * Bean real levantado por Spring gracias a HearingConfig.
+     */
     @Autowired
     private HearingInterpreter hearingInterpreter;
 
     /**
-     * <h2>DEMO: Verificación de carga de Bean real</h2>
-     * <p>El test comprueba que el intérprete ha sido inyectado y funciona con 
-     * el productor de palabras real (sin intervención de Mockito).</p>
+     * <h2>DEMO: Ejecución con DI real</h2>
+     * <p>Al ejecutar este método, <code>SpringExtension</code> ha detectado 
+     * el @Autowired y ha inyectado la instancia gracias a los planos de 
+     * <code>ContextConfiguration</code>.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 1: Inyección de Bean real gestionado por Spring")
+    @DisplayName("🧪 Demo 1: Verificación de Inyección de Dependencias manual")
     void testWhatDidIHear() {
+        assertNotNull(hearingInterpreter, "SpringExtension no pudo inyectar el Bean");
         String result = hearingInterpreter.whatDidIHear();
         assertTrue(result.contains("Laurel"), "El Bean @Primary debe ser Laurel");
     }
