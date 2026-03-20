@@ -1,4 +1,4 @@
-package com.testing.course.mockito.section2_advanced.theory;
+package com.testing.course.mockito.section3_advanced.theory;
 
 import com.testing.course.util.DateUtils;
 import org.junit.jupiter.api.DisplayName;

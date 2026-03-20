@@ -1,4 +1,4 @@
-package com.testing.course.mockito.section2_advanced.solutions;
+package com.testing.course.mockito.section3_advanced.solutions;
 
 import com.testing.course.model.Vet;
 import org.junit.jupiter.api.Test;

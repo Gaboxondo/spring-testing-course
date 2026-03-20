@@ -1,12 +1,10 @@
-package com.testing.course.mockito.section2_advanced.solutions;
+package com.testing.course.mockito.section3_advanced.solutions;
 
 import com.testing.course.repository.VisitRepository;
 import com.testing.course.service.VisitService;
 import com.testing.course.model.Visit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -14,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Solución L8: Captura de Argumentos.
+ * Solución L10: Verificaciones Cronológicas e Interacciones.
  */
 @ExtendWith(MockitoExtension.class)
-class S2_ArgumentCaptureSolution {
+class S3_VerificationAdvancedSolution {
 
     @Mock
     VisitRepository visitRepository;
@@ -25,19 +23,17 @@ class S2_ArgumentCaptureSolution {
     @InjectMocks
     VisitService visitService;
 
-    @Captor
-    ArgumentCaptor<Visit> visitCaptor;
-
     @Test
-    void testSaveVisitCapture() {
+    void testNoInteractionsOnValidationError() {
         // SOLUCIÓN:
-        Visit visit = new Visit("Revisión Anual", null);
-        visitService.save(visit);
+        Visit visit = new Visit("", null); 
 
-        verify(visitRepository).save(visitCaptor.capture());
-        
-        Visit captured = visitCaptor.getValue();
-        assertEquals("Revisión Anual", captured.getDescription());
+        assertThrows(RuntimeException.class, () -> {
+            visitService.save(visit);
+        });
+
+        // Verificamos que no se llamó al repositorio (Section 2 - L3)
+        verifyNoInteractions(visitRepository);
     }
 }
 

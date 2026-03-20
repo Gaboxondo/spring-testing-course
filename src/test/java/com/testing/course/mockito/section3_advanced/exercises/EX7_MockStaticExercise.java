@@ -1,4 +1,4 @@
-package com.testing.course.mockito.section2_advanced.exercises;
+package com.testing.course.mockito.section3_advanced.exercises;
 
 import com.testing.course.util.DateUtils;
 import org.junit.jupiter.api.Disabled;
