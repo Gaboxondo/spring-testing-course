@@ -51,8 +51,8 @@ class L4_MatchersTheory {
     @DisplayName("🧪 Demo 1: Mockeo flexible con anyLong()")
     void stubbingWithMatchers() {
         // Configuramos el mock para que responda a CUALQUIER ID de tipo Long
-        Vet mockVet = new Vet("Vet", "Flexible");
-        when(vetRepository.findById(anyLong())).thenReturn(mockVet);
+        Vet newVet = new Vet("Vet", "Flexible");
+        when(vetRepository.findById(anyLong())).thenReturn( Optional.of( newVet ) );
 
         // Llamadas con distintos IDs responden igual
         assertNotNull(vetRepository.findById(1L));
