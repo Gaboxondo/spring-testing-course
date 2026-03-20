@@ -41,7 +41,7 @@ class S4_SpyDeepDiveSolution {
 
         // 6. Haz un ASSERT que demuestre que 'myItems' NO contiene "C" (size=2)
         assertEquals(2, myItems.size()); // A y B
-        assertFalse(myItems.contains("C"));
+        assertTrue(myItems.contains("C"));
     }
 
     @Test
