@@ -86,7 +86,7 @@ class L4_MatchersTheory {
         List<Vet> result = matchersService.findBySpecialtyAndActive("Surgery", true);
         
         assertNotNull(result);
-        verify(matchersService).findBySpecialtyAndActive(anyString(), eq(true));
+        verify(matchersService).findBySpecialtyAndActive(eq("Surgery"), eq(true));
     }
 
     /**
