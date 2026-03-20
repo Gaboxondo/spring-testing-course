@@ -27,6 +27,11 @@ Cada capítulo contiene varias secciones, y cada sección sigue esta estructura:
 - `/exercises`
 - `/solutions`
 
+## 📖 Gestión del README y Temarios
+- El archivo `README.md` debe reflejar fielmente el contenido del curso pero bajo un enfoque pedagógico.
+- En los desgloses de contenido por secciones, **SOLO** se deben listar los archivos de teoría (`L1`, `L2`, ...) y ejercicios (`EX1`, `EX2`, ...).
+- **PROHIBIDO** listar archivos de soluciones (`S1`, `S2`, ...) en los desgloses de contenido del README para evitar que el alumno acceda prematuramente a ellas sin realizar el reto.
+
 ### 🧩 Convenciones de nomenclatura
 
 #### Teoría
