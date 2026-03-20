@@ -3,6 +3,7 @@ package com.testing.course.mockito.section1_intro.solutions;
 import com.testing.course.model.Vet;
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;
+import com.testing.course.service.section1.MatchersSupportService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -26,16 +28,19 @@ class S4_MatchersSolution {
     @Mock
     private VetRepository vetRepository;
 
+    @Mock
+    private MatchersSupportService matchersService;
+
     @InjectMocks
     private VetService vetService;
 
     @Test
     @DisplayName("🧪 Solución Reto 1: Repositorio flexible con Matchers")
     void challengeMatchers() {
-        // SOLUCIÓN: Usamos anyLong() para capturar cualqueir ID de tipo Long
-        when(vetRepository.findById(anyLong())).thenReturn(new Vet("Vet", "Mock"));
+        // SOLUCIÓN: Usamos anyLong() para capturar cualquier ID y devolver un Optional
+        when(vetRepository.findById(anyLong())).thenReturn(Optional.of(new Vet("Vet", "Mock")));
 
-        assertNotNull(vetRepository.findById(100L));
+        assertNotNull(vetRepository.findById(100L).orElse(null));
     }
 
     @Test
@@ -45,5 +50,15 @@ class S4_MatchersSolution {
 
         // SOLUCIÓN: Usamos any(Vet.class) para verificar que se envió un objeto del tipo correcto
         verify(vetRepository).save(any(Vet.class));
+    }
+
+    @Test
+    @DisplayName("🧪 Solución Reto 3: Mezclando con eq()")
+    void challengeMixing() {
+        // SOLUCIÓN: Para mezclar el valor fijo 'false', debemos envolverlo en eq()
+        when(matchersService.findBySpecialtyAndActive(anyString(), eq(false)))
+                .thenReturn(new ArrayList<>());
+        
+        assertNotNull(matchersService.findBySpecialtyAndActive("Dermatology", false));
     }
 }

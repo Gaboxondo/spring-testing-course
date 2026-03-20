@@ -3,6 +3,7 @@ package com.testing.course.mockito.section1_intro.theory;
 import com.testing.course.model.Vet;
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;
+import com.testing.course.service.section1.MatchersSupportService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,10 +11,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -21,7 +23,7 @@ import static org.mockito.Mockito.*;
  * <h1>TEORÍA: Argument Matchers (any, eq, etc.)</h1>
  * 
  * <p>Los Argument Matchers nos permiten ser flexibles al programar comportamientos 
- * (stubbing) o verificar llamadas. En lugar de pasar un objeto exacto, usamos 
+ * (stubbing) u observar llamadas. En lugar de pasar un valor exacto, usamos 
  * comodines como <code>any()</code>, <code>anyString()</code>, etc.</p>
  * 
  * <h2>LA REGLA DE ORO DE LOS MATCHERS</h2>
@@ -29,75 +31,93 @@ import static org.mockito.Mockito.*;
  * para uno de ellos, ¡DEBES usar Matchers para TODOS! No puedes mezclar matchers 
  * con valores constantes.</p>
  * <pre>
- *   // INCORRECTO: findBy(anyLong(), "Admin") -> Mezcla Matcher con Constante
+ *   // INCORRECTO: findBy(anyLong(), "Admin") -> Lanza InvalidUseOfMatchersException
  *   // CORRECTO:   findBy(anyLong(), eq("Admin")) -> Ambos son Matchers
  * </pre>
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Sección 1 - L4: Argument Matchers (Flexibilidad en Tests)")
+@DisplayName("Sección 1 - L4: Argument Matchers Avanzados")
 class L4_MatchersTheory {
 
     @Mock
     private VetRepository vetRepository;
+
+    @Mock
+    private MatchersSupportService matchersService;
 
     @InjectMocks
     private VetService vetService;
 
     /**
      * <h2>CASO 1: Matchers en Stubbing (when)</h2>
-     * <p>Permite que el mock responda ante un rango de valores, no solo uno específico.</p>
+     * <p><b>Qué hace:</b> Permite que el mock responda ante un rango de valores.</p>
+     * <p><b>Cómo se usa:</b> <code>when(mock.metodo(any())).thenReturn(...)</code>.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 1: Mockeo flexible con anyLong()")
+    @DisplayName("🧪 Demo 1: Mockeo flexible con anyLong() y Optional")
     void stubbingWithMatchers() {
-        // Configuramos el mock para que responda a CUALQUIER ID de tipo Long
         Vet newVet = new Vet("Vet", "Flexible");
-        when(vetRepository.findById(anyLong())).thenReturn( Optional.of( newVet ) );
+        
+        // Configuramos el mock para que responda a CUALQUIER ID de tipo Long
+        when(vetRepository.findById(anyLong())).thenReturn(Optional.of(newVet));
 
-        // Llamadas con distintos IDs responden igual
-        assertNotNull(vetRepository.findById(1L));
-        assertNotNull(vetRepository.findById(999L));
+        // Comprobamos que IDs distintos obtienen la misma respuesta programada
+        assertNotNull(vetService.findById(1L));
+        assertNotNull(vetService.findById(999L));
         
         verify(vetRepository, times(2)).findById(anyLong());
     }
 
     /**
-     * <h2>CASO 2: La regla de mezcla (eq Matcher)</h2>
-     * <p>Cuando queremos usar un valor fijo junto con un matcher, debemos envolver 
-     * el valor fijo en <code>eq(...)</code>.</p>
+     * <h2>CASO 2: La regla de mezcla (Uso de eq())</h2>
+     * <p><b>Qué hace:</b> Demuestra cómo pasar un valor exacto cuando hay otros matchers 
+     * en el mismo método.</p>
+     * <p><b>Por qué:</b> Mockito no permite mezclar [any(), "string"]. Todo debe ser Matcher.</p>
      */
     @Test
     @DisplayName("🧪 Demo 2: Mezclando matchers con eq()")
     void mixingMatchersDemo() {
-        // Imagina un método con dos parámetros: updateVet(Long id, String name)
-        // INCORRECTO: verify(mock).updateVet(anyLong(), "Nuevo Nombre"); 
-        // CORRECTO:   verify(mock).updateVet(anyLong(), eq("Nuevo Nombre"));
+        List<Vet> emptyList = new ArrayList<>();
         
-        // En este curso usamos save(Vet) que solo tiene 1 argumento, pero es 
-        // vital recordar esta regla para métodos multi-parámetro.
+        // MAL: when(matchersService.findBySpecialtyAndActive(anyString(), true)).thenReturn(emptyList);
+        // BIEN: Debemos envolver el 'true' en eq() porque hay un 'anyString()' al lado.
+        when(matchersService.findBySpecialtyAndActive(anyString(), eq(true))).thenReturn(emptyList);
+
+        List<Vet> result = matchersService.findBySpecialtyAndActive("Surgery", true);
         
-        vetRepository.save(new Vet("Dr. House", "Gregory"));
-        
-        // Verificación exacta (por defecto si no usas matchers)
-        // verify(vetRepository).save(new Vet("Dr. House", "Gregory")); // FALLARÍA si la instancia es distinta
-        
-        // Verificación flexible pero tipada
-        verify(vetRepository).save(any(Vet.class));
+        assertNotNull(result);
+        verify(matchersService).findBySpecialtyAndActive(anyString(), eq(true));
     }
 
     /**
-     * <h2>CASO 3: Matchers de tipos primitivos</h2>
-     * <p>Mockito ofrece matchers específicos para mayor claridad: 
-     * <code>anyString()</code>, <code>anyInt()</code>, <code>anyBoolean()</code>, etc.</p>
+     * <h2>CASO 3: Matchers de tipos específicos</h2>
+     * <p><b>Qué hace:</b> Muestra el uso de matchers para tipos primitivos y Strings.</p>
+     * <p><b>Cómo se usa:</b> <code>anyString()</code>, <code>anyInt()</code>, <code>anyBoolean()</code>.</p>
      */
     @Test
-    @DisplayName("🧪 Demo 3: Matchers de tipos String/Int")
-    void primitiveMatchersDemo() {
-        // findByFirstName(anyString())
-        // anyList(), anyMap(), anyIterable()
-        assertTrue(true, "Documentación: Consulta la API de ArgumentMatchers para ver todos los tipos.");
+    @DisplayName("🧪 Demo 3: Matchers específicos (String/Int/List)")
+    void specificMatchersDemo() {
+        // Ejecutamos una llamada con valores reales
+        matchersService.register("Dr. Stephen", 45, "London");
+
+        // Verificamos usando matchers de tipos específicos para mayor claridad
+        verify(matchersService).register(anyString(), anyInt(), anyString());
+        
+        // Otros ejemplos útiles:
+        // anyList(), anySet(), anyMap(), anyIterable()
+        // isNull(), isNotNull(), endsWith("..."), startsWith("...")
     }
 
-    // Método de soporte para el aserto final
-    private void assertTrue(boolean val, String msg) {}
+    /**
+     * <h2>CASO 4: Combinación de Matchers de texto</h2>
+     * <p><b>Qué hace:</b> Demuestra matchers de texto más finos como startsWith.</p>
+     */
+    @Test
+    @DisplayName("🧪 Demo 4: Matchers de texto avanzados")
+    void textMatchersDemo() {
+        matchersService.register("Gregory House", 50, "New Jersey");
+
+        // Verificamos que el nombre empiece por "Gregory"
+        verify(matchersService).register(startsWith("Gregory"), anyInt(), eq("New Jersey"));
+    }
 }

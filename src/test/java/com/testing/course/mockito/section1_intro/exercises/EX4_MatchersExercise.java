@@ -3,6 +3,7 @@ package com.testing.course.mockito.section1_intro.exercises;
 import com.testing.course.model.Vet;
 import com.testing.course.repository.VetRepository;
 import com.testing.course.service.VetService;
+import com.testing.course.service.section1.MatchersSupportService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,28 +31,30 @@ class EX4_MatchersExercise {
     @Mock
     private VetRepository vetRepository;
 
+    @Mock
+    private MatchersSupportService matchersService;
+
     @InjectMocks
     private VetService vetService;
 
     /**
      * RETO 1: Búsqueda flexible.
      * <p>Configura el mock de vetRepository.findById(...) para que devuelva 
-     * un Vet("Vet", "Mock") sin importar cuál sea el ID que se le pase.</p>
+     * un Vet("Vet", "Mock") envuelto en un Optional sin importar el ID.</p>
      */
     @Test
     @Disabled("Ejercicio pendiente de completar")
     @DisplayName("🧪 Reto 1: Repositorio flexible con Matchers")
     void challengeMatchers() {
-        // TODO 1: Configurar el stubbing para devolver un nuevo Vet("Vet", "Mock")
-        // PISTA: replace the null with a call to id matching any value
-        // when(vetRepository.findById(???)).thenReturn(new Vet(...));
+        // TODO 1: Configurar el stubbing para devolver un nuevo Vet("Vet", "Mock") envuelto en Optional.
+        // PISTA: when(vetRepository.findById(anyLong())).thenReturn(Optional.of(new Vet(...)));
         
         // --- CODIGO A COMPLETAR ---
         
         // --------------------------
 
-        // TODO 2: Llama a findById con el ID 100 y comprueba que NO es nulo.
-        // assertNotNull(vetRepository.findById(100L));
+        // Comprobación
+        assertNotNull(vetRepository.findById(100L).orElse(null));
     }
 
     /**
@@ -72,5 +75,24 @@ class EX4_MatchersExercise {
         // --- CODIGO A COMPLETAR ---
         
         // --------------------------
+    }
+
+    /**
+     * RETO 3: La Regla de Mezcla (eq).
+     * <p>Configura matchersService.findBySpecialtyAndActive() para que 
+     * no importe la especialidad pero el estado sea obligatoriamente 'false'.</p>
+     */
+    @Test
+    @Disabled("Ejercicio pendiente de completar")
+    @DisplayName("🧪 Reto 3: Mezclando con eq()")
+    void challengeMixing() {
+        // TODO 3: Configurar el stubbing usando matchers para ambos argumentos.
+        // PISTA: No puedes poner (... anyString(), false ...)
+        
+        // --- CODIGO A COMPLETAR ---
+        
+        // --------------------------
+        
+        assertNotNull(matchersService.findBySpecialtyAndActive("Dermatology", false));
     }
 }
