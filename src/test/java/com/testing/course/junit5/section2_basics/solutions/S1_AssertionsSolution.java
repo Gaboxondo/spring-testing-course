@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Solución 1: Aserciones Estándar con Lógica de Negocio.
- * Basado en: Section 5: Testing Java with JUnit 5 - 47, 48.
+ * Solución 1: Aserciones Estándar de JUnit 5.
+ * 
+ * <p>En esta solución se muestran las aserciones básicas para validar
+ * el estado de los objetos y resultados de servicios.</p>
  */
-@DisplayName("Sección 5: Aserciones Estándar Dinámicas")
+@DisplayName("Solución 1: Aserciones Estándar")
 class S1_AssertionsSolution {
 
     OwnerService ownerService;
@@ -23,7 +25,7 @@ class S1_AssertionsSolution {
     }
 
     @Test
-    @DisplayName("🧪 Validar guardado de Owner y búsqueda")
+    @DisplayName("🧪 Validar guardado de Owner y búsqueda (Aserciones simples)")
     void testStandardAssertionsWithService() {
         Owner owner = new Owner("Jose", "Ruiz");
         ownerService.save(owner);
@@ -32,14 +34,14 @@ class S1_AssertionsSolution {
 
         // SOLUCIÓN:
         assertNotNull(savedOwner, "El owner debería haberse guardado");
-        assertEquals("Jose", savedOwner.getFirstName());
-        assertEquals("Ruiz", savedOwner.getLastName());
+        assertEquals("Jose", savedOwner.getFirstName(), "El nombre no coincide");
+        assertEquals("Ruiz", savedOwner.getLastName(), "El apellido no coincide");
     }
 
     @Test
-    @DisplayName("🧪 Validar adición de mascota")
-    void testAddPet() {
-        Owner owner = new Owner("Maria", "Perex");
+    @DisplayName("🧪 Validar adición de mascota (assertTrue/assertFalse)")
+    void testAddPetSimple() {
+        Owner owner = new Owner("Maria", "Perez");
         Pet pet = new Pet("Bobby", "Dog");
         
         ownerService.addPetToOwner(owner, pet);
@@ -49,4 +51,5 @@ class S1_AssertionsSolution {
         assertTrue(owner.getPets().contains("Bobby"), "La lista debería contener a Bobby");
     }
 }
+
 
