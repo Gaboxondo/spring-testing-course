@@ -22,7 +22,7 @@ class S1_RandomPortSolution {
 
     @RestController
     static class PingController {
-        @GetMapping("/ping")
+        @GetMapping("/ping-solucion")
         public String ping() {
             return "pong";
         }
@@ -40,7 +40,7 @@ class S1_RandomPortSolution {
     @DisplayName("Debe devolver pong al llamar al endpoint local")
     void testPingEndpoint() {
         // SOLUCIÓN:
-        String url = "http://localhost:" + port + "/ping";
+        String url = "http://localhost:" + port + "/ping-solucion";
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         
