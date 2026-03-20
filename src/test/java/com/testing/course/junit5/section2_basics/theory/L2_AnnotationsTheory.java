@@ -9,18 +9,21 @@ import org.junit.jupiter.api.condition.OS;
 /**
  * <h1>TEORÍA: Anotaciones de Ejecución Condicional y Control</h1>
  * 
- * <p>JUnit 5 permite un control fino sobre qué tests se ejecutan, 
- * bajo qué condiciones y cómo se presentan en los reportes.</p>
+ * <p>JUnit 5 proporciona un control exhaustivo sobre el ciclo de vida, la visibilidad 
+ * y la ejecución de los tests en el reporte final mediante anotaciones de metadatos.</p>
  * 
- * <h2>Anotaciones Clave:</h2>
+ * <h2>Principios Clave:</h2>
  * <ul>
- *   <li><b>@DisplayName:</b> Permite definir un nombre legible para la clase o el método de test. 
- *   Soporta espacios, caracteres especiales e incluso emojis.</li>
- *   <li><b>@Disabled:</b> Se utiliza para deshabilitar un test o toda una clase de tests. 
- *   Es preferible a comentar el código, ya que JUnit informa que el test fue ignorado.</li>
- *   <li><b>@EnabledOnOs:</b> Permite que un test se ejecute solo en sistemas operativos específicos 
- *   (Windows, Linux, Mac, etc.).</li>
+ *   <li><b>@DisplayName:</b> Permite definir un nombre semántico y legible para la clase 
+ *   o el método de test, soportando espacios, caracteres especiales y emojis.</li>
+ *   <li><b>@Disabled:</b> Permite ignorar un test o toda una suite. Es la forma oficial 
+ *   de JUnit 5 para "comentar" código de test temporalmente sin perder visibilidad en los reportes.</li>
+ *   <li><b>@EnabledOnOs:</b> Ejecución condicional basada en el sistema operativo del host, 
+ *   vital para tests que interactúan con recursos nativos.</li>
  * </ul>
+ * 
+ * <p><b>¿Cuándo usarlas?</b> Para organizar suites de tests complejas, documentar 
+ * tests temporales o asegurar la compatibilidad multiplataforma en entornos de CI/CD.</p>
  * 
  * @see org.junit.jupiter.api.condition.EnabledOnOs
  * @see org.junit.jupiter.api.Disabled
@@ -30,9 +33,9 @@ import org.junit.jupiter.api.condition.OS;
 class L2_AnnotationsTheory {
 
     /**
-     * TAREA DEMO 1: DisplayName.
-     * <p>El uso de @DisplayName hace que los reportes de tests sean mucho 
-     * más fáciles de leer para perfiles no técnicos.</p>
+     * TAREA DEMO 1: Documentación Semántica con DisplayName.
+     * <p>Muestra cómo asignar nombres legibles que sustituyan a los nombres 
+     * técnicos de los métodos en los informes de ejecución.</p>
      */
     @Test
     @DisplayName("🧪 Demo 1: Nombre personalizado con Emojis ✨")
@@ -41,9 +44,9 @@ class L2_AnnotationsTheory {
     }
 
     /**
-     * TAREA DEMO 2: Test Deshabilitado.
-     * <p>Ideal para tests que fallan por bugs conocidos o funcionalidades 
-     * que aún no están implementadas.</p>
+     * TAREA DEMO 2: Control de Deuda Técnica con @Disabled.
+     * <p>Muestra cómo deshabilitar un test defectuoso sin eliminarlo, 
+     * manteniendo constancia del motivo mediante el atributo <code>value</code>.</p>
      */
     @Test
     @Disabled("Deshabilitado hasta que se corrija el BUG-123")
@@ -54,8 +57,8 @@ class L2_AnnotationsTheory {
 
     /**
      * TAREA DEMO 3: Ejecución condicional por Sistema Operativo.
-     * <p>Útil para tests que dependen de rutas de archivos o comandos 
-     * específicos del SO.</p>
+     * <p>Muestra cómo restringir la ejecución de un test a un SO específico, 
+     * lo cual es esencial para tests de integración con el sistema de archivos o red.</p>
      */
     @Test
     @EnabledOnOs(OS.WINDOWS)
@@ -71,3 +74,4 @@ class L2_AnnotationsTheory {
         System.out.println("Este test solo se ejecutaría en un entorno Linux.");
     }
 }
+
