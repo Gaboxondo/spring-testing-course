@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assumptions.*;
  * 
  * <h2>Tipos de Aserciones:</h2>
  * <ul>
+ *   <li><b>Aserciones Básicas:</b> Validaciones directas de igualdad, nulidad y booleanos.</li>
  *   <li><b>AssertAll (Grouped):</b> Permite ver fallos múltiples en una sola pasada de test.</li>
  *   <li><b>AssertThrows:</b> El estándar para validar la gestión de errores (Exceptions).</li>
  *   <li><b>AssertTimeout:</b> Verifica contratos de tiempo (performance) sin bloquear la ejecución.</li>
@@ -28,6 +29,40 @@ import static org.junit.jupiter.api.Assumptions.*;
 class L1_AssertionsTheory {
 
     private final OwnerService ownerService = new OwnerService();
+
+    /**
+     * <h2>DEMO: Aserciones Básicas (Core Assertions)</h2>
+     *
+     * <p>Este método demuestra las validaciones más Atómicas de JUnit 5. Son el pilar
+     * de cualquier test unitario.</p>
+     *
+     * <ul>
+     *   <li>{@link org.junit.jupiter.api.Assertions#assertEquals(Object, Object)}: Compara igualdad mediante <code>equals()</code>.</li>
+     *   <li>{@link org.junit.jupiter.api.Assertions#assertTrue(boolean)}: Valida que una condición lógica sea verdadera.</li>
+     *   <li>{@link org.junit.jupiter.api.Assertions#assertNotNull(Object)}: Asegura que una referencia no sea nula.</li>
+     * </ul>
+     *
+     * <p><b>Buenas prácticas:</b> Siempre incluye un mensaje descriptivo como último parámetro
+     * para facilitar la depuración cuando el test falle en un entorno de CI.</p>
+     */
+    @Test
+    @DisplayName("🧪 Demo 1: Aserciones Atómicas")
+    void basicAssertionsDemo() {
+        String name = "Paco";
+        Owner owner = new Owner(name, "García");
+
+        // 1. Igualdad
+        assertEquals("Paco", owner.getFirstName(), "El nombre del propietario debería coincidir");
+
+        // 2. Nulidad
+        assertNotNull(owner, "El objeto Owner no debería ser nulo");
+
+        // 3. Condición lógica (booleana)
+        assertTrue(owner.getFirstName().startsWith("P"), "El nombre debería empezar por 'P'");
+
+        // 4. Desigualdad (Ejemplo rápido)
+        assertNotEquals("Pepe", owner.getFirstName(), "El nombre no debería ser Pepe");
+    }
 
     /**
      * <h2>DEMO: Aserciones Agrupadas (assertAll)</h2>
