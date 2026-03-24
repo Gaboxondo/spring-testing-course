@@ -104,4 +104,37 @@ class L1_AssertionsTheory {
             ownerService.slowProcess();
         });
     }
+
+    /**
+     * <h2>DEMO: Suposiciones (Assumptions)</h2>
+     *
+     * <p>A diferencia de las aserciones (que fallan el test), las <b>suposiciones</b>
+     * abortan el test si no se cumple una condición previa.</p>
+     *
+     * <ul>
+     *   <li>{@link org.junit.jupiter.api.Assumptions#assumeTrue(boolean)}: Si es falso, el test se marca como "Skipped" (ignorado).</li>
+     *   <li>{@link org.junit.jupiter.api.Assumptions#assumingThat(boolean, org.junit.jupiter.api.executable.Executable)}:
+     *   Ejecuta una parte del test solo si se cumple la condición.</li>
+     * </ul>
+     *
+     * <p><b>Uso común:</b> Saltar tests que solo deben correr en CI, en un SO específico o si
+     * un servidor externo está disponible.</p>
+     */
+    @Test
+    @DisplayName("🧪 Demo 5: Uso de Suposiciones (Assumptions)")
+    void assumptionsDemo() {
+        // Ejemplo 1: assumeTrue (Aborta el test completo si falla)
+        String env = System.getProperty("ENV");
+        assumeTrue("DEV".equals(env), "Test abortado: Solo se ejecuta en entorno DEV");
+
+        // Ejemplo 2: assumingThat (Ejecución selectiva dentro del test)
+        assumingThat("Paco".equals(System.getProperty("USER_NAME")), () -> {
+            // Este log y aserto solo ocurrirán si USER_NAME es Paco
+            System.out.println("Ejecutando lógica específica para el usuario Paco");
+            assertEquals(2, 1 + 1);
+        });
+
+        System.out.println("Esta línea se verá solo si el assumeTrue del principio pasó.");
+    }
 }
+
