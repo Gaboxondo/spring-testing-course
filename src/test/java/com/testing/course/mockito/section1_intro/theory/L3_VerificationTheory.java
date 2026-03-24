@@ -47,6 +47,7 @@ class L3_VerificationTheory {
     @Test
     @DisplayName("🧪 Demo 3: Verificación de llamadas y uso de any()")
     void verificationDemo() {
+        // Mockeos de las dependencias
         // Ejecutar acción
         vetService.save(new Vet("Paco", "Ruiz"));
 
