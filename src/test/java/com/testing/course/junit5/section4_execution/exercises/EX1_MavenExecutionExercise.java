@@ -7,33 +7,54 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Ejercicio Sección 7: Ejecución Selectiva con Maven.
- * Basado en: Section 7: Test Execution - 85, 86.
- * 
- * PISTA: Consulta la teoría en 'L1_ExecutionTheory.java' y revisa el bloque 
- * 'maven-failsafe-plugin' configurado en el archivo 'pom.xml'.
+ * <h1>Ejercicio: Ejecución Selectiva con Maven Tags</h1>
+ *
+ * <p>El objetivo de este ejercicio es familiarizarse con el filtrado de ejecución
+ * de tests utilizando la anotación {@link Tag} de JUnit 5 combinada con parámetros
+ * de la línea de comandos de Maven.</p>
+ *
+ * <h2>Retos</h2>
+ * <ol>
+ *   <li>Asignar etiquetas a los tests para clasificarlos por velocidad.</li>
+ *   <li>Ejecutar solo un subconjunto de tests desde la terminal.</li>
+ *   <li>Generar reportes HTML de la ejecución de forma desatendida.</li>
+ * </ol>
+ *
+ * <h2>Instrucciones Paso a Paso</h2>
+ * <ul>
+ *   <li><b>Paso 1:</b> Localiza el método <code>testFast</code> y añade la anotación <code>@Tag("fast")</code>.</li>
+ *   <li><b>Paso 2:</b> Localiza el método <code>testSlow</code> y añade la anotación <code>@Tag("slow")</code>.</li>
+ *   <li><b>Paso 3:</b> Ejecuta el comando <code>mvn test -Dgroups="fast"</code> y verifica que solo se ejecuta el test rápido.</li>
+ * </ul>
+ *
+ * <p><b>Pistas:</b> Consulta la teoría en {@link L1_ExecutionTheory}. El filtrado se realiza
+ * mediante los parámetros <i>groups</i> o <i>excludedGroups</i> del Maven Surefire Plugin.</p>
+ *
+ * @see L1_ExecutionTheory
  */
-@Disabled("Ejercicio pendiente de resolver")
+@Disabled("Pendiente de ser resuelto por el alumno")
 class EX1_MavenExecutionExercise {
 
+    /**
+     * <h3>Test Rápido (FAST)</h3>
+     * <p>Este test debe simular una prueba unitaria ligera e instantánea.</p>
+     * <p><b>TODO 1:</b> Añade la etiqueta @Tag("fast") a este método.</p>
+     */
     @Test
-    // TODO 1: Añade la etiqueta @Tag("fast") a este test.
     void testFast() {
         assertTrue(true);
     }
 
+    /**
+     * <h3>Test Lento (SLOW)</h3>
+     * <p>Este test debe simular una prueba que requiere carga de contexto o latencia.</p>
+     * <p><b>TODO 2:</b> Añade la etiqueta @Tag("slow") a este método.</p>
+     */
     @Test
-    // TODO 2: Añade la etiqueta @Tag("slow") a este test.
     void testSlow() {
         assertTrue(true);
     }
-
-    /**
-     * COMANDOS A PROBAR EN TERMINAL:
-     * 1. mvn test -Dgroups="fast"        -> Debería ejecutar solo testFast.
-     * 2. mvn test -DexcludedGroups="slow" -> Debería ejecutar solo testFast.
-     * 3. mvn surefire-report:report       -> Genera un reporte HTML en target/site/surefire-report.html.
-     */
 }
+
 
 
