@@ -26,6 +26,8 @@ class RecommendationServiceTest {
     private VetRepository vetRepository;
     @Mock
     private PetSafetyClient petSafetyClient;
+    @Mock
+    private com.testing.course.ejercicio_final.repository.RecommendationLogRepository auditRepository;
 
     @InjectMocks
     private RecommendationService recommendationService;
