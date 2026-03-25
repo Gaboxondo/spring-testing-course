@@ -141,6 +141,7 @@ Trucos avanzados de la magia de Boot.
 - **L1_WebEnvironmentTheory**: Entornos Web: `MOCK` vs `RANDOM_PORT`.
 - **L2_TestConfigurationTheory**: Sobrescribiendo Beans en ejecución con `@TestConfiguration`.
 - **L3_LocalServerPortTheory**: Recuperación del puerto dinámico real.
+- **L4_MockitoSpyBeanTheory**: Sobrescritura ágil de Beans con la nueva API de Spring.
 - **E1_RandomPortExercise**: Práctica de entorno web y puerto dinámico.
 
 ---

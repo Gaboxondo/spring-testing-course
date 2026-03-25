@@ -32,6 +32,9 @@ import static org.mockito.Mockito.when;
 @DisplayName("Sección 8 - L2: Sobrescritura mediante TestConfiguration")
 class L2_TestConfigurationTheory {
 
+    // NOTA: Existe una opción más moderna y ágil para sobrescribir Beans 
+    // sin @TestConfiguration ni @Primary, usando @MockitoSpyBean o @MockitoBean.
+    // Consulta la teoría L4 para ver el ejemplo completo de MockitoSpyBean.
     @TestConfiguration 
     static class OverrideConfig {
         @Bean
