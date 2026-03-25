@@ -3,6 +3,7 @@ package com.testing.course.service;
 import com.testing.course.model.Owner;
 import com.testing.course.model.Pet;
 import com.testing.course.repository.OwnerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class OwnerService {
     /** 
      * Constructor para Spring (Inyección de dependencias).
      */
+    @Autowired
     public OwnerService(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
         this.useRepository = true;
