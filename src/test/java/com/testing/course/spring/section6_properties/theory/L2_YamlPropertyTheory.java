@@ -29,17 +29,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 @ExtendWith(SpringExtension.class)
 @DisplayName("Sección 6 - L2: Carga de YAML y Tipado Seguros")
+@PropertySource(value = "classpath:test-external-service.yml", factory = YamlPropertySourceFactory.class)
+@EnableConfigurationProperties(ExternalServiceConfig.class)
 class L2_YamlPropertyTheory {
-
-    @Configuration
-    @PropertySource(value = "classpath:test-external-service.yml", factory = YamlPropertySourceFactory.class)
-    @EnableConfigurationProperties(ExternalServiceConfig.class) 
-    static class TestConfig {
-    }
 
     @Autowired
     private ExternalServiceConfig serviceConfig;
-
     /**
      * <h2>DEMO: Inyectar Configuración en POJO</h2>
      * <p>Validamos que el objeto inyectado contiene los valores definidos en 
