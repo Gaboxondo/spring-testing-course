@@ -7,8 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -26,7 +28,7 @@ import static org.mockito.Mockito.when;
 @DisplayName("Sección 7 - L2: Control de Datos mediante MockBean")
 class L2_MockBeanRepositoryTheory {
 
-    @MockBean
+    @MockitoBean
     private OwnerRepository ownerRepository; 
 
     @Autowired

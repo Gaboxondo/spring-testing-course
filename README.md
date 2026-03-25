@@ -144,6 +144,11 @@ Trucos avanzados de la magia de Boot.
 - **L4_MockitoSpyBeanTheory**: Sobrescritura ágil de Beans con la nueva API de Spring.
 - **E1_RandomPortExercise**: Práctica de entorno web y puerto dinámico.
 
+### 🏆 Reto Final: Proyecto de Integración Real
+- **FinalExercise (unit/ & integration/)**: Un proyecto completo con Controller, Service y Cliente API.
+  - **Unit Tests**: Uso de `MockitoExtension`, `@InjectMocks` y `@WebMvcTest`.
+  - **Integration Tests**: Uso de `WireMockExtension`, `@SpringBootTest` y `@DynamicPropertySource`.
+
 ---
 
 ## 🛠️ Comandos Maestros de Maven
