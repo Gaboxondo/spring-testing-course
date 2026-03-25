@@ -23,4 +23,9 @@ public class RecommendationController {
     public VetRecommendation getRecommendation(@PathVariable Long vetId, @RequestParam String species) {
         return recommendationService.getRecommendationForVet(vetId, species);
     }
+
+    @GetMapping("/audit/{vetId}")
+    public long getAuditCount(@PathVariable Long vetId) {
+        return recommendationService.getRequestCountForVet(vetId);
+    }
 }

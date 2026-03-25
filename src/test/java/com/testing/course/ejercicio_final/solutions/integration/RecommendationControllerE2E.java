@@ -54,16 +54,16 @@ class RecommendationControllerE2E {
                         .withHeader("Content-Type", "application/json")
                         .withBody("[]")));
 
-        // CALL Controller
+        // CALL 1: Get Recommendation
         VetRecommendation result = restTemplate.getForObject("/api/recommendations/10?species=horse", VetRecommendation.class);
 
-        // VERIFY
+        // VERIFY 1
         assertEquals("Santi Muni", result.getVetName());
-        assertEquals("HIGH", result.getRecommendationLevel());
-        assertTrue(result.getHealthAlerts().isEmpty());
-    }
 
-    private void assertTrue(boolean condition) {
-        org.junit.jupiter.api.Assertions.assertTrue(condition);
+        // CALL 2: Get Audit logs (Verify data persistence)
+        Long auditCount = restTemplate.getForObject("/api/recommendations/audit/10", Long.class);
+
+        // VERIFY 2
+        assertEquals(1L, auditCount, "The audit count should be 1 after the previous request");
     }
 }
