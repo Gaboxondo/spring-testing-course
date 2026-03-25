@@ -17,6 +17,27 @@ Cada sección contiene tres pilares fundamentales:
 
 ---
 
+## 📅 Agenda del Curso (9:30 - 14:30)
+
+Este curso se imparte de forma **remota/telemática**. A continuación, la estimación de tiempos para cubrir todo el temario:
+
+| Bloque | Horario | Contenido Clave | Metodología |
+| :--- | :--- | :--- | :--- |
+| **1. JUnit 5** | 09:30 - 10:30 | Assertions, Ciclo de vida y Excepciones. | Teoría + Práctica |
+| **2. Mockito** | 10:30 - 11:30 | Mocks, Verify, Spy y ArgumentCaptor. | Teoría + Práctica |
+| ☕ **Descanso** | 11:30 - 11:50 | Pausa para café. | - |
+| **3. Spring Test** | 11:50 - 13:15 | MockMvc, @SpringBootTest y @MockitoBean. | Teoría + Práctica |
+| **4. Avanzado** | 13:15 - 13:45 | @MockitoSpyBean y Wiremock basics. | Teoría + Práctica |
+| 🏆 **Reto Final** | 13:45 - 14:30 | Proyecto real: Recomendación + Auditoría. | Desafío Final |
+
+### 💡 Consejos para la Sesión Remota
+- **Puntualidad con Git**: Mantén tu repositorio actualizado (`git pull`) antes de empezar cada bloque.
+- **Entorno Preparado**: Ejecuta `mvn clean install` antes del inicio para descargar todas las dependencias.
+- **Dudas en Tiempo Real**: Usa el chat o levanta la mano. No esperes a la resolución final si tienes errores locales.
+- **Foco en el Reto Final**: El objetivo de los últimos 45 minutos es integrar todo. Es normal encontrar dificultades, ¡no te rindas!
+
+---
+
 ## 📦 JUnit 5 Core: Desglose de Contenidos
 
 ### 🏗️ Sección 1: El Motor de JUnit 5
