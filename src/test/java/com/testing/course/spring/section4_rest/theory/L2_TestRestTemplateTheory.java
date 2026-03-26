@@ -41,4 +41,6 @@ class L2_TestRestTemplateTheory {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody(), "El cuerpo de la respuesta no debe estar vacío");
     }
+
+    //Lo mejor de esto es usar el TestRestTemplate en combinacion con el MockMvc si solo se quiere comprobar el controlador
 }
