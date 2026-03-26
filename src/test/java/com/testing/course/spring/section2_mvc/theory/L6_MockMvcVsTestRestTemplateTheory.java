@@ -35,6 +35,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *     reacciona ante distintos retornos.</li>
  *     <li><b>TestRestTemplate:</b> Testea la aplicación "desde fuera" como un cliente real. 
  *     Requiere levantar un puerto real. Valida serialización real y filtros de red.</li>
+ *     <li><b>WebTestClient:</b> El "héroe híbrido". Provee la API fluida de un cliente real 
+ *     pero puede usarse con MockMvc (sin servidor real) o con un servidor real. 
+ *     (Ver L7 para más detalle).</li>
  * </ul>
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

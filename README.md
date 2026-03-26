@@ -125,6 +125,7 @@ Pruebas de controladores (Vistas y APIs) con simulación interna o externa.
 - **L4_ValidationErrorsTheory**: Validación de errores y redirecciones.
 - **L5_JsonTestTheory**: Validación de serialización JSON con `@JsonTest`.
 - **L6_MockMvcVsTestRestTemplateTheory**: Comparativa de testeo INTERNO (Mocks) vs EXTERNO (Real HTTP).
+- **L7_WebTestClientMvcTheory**: ¡Bonus! La API fluida de WebTestClient aplicada a MVC.
 - **E1_StandaloneIndexExercise**: Práctica de setup manual en el índice.
 - **E2_FormValidationExercise**: Práctica de validación masiva.
 - **E3_JsonTestExercise**: Práctica de validación de contratos JSON.
