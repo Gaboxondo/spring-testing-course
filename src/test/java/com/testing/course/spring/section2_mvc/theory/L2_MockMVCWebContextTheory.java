@@ -19,11 +19,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * 
  * <p><b>Por qué existe:</b> Proporciona un equilibrio entre velocidad y realidad. 
  * A diferencia de <code>standaloneSetup</code>, aquí Spring gestiona la inyección 
- * y configuraciones complejas (como validadores globales) automáticamente.</p>
+ * y configuraciones complejas (como validadores globales o <b>convertidores JSON</b>) 
+ * automáticamente.</p>
  * 
  * <h2>Diferencia con @SpringBootTest:</h2>
  * <p><code>@WebMvcTest</code> no arranca el servidor real ni escanea servicios 
- * o repositorios, lo que lo hace mucho más ligero y enfocado en la interfaz HTTP.</p>
+ * o repositorios, pero es ideal para validar contratos de <b>APIs REST</b>.</p>
  */
 @WebMvcTest(IndexController.class)
 @DisplayName("Sección 2 - L2: MockMVC con Inyección de Contexto")

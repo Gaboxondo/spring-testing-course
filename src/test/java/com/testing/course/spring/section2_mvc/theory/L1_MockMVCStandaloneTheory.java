@@ -18,8 +18,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * instanciándolo manualmente y configurando MockMVC sin cargar el contexto de Spring.</p>
  * 
  * <p><b>Por qué existe:</b> Es la forma más rápida y pura de testear la lógica de 
- * un controlador (rutas, nombres de vistas, códigos de estado) sin la sobrecarga 
- * de arrancar el servidor embebido (Tomcat/Jetty) ni el ApplicationContext.</p>
+ * un controlador (rutas, nombres de vistas, códigos de estado, <b>o incluso APIs REST</b>) 
+ * sin la sobrecarga de arrancar el servidor embebido (Tomcat/Jetty) ni el ApplicationContext.</p>
  * 
  * <h2>Modo Standalone:</h2>
  * <p>Se utiliza <code>MockMvcBuilders.standaloneSetup(controlador)</code>. Solo registra 

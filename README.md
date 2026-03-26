@@ -117,14 +117,17 @@ Carga y gestión de dependencias en el contenedor de Spring.
 - **L6_MockitoExtensionTheory**: Mockito Puro vs Contexto Spring.
 - **E3_CustomExtensionExercise**: Práctica: Crea tu propia extensión Maven.
 
-### 🌐 Sección 2: Spring MVC Test (MockMVC)
-Pruebas de controladores web sin levantar el servidor.
-- **L1_MockMVCStandaloneTheory**: Setup ligero manual.
+### 🌐 Sección 2: Spring MVC & REST Test (Web Layer)
+Pruebas de controladores (Vistas y APIs) con simulación interna o externa.
+- **L1_MockMVCStandaloneTheory**: Setup ligero manual (Standalone).
 - **L2_MockMVCWebContextTheory**: Slice Testing con `@WebMvcTest`.
-- **L3_FormParametersTheory**: Envío de datos de formulario y `@MockBean`.
+- **L3_FormParametersTheory**: Envío de datos de formulario y `@MockitoBean`.
 - **L4_ValidationErrorsTheory**: Validación de errores y redirecciones.
+- **L5_JsonTestTheory**: Validación de serialización JSON con `@JsonTest`.
+- **L6_MockMvcVsTestRestTemplateTheory**: Comparativa de testeo INTERNO (Mocks) vs EXTERNO (Real HTTP).
 - **E1_StandaloneIndexExercise**: Práctica de setup manual en el índice.
 - **E2_FormValidationExercise**: Práctica de validación masiva.
+- **E3_JsonTestExercise**: Práctica de validación de contratos JSON.
 
 ### 🔌 Sección 3: Spring Boot Context
 Tests de integración total con la magia de Boot.
