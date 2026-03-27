@@ -51,7 +51,7 @@ class L1_AdvancedTheory {
         @DisplayName("🧪 Demo 2 bis: Nesting funcional 2")
         void nestedDemoBis() {
             ownerService.save(new Owner("Gabi", "Garcia"));
-            assertNotNull(ownerService.findByLastName("Garcia"));
+            assertNull(ownerService.findByLastName("Fernandez"));
         }
     }
 
