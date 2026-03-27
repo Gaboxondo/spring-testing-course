@@ -24,6 +24,8 @@ class EX2_LifecycleExercise {
     // TODO 2: Crea un mï¿½todo con la anotaciï¿½n @BeforeEach para inicializar 'ownerService'
     // cada vez que se ejecute un test individual.
 
+    // TODO 3: Adicional: En el metodo before each investiga como Imprimir ademas el nombre del test
+
     @Test
     void testSaveOwner() {
         Owner owner = new Owner("Paco", "Garcï¿½a");

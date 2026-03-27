@@ -20,10 +20,10 @@ class S2_LifecycleSolution {
     }
 
     @BeforeEach
-    void setUp() {
+    void setUp(TestInfo testInfo) {
         // SOLUCIÓN: Este método inicializa el servicio antes de CADA test individual.
         ownerService = new OwnerService();
-        System.out.println("  - Antes del test individual");
+        System.out.println("  - Antes del test individual: " +  testInfo.getDisplayName());
     }
 
     @Test
