@@ -5,6 +5,8 @@ import com.testing.course.service.OwnerService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -44,6 +46,12 @@ class L1_AdvancedTheory {
             ownerService.save(new Owner("Keanu", "Reeves"));
             assertNotNull(ownerService.findByLastName("Reeves"));
         }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 4, 6, 8, 10})
+    void testEsPar(int numero) {
+        assertThat(numero % 2).isZero();
     }
 
     /**
